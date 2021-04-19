@@ -105,7 +105,7 @@ class AusDeptHealthVaccinePdf {
             const values = content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY);
 
             const combinedStr = values.map(v => v.str.trim().replace(/[^a-zA-Z0-9,+\(\)\s]/g, '')).join(' ');
-            const matches = combinedStr.match(/([0-9,]+) \(\+\s*([0-9,]+)(?:\s*\**) last 24 hours\)/);
+            const matches = combinedStr.match(/([0-9,]+)\s+\(\+\s*([0-9,]+)(?:\s*\**) last 24 hours\)/);
             // console.log(pageIndex, combinedStr, matches)
 
             if(matches){
