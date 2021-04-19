@@ -16,6 +16,19 @@ yarn # or: npm install
 node index.js "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-19-april-2021"
 ```
 
+## Help
+
+### Why did you build this?
+
+Because for some reason, our Health department reckons the best way to provide statistical data is in a PDF file generated from Microsoft PowerPoint.
+
+This data should be available in machine readable formats for transparency and to enable ease of access.
+### Oh no, it's broken
+
+Yeah, that's probably going to happen.  Every time the Health department decides to add some new disclaimers or tweak the layout/wording a little, this thing will break.
+
+You can try and fix it and submit a PR.  Or raise an issue and I'll have a look at it.
+
 ## Example output
 
 ```json
