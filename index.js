@@ -13,4 +13,4 @@ const scrapeyscrape = async url => {
   console.log('parsed pdf');
 };
 
-scrapeyscrape(process.argv[3]);
+scrapeyscrape(process.argv[2]);
