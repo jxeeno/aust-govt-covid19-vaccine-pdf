@@ -124,7 +124,40 @@ You can try and fix it and submit a PR.  Or raise an issue and I'll have a look 
         "last24hr": 534
       }
     },
-    "cwthPrimaryCare": {},
+    "cwthPrimaryCare": {
+      "VIC": {
+        "total": 180581,
+        "last24hr": 1777
+      },
+      "QLD": {
+        "total": 176136,
+        "last24hr": 995
+      },
+      "WA": {
+        "total": 69033,
+        "last24hr": 619
+      },
+      "TAS": {
+        "total": 21656,
+        "last24hr": 160
+      },
+      "SA": {
+        "total": 58323,
+        "last24hr": 331
+      },
+      "ACT": {
+        "total": 13248,
+        "last24hr": 224
+      },
+      "NT": {
+        "total": 4677,
+        "last24hr": 15
+      },
+      "NSW": {
+        "total": 243087,
+        "last24hr": 1635
+      }
+    },
     "cwthAgedCareBreakdown": {
       "cwthAgedCareDoses": {
         "firstDose": 112982,
