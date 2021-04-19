@@ -29,6 +29,11 @@ Yeah, that's probably going to happen.  Every time the Health department decides
 
 You can try and fix it and submit a PR.  Or raise an issue and I'll have a look at it.
 
+### Why is the code so bad?
+
+Yeah, it's spaghetti code because it's basically disposable code. I expect to need to rewrite this every few days.
+
+Having said that, you're welcome to raise a PR if you want to make it better! :)
 ## Example output
 
 ```json
