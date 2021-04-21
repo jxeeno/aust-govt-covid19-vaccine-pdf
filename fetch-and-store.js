@@ -5,12 +5,12 @@ const path = require('path');
 const _ = require('lodash');
 const AusDeptHealthVaccinePdf = require('./vaccinepdf');
 
-const PUBLICATION_JSON_PATH = 'data/publications.json';
-const PUBLICATION_JSON_DATA_PATH = 'data/';
+const PUBLICATION_JSON_PATH = 'docs/data/publications.json';
+const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
 
 const getExistingPublications = () => {
     const jsonRaw = fs.existsSync(PUBLICATION_JSON_PATH) ? fs.readFileSync(PUBLICATION_JSON_PATH, {encoding: 'utf8'}) : '{}';
-    return JSON.parse(jsonRaw);
+    return _.keyBy(JSON.parse(jsonRaw), 'landingUrl');
 }
 
 const validateData = (data) => {
@@ -155,14 +155,20 @@ const getPublications = async () => {
             fs.writeFileSync(vaccineDataPath, JSON.stringify({success: validation.length === 0, url: pdfUrl, pdfData, validation}, null, 4));
         }
 
-        publications[landingUrl] = {name, landingUrl, pdfUrl, vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath}`, validation};
+        publications[landingUrl] = {
+            name,
+            landingUrl,
+            pdfUrl,
+            vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath.replace("/docs", "")}`,
+            validation
+        };
 
         // process.exit();
     }
     
     // console.log(publications);
 
-    fs.writeFileSync(PUBLICATION_JSON_PATH, JSON.stringify(publications, null, 4));
+    fs.writeFileSync(PUBLICATION_JSON_PATH, JSON.stringify(Object.values(publications), null, 4));
 }
 
 getPublications()
