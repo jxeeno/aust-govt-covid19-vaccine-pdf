@@ -22,6 +22,7 @@ jobs:
         node-version: '12'
     - name: Scrape
       run: |
+        yarn
         node fetch-and-store.js
     - name: Push data
       run: |
