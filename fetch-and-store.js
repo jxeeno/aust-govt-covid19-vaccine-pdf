@@ -155,7 +155,7 @@ const getPublications = async () => {
             fs.writeFileSync(vaccineDataPath, JSON.stringify({success: validation.length === 0, url: pdfUrl, pdfData, validation}, null, 4));
         }
 
-        publications[landingUrl] = {name, landingUrl, pdfUrl, vaccineDataPath, validation};
+        publications[landingUrl] = {name, landingUrl, pdfUrl, vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath}`, validation};
 
         // process.exit();
     }
