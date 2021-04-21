@@ -33,7 +33,7 @@ class AusDeptHealthVaccinePdf {
                     const xdiff = Math.abs(adj.x - rightX);
                     const ydiff = Math.abs(adj.cy - value.cy);
                     console.log(`merge ${value.str} with ${adj.str} (${xdiff}, ${ydiff})`);
-                    value.str = value.str.trim() + (xdiff > 0.1 ? ' ' : '') + adj.str.trim();
+                    value.str = value.str.trim() + (xdiff > 0.07 ? ' ' : '') + adj.str.trim();
                     value.width = adj.x + adj.width - value.x;
                     value.cx = value.x + value.width/2;
                     excluded.add(adjIndex);
@@ -68,7 +68,7 @@ class AusDeptHealthVaccinePdf {
         const cwthPrimaryCare = this.getStateData(5);
         const totals = this.getLeftPanelData();
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData();
-        const dataAsAt = this.getDataAsAt();
+        const dataAsAt = this.getDataAsAt() || this.getDataAsAt(2) || this.getDataAsAt(3);
 
         const output = {
             dataAsAt,
@@ -105,7 +105,7 @@ class AusDeptHealthVaccinePdf {
             const values = content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY);
 
             const combinedStr = values.map(v => v.str.trim().replace(/[^a-zA-Z0-9,+\(\)\s]/g, '')).join(' ');
-            const matches = combinedStr.match(/([0-9,]+)\s+\(\+\s*([0-9,]+)(?:\s*\**) last 24 hours\)/);
+            const matches = combinedStr.match(/([0-9,]+)\s+\(\+\s*([0-9,]+)(?:\s*\**)\s*last\s*24\s*hours\s*\)/);
             // console.log(pageIndex, combinedStr, matches)
 
             if(matches){
@@ -122,6 +122,8 @@ class AusDeptHealthVaccinePdf {
     getDataAsAt(pageIndex = 1, matchText = 'Data as at:'){
         const content = this.data.pages[pageIndex].content;
         const centrepoint = content.find(t => t.str.includes(matchText));
+        if(!centrepoint){return;}
+
         let minX = centrepoint.cx - centrepoint.width;
         let maxX = centrepoint.cx + centrepoint.width;
 
@@ -140,16 +142,6 @@ class AusDeptHealthVaccinePdf {
     }
 
     getLeftPanelData(pageIndex = 1, matchText = 'administered as at'){
-        const content = this.data.pages[pageIndex].content;
-        const centrepoint = content.find(t => t.str.includes(matchText));
-        let minX = centrepoint.cx - centrepoint.width;
-        let maxX = centrepoint.cx + centrepoint.width;
-        // let minY = state.cy;
-        // let maxY = state.cy + height;
-
-        const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX)));
-        values.sort((a, b) => a.y - b.y);
-
         const data = {
             national: {
                 total: undefined,
@@ -168,6 +160,18 @@ class AusDeptHealthVaccinePdf {
                 last24hr: undefined
             }
         }
+
+        const content = this.data.pages[pageIndex].content;
+        const centrepoint = content.find(t => t.str.includes(matchText));
+        if(!centrepoint){return data}
+
+        let minX = centrepoint.cx - centrepoint.width;
+        let maxX = centrepoint.cx + centrepoint.width;
+        // let minY = state.cy;
+        // let maxY = state.cy + height;
+
+        const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX)));
+        values.sort((a, b) => a.y - b.y);
 
         const isLast24HrNumber = str => str.trim().match(/\(\+\s?([0-9,]+) last 24 hours\)/);
 
@@ -189,7 +193,7 @@ class AusDeptHealthVaccinePdf {
                 if(last24hrMatches){
                     data.cwthAll.last24hr = toNumber(last24hrMatches[1])
                 }
-            }else if(vnext && vprev && vprev.str.includes('in primary care') && isNumber(v.str) && data.cwthPrimaryCare.total === undefined){
+            }else if(vnext && vprev && vprev.str.includes('primary care') && isNumber(v.str) && data.cwthPrimaryCare.total === undefined){
                 data.cwthPrimaryCare.total = toNumber(v.str)
 
                 const last24hrMatches = isLast24HrNumber(vnext.str);
@@ -210,14 +214,6 @@ class AusDeptHealthVaccinePdf {
     }
 
     getAgedCareLeftPanelData(pageIndex = 4, matchText = 'disability doses administered'){
-        const content = this.data.pages[pageIndex].content;
-        const centrepoint = content.find(t => t.str.includes(matchText));
-        let minX = centrepoint.cx - centrepoint.width;
-        let maxX = centrepoint.cx + centrepoint.width;
-
-        const values = content.filter(t => t.cx >= minX && t.cx <= maxX);
-        values.sort((a, b) => a.y - b.y);
-
         const data = {
             cwthAgedCareDoses: {
                 firstDose: undefined,
@@ -228,6 +224,16 @@ class AusDeptHealthVaccinePdf {
                 secondDose: undefined
             }
         }
+
+        const content = this.data.pages[pageIndex].content;
+        const centrepoint = content.find(t => t.str.includes(matchText));
+        if(!centrepoint){return data}
+
+        let minX = centrepoint.cx - centrepoint.width;
+        let maxX = centrepoint.cx + centrepoint.width;
+
+        const values = content.filter(t => t.cx >= minX && t.cx <= maxX);
+        values.sort((a, b) => a.y - b.y);
 
         for(let i = 0; i < values.length; i++){
             const v = values[i];
