@@ -6,7 +6,7 @@ The data is also available pre-generated at the following locations:
 
 * **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
-* **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.jsonpublications.json</a></li>
+* **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.json</a></li>
 
 Documentation for these data files will come in due course.
 
