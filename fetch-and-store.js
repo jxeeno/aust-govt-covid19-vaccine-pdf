@@ -159,14 +159,10 @@ const getPublications = async () => {
             name,
             landingUrl,
             pdfUrl,
-            vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath.replace("/docs", "")}`,
+            vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath.replace("docs/", "")}`,
             validation
         };
-
-        // process.exit();
     }
-    
-    // console.log(publications);
 
     fs.writeFileSync(PUBLICATION_JSON_PATH, JSON.stringify(Object.values(publications), null, 4));
 }

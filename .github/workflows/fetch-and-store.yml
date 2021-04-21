@@ -24,6 +24,7 @@ jobs:
       run: |
         yarn
         node fetch-and-store.js
+        node generate-csv.js
     - name: Push data
       run: |
           git config user.name jxeeno

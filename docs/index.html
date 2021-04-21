@@ -7,7 +7,10 @@
         <p>This repository provides COVID-19 vaccination statistics in machine-readable format.  You can learn more in the <a href="https://github.com/jxeeno/aust-govt-covid19-vaccine-pdf">repository readme</a>.</p>
         <p>Documentation for this data will be improved in due course.  In the meantime:</p>
         <p>
-            To access the data programatically, access the index JSON file at <tt>https://vaccinedata.covid19nearme.com.au/data/publications.json</tt>.  This will list all the PDF files published by the Department of Health.  Entries with a <tt>vaccineDataPath</tt> entry have been parsed correctly and contain vaccination statistics which can be accessed via the provided URL.
+            There is a CSV file available at <tt>https://vaccinedata.covid19nearme.com.au/data/all.csv</tt> to download.  The <tt>VALIDATED</tt> column will have a value of <tt>N</tt> if our data validation checks were successful (i.e. all expected values are present and totals add up to their constituents).
+        </p>
+        <p>
+            To access the raw JSON data programatically, access the index JSON file at <tt>https://vaccinedata.covid19nearme.com.au/data/publications.json</tt>.  This will list all the PDF files published by the Department of Health.  Entries with a <tt>vaccineDataPath</tt> entry have been parsed correctly and contain vaccination statistics which can be accessed via the provided URL.
         </p>
     </body>
 </html>
