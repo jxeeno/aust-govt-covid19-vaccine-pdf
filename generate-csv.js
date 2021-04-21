@@ -4,6 +4,7 @@ const { format } = require('@fast-csv/format');
 
 const PUBLICATION_JSON_PATH = 'docs/data/publications.json';
 const DATA_CSV_PATH = 'docs/data/all.csv';
+const DATA_JSON_PATH = 'docs/data/all.json';
 const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
 
 const COLUMN_TO_PATH_MAPPING = {
@@ -74,6 +75,7 @@ const generateCsv = async () => {
     const publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
     publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
 
+    const output = [];
     const stream = format({ headers: true });
     stream.pipe(fs.createWriteStream(DATA_CSV_PATH));
 
@@ -90,9 +92,12 @@ const generateCsv = async () => {
         row.URL = publication.pdfUrl;
 
         stream.write(row);
+        output.push(row);
     }
 
     stream.end();
+
+    fs.writeFileSync(DATA_JSON_PATH, JSON.stringify(output, null, 4));
 }
 
 generateCsv();
