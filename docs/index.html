@@ -12,7 +12,7 @@
             <li>Raw JSON data (index): <a href="https://vaccinedata.covid19nearme.com.au/data/publications.json">https://vaccinedata.covid19nearme.com.au/data/publications.json</a></li>
         </ul>
         <p>
-            For the "all" data, the <tt>VALIDATED</tt> column will have a value of <tt>N</tt> if our data validation checks were successful (i.e. all expected values are present and totals add up to their constituents).
+            For the "all" data, the <tt>VALIDATED</tt> column will have a value of <tt>Y</tt> if our data validation checks were successful for that PDF file (i.e. all expected values were extracted and totals add up to their constituents parts).
         </p>
         <p>
             To access the raw JSON data programatically, access the index JSON file at <tt>https://vaccinedata.covid19nearme.com.au/data/publications.json</tt>.  This will list all the PDF files published by the Department of Health.  Entries with a <tt>vaccineDataPath</tt> entry have been parsed correctly and contain vaccination statistics which can be accessed via the provided URL.
