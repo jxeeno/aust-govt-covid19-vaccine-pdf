@@ -2,6 +2,14 @@
 
 This repository is a mess of code which takes in the PDF file published by the Federal Department of Health (https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates) and converts it into machine-readable statistics.
 
+The data is also available pre-generated at the following locations:
+
+* **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
+* **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
+* **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.jsonpublications.json</a></li>
+
+Documentation for these data files will come in due course.
+
 ## To run
 
 You'll need:
