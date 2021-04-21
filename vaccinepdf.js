@@ -33,7 +33,7 @@ class AusDeptHealthVaccinePdf {
                     const xdiff = Math.abs(adj.x - rightX);
                     const ydiff = Math.abs(adj.cy - value.cy);
                     console.log(`merge ${value.str} with ${adj.str} (${xdiff}, ${ydiff})`);
-                    value.str = value.str.trim() + (xdiff > 2 ? ' ' : '') + adj.str.trim();
+                    value.str = value.str.trim() + (xdiff > 0.1 ? ' ' : '') + adj.str.trim();
                     value.width = adj.x + adj.width - value.x;
                     value.cx = value.x + value.width/2;
                     excluded.add(adjIndex);
