@@ -1,20 +1,28 @@
-# Australian Government COVID-19 Vaccination Statistics PDF Parser
+# Australian COVID-19 Vaccination Stats Data
 
-This repository is a mess of code which takes in the PDF file published by the Federal Department of Health (https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates) and converts it into machine-readable statistics.
+This repository is a mess of code which:
 
-The data is also available pre-generated at the following locations:
+1. Takes in the PDF file published by the Federal Department of Health (https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates)
+2. Converts it into machine-readable statistics (JSON and CSV files)
+3. Publishes data files via Github Actions and Github Pages
+
+## Direct access to data
+
+The data is also available at the following locations:
 
 * **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
-* **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.json</a></li>
+* **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.json
+
+The data files above are updated every 5 minutes and published via Github Pages.  The data is also available via this git repo in under `docs/data`.
 
 Documentation for these data files will come in due course.
 
-## To run
+## To run yourself
 
-You'll need:
+You can also run this code yourself.  You'll need:
 
-* Yarn (or NPM)
+* Yarn (or NPM) to install JS dependencies
 * Node (not sure what version but I'm running v12.x)
 
 ```bash
@@ -42,145 +50,4 @@ You can try and fix it and submit a PR.  Or raise an issue and I'll have a look 
 Yeah, it's spaghetti code because it's basically disposable code. I expect to need to rewrite this every few days.
 
 Having said that, you're welcome to raise a PR if you want to make it better! :)
-## Example output
 
-```json
-
-{
-  "success": true,
-  "url": "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-19-april-2021.pdf",
-  "pdfData": {
-    "dataAsAt": "2021-04-18",
-    "totals": {
-      "national": {
-        "total": 1586252,
-        "last24hr": 9084
-      },
-      "cwthAll": {
-        "total": 939626,
-        "last24hr": 6290
-      },
-      "cwthPrimaryCare": {
-        "total": 766741,
-        "last24hr": 5756
-      },
-      "cwthAgedCare": {
-        "total": 172885,
-        "last24hr": 534
-      }
-    },
-    "stateClinics": {
-      "VIC": {
-        "total": 164045,
-        "last24hr": 1492
-      },
-      "QLD": {
-        "total": 122865,
-        "last24hr": 0
-      },
-      "WA": {
-        "total": 76244,
-        "last24hr": 162
-      },
-      "TAS": {
-        "total": 28933,
-        "last24hr": 212
-      },
-      "SA": {
-        "total": 46591,
-        "last24hr": 437
-      },
-      "ACT": {
-        "total": 21332,
-        "last24hr": 480
-      },
-      "NT": {
-        "total": 12764,
-        "last24hr": 11
-      },
-      "NSW": {
-        "total": 173852,
-        "last24hr": 0
-      }
-    },
-    "cwthAgedCare": {
-      "VIC": {
-        "total": 33924,
-        "last24hr": 0
-      },
-      "QLD": {
-        "total": 41249,
-        "last24hr": 0
-      },
-      "WA": {
-        "total": 18722,
-        "last24hr": 0
-      },
-      "TAS": {
-        "total": 6211,
-        "last24hr": 0
-      },
-      "SA": {
-        "total": 14188,
-        "last24hr": 0
-      },
-      "ACT": {
-        "total": 5403,
-        "last24hr": 0
-      },
-      "NT": {
-        "total": 1303,
-        "last24hr": 0
-      },
-      "NSW": {
-        "total": 51885,
-        "last24hr": 534
-      }
-    },
-    "cwthPrimaryCare": {
-      "VIC": {
-        "total": 180581,
-        "last24hr": 1777
-      },
-      "QLD": {
-        "total": 176136,
-        "last24hr": 995
-      },
-      "WA": {
-        "total": 69033,
-        "last24hr": 619
-      },
-      "TAS": {
-        "total": 21656,
-        "last24hr": 160
-      },
-      "SA": {
-        "total": 58323,
-        "last24hr": 331
-      },
-      "ACT": {
-        "total": 13248,
-        "last24hr": 224
-      },
-      "NT": {
-        "total": 4677,
-        "last24hr": 15
-      },
-      "NSW": {
-        "total": 243087,
-        "last24hr": 1635
-      }
-    },
-    "cwthAgedCareBreakdown": {
-      "cwthAgedCareDoses": {
-        "firstDose": 112982,
-        "secondDose": 59903
-      },
-      "cwthAgedCareFacilities": {
-        "firstDose": 1315,
-        "secondDose": 713
-      }
-    }
-  }
-}
-```
