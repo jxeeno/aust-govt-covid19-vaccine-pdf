@@ -14,6 +14,8 @@ The data is also available at the following locations:
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
 * **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.json
 
+**Important note about data quality:**  This data is provided as-is. I'm not guaranteeing the timeliness or accuracy of any data provided above.  Some basic validation steps are present (i.e. we test the data and see if the totals add up to expected values and if there are empty data values), but no manual checks are conducted.  Use at your own risk.
+
 The data files above are usually updated daily.  Github Actions is configured to scrape and extract data from the Department of Health website every 5 minutes and published via Github Pages.  The data is also available via this git repo in under `docs/data`.
 
 Documentation for these data files will come in due course.
