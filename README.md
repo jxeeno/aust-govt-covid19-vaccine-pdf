@@ -6,6 +6,8 @@ This repository is a mess of code which:
 2. Converts it into machine-readable statistics (JSON and CSV files)
 3. Publishes data files via Github Actions and Github Pages
 
+**Looking for COVID-19 Case and Test Data?** That data is in a separate repository: https://github.com/jxeeno/aust-govt-covid19-stats
+
 ## Direct access to data
 
 The data is also available at the following locations:
