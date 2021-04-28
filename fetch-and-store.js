@@ -111,15 +111,30 @@ const validateData = (data) => {
 const getPublications = async () => {
     const {data: html} = await axios.get('https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates');
     const $ = cheerio.load(html);
-    const items = $(".paragraphs-items-full a").toArray();
+    const items = $(".paragraphs-items-full a").toArray().map(item => {
+        const $v = $(item);
+        const name = $v.text();
+        const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
+
+        return {
+            name,
+            landingUrl
+        }
+    });
+
+    if(process.argv[2] != null){
+        items.push({
+            name: 'Custom fetch',
+            landingUrl: process.argv[2]
+        });
+        console.log(`Added custom URL ${process.argv[2]}`)
+    }
 
     const existingPublications = getExistingPublications();
 
     const publications = {...existingPublications};
     for(const item of items){
-        const $v = $(item);
-        const name = $v.text();
-        const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
+        const {name, landingUrl} = item;
         
         console.log(`Found "${name}" at ${landingUrl}`);
 

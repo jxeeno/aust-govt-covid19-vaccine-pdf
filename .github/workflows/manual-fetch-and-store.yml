@@ -1,0 +1,34 @@
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Publication URL'
+        required: true
+        default: 'https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-28-april-2021'
+
+name: Manual fetch and store
+
+jobs:
+  fetch:
+    name: Fetch and store
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '12'
+    - name: Scrape
+      env:
+        DL_PATH: ${{github.event.inputs.url}}
+      run: |
+        yarn
+        node fetch-and-store.js $DL_PATH
+        node generate-csv.js
+    - name: Push data
+      run: |
+          git config user.name jxeeno
+          git config user.email ken+github@jxeeno.com
+          git add . || exit 0
+          git commit -m "auto(): update data" || exit 0
+          git push || exit 0
