@@ -130,6 +130,27 @@ const getPublications = async () => {
         console.log(`Added custom URL ${process.argv[2]}`)
     }
 
+    const {data: mainhtml} = await axios.get("https://www.health.gov.au/initiatives-and-programs/covid-19-vaccines/australias-covid-19-vaccine-rollout");
+    const $$ = cheerio.load(mainhtml);
+
+    const link = $$(".node-publication a:contains('vaccine rollout update')").first();
+    if(link && link.length){
+        const $v = $(link);
+        const name = $v.text();
+        const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
+
+        console.log(`Main landing page links to ${name}: ${landingUrl}`);
+
+        const hasExisting = items.find(item => item.landingUrl === landingUrl);
+        if(!hasExisting){
+            console.log(`Resource linked from main landing page not found in collection. Appending.`);
+            items.push({
+                name,
+                landingUrl
+            })
+        }
+    }
+
     const existingPublications = getExistingPublications();
 
     const publications = {...existingPublications};
