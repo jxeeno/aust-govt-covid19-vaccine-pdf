@@ -21,6 +21,15 @@ The data is also available at the following locations:
 The data files above are usually updated daily.  Github Actions is configured to scrape and extract data from the Department of Health website every 5 minutes and published via Github Pages.  The data is also available via this git repo in under `docs/data`.
 
 Documentation for these data files will come in due course.
+
+## Want to use this in Google Sheets?
+
+You can use the `=IMPORTDATA()` formula:
+
+```
+=IMPORTDATA("https://vaccinedata.covid19nearme.com.au/data/all.csv")
+```
+
 ## To run yourself
 
 You can also run this code yourself.  You'll need:
