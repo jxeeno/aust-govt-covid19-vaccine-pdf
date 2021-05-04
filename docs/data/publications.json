@@ -352,5 +352,18 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/05/covid-19-vaccine-rollout-update-3-may-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-05-02.json",
         "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 4 May 2021",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-4-may-2021",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/05/covid-19-vaccine-rollout-update-4-may-2021.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-05-03.json",
+        "validation": [
+            "cwthPrimaryCare.NT.total is null",
+            "cwthPrimaryCare.NT.last24hr is null",
+            "cwthPrimaryCareTotal is not 1245117 (1238377)",
+            "cwthPrimaryCareTotal + cwthAgedCareTotal is not 1483399 (1476659)",
+            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 2316969 (2310229)"
+        ]
     }
 ]
