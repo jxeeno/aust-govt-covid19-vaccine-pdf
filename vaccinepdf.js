@@ -3,7 +3,11 @@ const moment = require('moment');
 const pdfExtract = new PDFExtract();
 const options = {}; /* see below */
 
-const toNumber = str => Number(str.replace(/,/g, ''));
+const toNumber = (str, sign) => {
+    const neg = (sign === '-' ? -1 : 1);
+    return neg * Number(str.replace(/,/g, ''));
+};
+
 const isNumber = str => !!str.trim().match(/^[0-9,]+$/);
 
 class AusDeptHealthVaccinePdf {
@@ -102,16 +106,16 @@ class AusDeptHealthVaccinePdf {
 
             const stateCode = state.str.trim();
 
-            const values = content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY);
+            const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY));
 
-            const combinedStr = values.map(v => v.str.trim().replace(/[^a-zA-Z0-9,+\(\)\s]/g, '')).join(' ');
-            const matches = combinedStr.match(/([0-9,]+)\s+\(\+?\s*([0-9,]+)(?:\s*\**)\s*last\s*24\s*hours\s*\)/);
+            const combinedStr = values.map(v => v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s]/g, '')).join(' ');
+            const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)\s*last\s*24\s*hours\s*\)/);
             // console.log(pageIndex, combinedStr, matches)
 
             if(matches){
                 stateData[stateCode] = {
                     total: toNumber(matches[1]),
-                    last24hr: toNumber(matches[2])
+                    last24hr: toNumber(matches[3], matches[2])
                 }
             }
         }
