@@ -72,8 +72,11 @@ const COLUMN_TO_PATH_MAPPING = {
 }
 
 const generateCsv = async () => {
-    const publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
+    let publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
     publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
+
+    // handle when health publishes the data multiple times
+    publications = _.uniqBy(publications, 'vaccineDataPath');
 
     const output = [];
     const stream = format({ headers: true });
