@@ -15,7 +15,7 @@ class AusDeptHealthVaccinePdf {
 
     }
 
-    mergeAdjacentCells(values){
+    mergeAdjacentCells(values, thresh = 0.07){
         // sometimes the PDF file will split up the text
         // into separate cells.  this function will try
         // to adjacent cells back together
@@ -37,7 +37,7 @@ class AusDeptHealthVaccinePdf {
                     const xdiff = Math.abs(adj.x - rightX);
                     const ydiff = Math.abs(adj.cy - value.cy);
                     console.log(`merge ${value.str} with ${adj.str} (${xdiff}, ${ydiff})`);
-                    value.str = value.str.trim() + (xdiff > 0.07 ? ' ' : '') + adj.str.trim();
+                    value.str = value.str.trim() + (xdiff > thresh ? ' ' : '') + adj.str.trim();
                     value.width = adj.x + adj.width - value.x;
                     value.cx = value.x + value.width/2;
                     excluded.add(adjIndex);
@@ -236,8 +236,10 @@ class AusDeptHealthVaccinePdf {
         let minX = centrepoint.cx - centrepoint.width;
         let maxX = centrepoint.cx + centrepoint.width;
 
-        const values = content.filter(t => t.cx >= minX && t.cx <= maxX);
+        const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX), 0.1));
         values.sort((a, b) => a.y - b.y);
+
+        // console.log(values.map(s => s.str));
 
         for(let i = 0; i < values.length; i++){
             const v = values[i];
