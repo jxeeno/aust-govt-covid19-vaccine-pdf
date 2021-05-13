@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-9-april-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-04-08",
@@ -126,14 +126,5 @@
             }
         }
     },
-    "validation": [
-        "stateClinics.VIC.total is null",
-        "stateClinics.QLD.total is null",
-        "stateClinics.WA.total is null",
-        "stateClinics.TAS.total is null",
-        "stateClinics.SA.total is null",
-        "stateClinics.ACT.total is null",
-        "stateClinics.NT.total is null",
-        "stateClinics.NSW.total is null"
-    ]
+    "validation": []
 }

@@ -389,16 +389,7 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-9-april-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-04-08.json",
         "exempt": true,
-        "validation": [
-            "stateClinics.VIC.total is null",
-            "stateClinics.QLD.total is null",
-            "stateClinics.WA.total is null",
-            "stateClinics.TAS.total is null",
-            "stateClinics.SA.total is null",
-            "stateClinics.ACT.total is null",
-            "stateClinics.NT.total is null",
-            "stateClinics.NSW.total is null"
-        ],
+        "validation": [],
         "notes": "9 Apr is the first version of the slidedeck.  It doesn't include last 24 hour increase for the jurisiction doses."
     }
 ]
