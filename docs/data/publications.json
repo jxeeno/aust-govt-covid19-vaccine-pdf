@@ -9,46 +9,6 @@
         "notes": "Hidden text fields were present in the PDF, preventing the parser from collecting the information required."
     },
     {
-        "name": "COVID-19 vaccine rollout update – 9 April 2021",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-9-april-2021",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-9-april-2021.pdf",
-        "exempt": true,
-        "validation": [
-            "totals.cwthAll.total is null",
-            "totals.cwthAll.last24hr is null",
-            "totals.cwthPrimaryCare.total is null",
-            "totals.cwthPrimaryCare.last24hr is null",
-            "totals.cwthAgedCare.total is null",
-            "totals.cwthAgedCare.last24hr is null",
-            "stateClinics.VIC.total is null",
-            "stateClinics.VIC.last24hr is null",
-            "stateClinics.QLD.total is null",
-            "stateClinics.QLD.last24hr is null",
-            "stateClinics.WA.total is null",
-            "stateClinics.WA.last24hr is null",
-            "stateClinics.TAS.total is null",
-            "stateClinics.TAS.last24hr is null",
-            "stateClinics.SA.total is null",
-            "stateClinics.SA.last24hr is null",
-            "stateClinics.ACT.total is null",
-            "stateClinics.ACT.last24hr is null",
-            "stateClinics.NT.total is null",
-            "stateClinics.NT.last24hr is null",
-            "stateClinics.NSW.total is null",
-            "stateClinics.NSW.last24hr is null",
-            "cwthAgedCare.QLD.total is null",
-            "cwthAgedCare.QLD.last24hr is null",
-            "cwthAgedCare.TAS.total is null",
-            "cwthAgedCare.TAS.last24hr is null",
-            "cwthAgedCare.ACT.total is null",
-            "cwthAgedCare.ACT.last24hr is null",
-            "cwthPrimaryCareTotal is not undefined (408290)",
-            "cwthAgedCareTotal is not undefined (90907)",
-            "cwthPrimaryCareTotal + cwthAgedCareTotal is not undefined (499197)",
-            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 1077511 (499197)"
-        ]
-    },
-    {
         "name": "COVID-19 vaccine rollout update on 22 March 2021",
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-on-22-march-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/03/covid-19-vaccine-rollout-update-on-22-march-2021.pdf",
@@ -422,5 +382,23 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-26-april-2021_0.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-04-25.json",
         "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 9 April 2021",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-9-april-2021",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-9-april-2021.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-04-08.json",
+        "exempt": true,
+        "validation": [
+            "stateClinics.VIC.total is null",
+            "stateClinics.QLD.total is null",
+            "stateClinics.WA.total is null",
+            "stateClinics.TAS.total is null",
+            "stateClinics.SA.total is null",
+            "stateClinics.ACT.total is null",
+            "stateClinics.NT.total is null",
+            "stateClinics.NSW.total is null"
+        ],
+        "notes": "9 Apr is the first version of the slidedeck.  It doesn't include last 24 hour increase for the jurisiction doses."
     }
 ]
