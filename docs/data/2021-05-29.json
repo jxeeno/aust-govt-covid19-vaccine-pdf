@@ -1,0 +1,139 @@
+{
+    "success": false,
+    "url": "https://www.health.gov.au/sites/default/files/documents/2021/05/covid-19-vaccine-rollout-update-30-may-2021.pdf",
+    "pdfData": {
+        "dataAsAt": "2021-05-29",
+        "totals": {
+            "national": {
+                "total": 4212899,
+                "last24hr": 59750
+            },
+            "cwthAll": {
+                "total": 2694472,
+                "last24hr": 32350
+            },
+            "cwthPrimaryCare": {
+                "total": 2348906,
+                "last24hr": 32893
+            },
+            "cwthAgedCare": {
+                "total": 345566
+            }
+        },
+        "stateClinics": {
+            "VIC": {
+                "total": 460474,
+                "last24hr": 15316
+            },
+            "QLD": {
+                "total": 220152,
+                "last24hr": 600
+            },
+            "WA": {
+                "total": 167450,
+                "last24hr": 1798
+            },
+            "TAS": {
+                "total": 65557,
+                "last24hr": 956
+            },
+            "SA": {
+                "total": 105748,
+                "last24hr": 977
+            },
+            "ACT": {
+                "total": 48521,
+                "last24hr": 591
+            },
+            "NT": {
+                "total": 31529,
+                "last24hr": 0
+            },
+            "NSW": {
+                "total": 418996,
+                "last24hr": 7162
+            }
+        },
+        "cwthAgedCare": {
+            "VIC": {
+                "total": 77134,
+                "last24hr": -48
+            },
+            "QLD": {
+                "total": 72542,
+                "last24hr": -669
+            },
+            "WA": {
+                "total": 31318,
+                "last24hr": 0
+            },
+            "TAS": {
+                "total": 10192,
+                "last24hr": 0
+            },
+            "SA": {
+                "total": 27166,
+                "last24hr": -54
+            },
+            "ACT": {
+                "total": 6219,
+                "last24hr": 0
+            },
+            "NT": {
+                "total": 1745,
+                "last24hr": 0
+            },
+            "NSW": {
+                "total": 119250,
+                "last24hr": 228
+            }
+        },
+        "cwthPrimaryCare": {
+            "VIC": {
+                "total": 576142,
+                "last24hr": 12180
+            },
+            "QLD": {
+                "total": 501949,
+                "last24hr": 4650
+            },
+            "WA": {
+                "total": 235148,
+                "last24hr": 3791
+            },
+            "TAS": {
+                "total": 58493,
+                "last24hr": 1328
+            },
+            "SA": {
+                "total": 171743,
+                "last24hr": 1858
+            },
+            "ACT": {
+                "total": 41795,
+                "last24hr": 498
+            },
+            "NT": {
+                "total": 13907,
+                "last24hr": 10
+            },
+            "NSW": {
+                "total": 749729,
+                "last24hr": 8578
+            }
+        },
+        "cwthAgedCareBreakdown": {
+            "cwthAgedCareDoses": {
+                "firstDose": 196580,
+                "secondDose": 148986
+            },
+            "cwthAgedCareFacilities": {
+                "firstDose": 2534,
+                "secondDose": 1914
+            }
+        }
+    },
+    "validation": [
+        "totals.cwthAgedCare.last24hr is null"
+    ]
+}
