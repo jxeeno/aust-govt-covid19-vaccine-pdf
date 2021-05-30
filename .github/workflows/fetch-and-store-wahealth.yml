@@ -1,0 +1,27 @@
+on:
+  schedule:
+    - cron: '42 * * * *'
+
+name: Fetch and store (WA Health)
+
+jobs:
+  fetch:
+    name: Fetch and store
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '12'
+    - name: Scrape
+      run: |
+        yarn
+        node scrape-wa-health.js
+    - name: Push data
+      run: |
+          git config user.name jxeeno
+          git config user.email ken+github@jxeeno.com
+          git add . || exit 0
+          git commit -m "auto(): update data" || exit 0
+          git push || exit 0
