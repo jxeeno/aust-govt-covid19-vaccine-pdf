@@ -49,6 +49,7 @@ class AusDeptHealthVaccinePdf {
             output.push(value);
         }
         output.sort((a, b) => a.y - b.y);
+        // console.log(output.map(o => o.str))
         return output;
     }
 
@@ -57,7 +58,7 @@ class AusDeptHealthVaccinePdf {
         // or hashes then filters out empty lines for simplicity 
         return values.map(v => ({
             ...v,
-            str: v.str.trim().replace(/[^a-zA-Z0-9,+\(\)\s]/g, '').trim()
+            str: v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s]/g, '').trim()
         })).filter(v => v.str !== '');
     }
 
@@ -177,7 +178,7 @@ class AusDeptHealthVaccinePdf {
         const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX)));
         values.sort((a, b) => a.y - b.y);
 
-        const isLast24HrNumber = str => str.trim().match(/\(\+\s?([0-9,]+) last 24 hours\)/);
+        const isLast24HrNumber = str => str.trim().match(/\(([\+\-])\s?([0-9,]+) last 24 hours\)/);
 
         // console.log(values.map(s => s.str));
 
@@ -195,21 +196,21 @@ class AusDeptHealthVaccinePdf {
 
                 const last24hrMatches = isLast24HrNumber(vnext.str);
                 if(last24hrMatches){
-                    data.cwthAll.last24hr = toNumber(last24hrMatches[1])
+                    data.cwthAll.last24hr = toNumber(last24hrMatches[2], last24hrMatches[1])
                 }
             }else if(vnext && vprev && vprev.str.includes('primary care') && isNumber(v.str) && data.cwthPrimaryCare.total === undefined){
                 data.cwthPrimaryCare.total = toNumber(v.str)
 
                 const last24hrMatches = isLast24HrNumber(vnext.str);
                 if(last24hrMatches){
-                    data.cwthPrimaryCare.last24hr = toNumber(last24hrMatches[1])
+                    data.cwthPrimaryCare.last24hr = toNumber(last24hrMatches[2], last24hrMatches[1])
                 }
             }else if(vnext && vprev && vprev.str.includes('aged and disability facilities') && isNumber(v.str) && data.cwthAgedCare.total === undefined){
                 data.cwthAgedCare.total = toNumber(v.str)
 
                 const last24hrMatches = isLast24HrNumber(vnext.str);
                 if(last24hrMatches){
-                    data.cwthAgedCare.last24hr = toNumber(last24hrMatches[1])
+                    data.cwthAgedCare.last24hr = toNumber(last24hrMatches[2], last24hrMatches[1])
                 }
             }
         }

@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2021/05/covid-19-vaccine-rollout-update-30-may-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-05-29",
@@ -17,7 +17,8 @@
                 "last24hr": 32893
             },
             "cwthAgedCare": {
-                "total": 345566
+                "total": 345566,
+                "last24hr": -543
             }
         },
         "stateClinics": {
@@ -133,7 +134,5 @@
             }
         }
     },
-    "validation": [
-        "totals.cwthAgedCare.last24hr is null"
-    ]
+    "validation": []
 }
