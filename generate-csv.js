@@ -6,6 +6,20 @@ const PUBLICATION_JSON_PATH = 'docs/data/publications.json';
 const DATA_CSV_PATH = 'docs/data/all.csv';
 const DATA_JSON_PATH = 'docs/data/all.json';
 const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
+const SECOND_DOSE_PUBLICATION_JSON_DATA_PATH = 'docs/wahealth/';
+
+// population data based on https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/sep-2020#data-download
+// The eligible population is calculated as all people ages 16 or older
+const STATE_16_OVER_POPULATIONS = {
+    NSW: 8167532 - 1601881,
+    VIC: 6696670 - 1289096,
+    QLD: 5176186 - 1063479,
+    SA: 1770375 - 329975,
+    WA: 2663561 - 548583,
+    TAS: 540780 - 100608,
+    NT: 246143 - 55572,
+    ACT: 431380 - 87343
+}
 
 const COLUMN_TO_PATH_MAPPING = {
     DATE_AS_AT: 'dataAsAt',
@@ -69,6 +83,15 @@ const COLUMN_TO_PATH_MAPPING = {
     CWTH_AGED_CARE_DOSES_SECOND_DOSE: 'cwthAgedCareBreakdown.cwthAgedCareDoses.secondDose',
     CWTH_AGED_CARE_FACILITIES_FIRST_DOSE: 'cwthAgedCareBreakdown.cwthAgedCareFacilities.firstDose',
     CWTH_AGED_CARE_FACILITIES_SECOND_DOSE: 'cwthAgedCareBreakdown.cwthAgedCareFacilities.secondDose',
+
+    APPROX_VIC_SECOND_DOSE_TOTAL: 'secondDoseData.VIC',
+    APPROX_QLD_SECOND_DOSE_TOTAL: 'secondDoseData.QLD',
+    APPROX_WA_SECOND_DOSE_TOTAL: 'secondDoseData.WA',
+    APPROX_TAS_SECOND_DOSE_TOTAL: 'secondDoseData.TAS',
+    APPROX_SA_SECOND_DOSE_TOTAL: 'secondDoseData.SA',
+    APPROX_ACT_SECOND_DOSE_TOTAL: 'secondDoseData.ACT',
+    APPROX_NT_SECOND_DOSE_TOTAL: 'secondDoseData.NT',
+    APPROX_NSW_SECOND_DOSE_TOTAL: 'secondDoseData.NSW',
 }
 
 const generateCsv = async () => {
@@ -86,9 +109,23 @@ const generateCsv = async () => {
         const localDataFile = publication.vaccineDataPath.replace("https://vaccinedata.covid19nearme.com.au/data/", PUBLICATION_JSON_DATA_PATH);
         const data = JSON.parse(fs.readFileSync(localDataFile));
 
+        const secondDoselocalDataFile = publication.vaccineDataPath.replace("https://vaccinedata.covid19nearme.com.au/data/", SECOND_DOSE_PUBLICATION_JSON_DATA_PATH);
+        const secondDoseRawData = fs.existsSync(secondDoselocalDataFile) ? JSON.parse(fs.readFileSync(secondDoselocalDataFile)) : {};
+
+        const secondDoseData = {};
+        if(secondDoseRawData && secondDoseRawData.entries){
+            for(const row of secondDoseRawData.entries){
+                secondDoseData[row[0]] = Math.round(STATE_16_OVER_POPULATIONS[row[0]] * Number(row[1]));
+            }
+        }
+
+        const lookupData = {
+            ...data.pdfData,
+            secondDoseData
+        }
         const row = {};
         for(const key in COLUMN_TO_PATH_MAPPING){
-            row[key] = _.get(data.pdfData, COLUMN_TO_PATH_MAPPING[key])
+            row[key] = _.get(lookupData, COLUMN_TO_PATH_MAPPING[key])
         }
 
         row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';

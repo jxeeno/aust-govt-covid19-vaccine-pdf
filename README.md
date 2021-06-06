@@ -2,11 +2,19 @@
 
 This repository is a mess of code which:
 
-1. Takes in the PDF file published by the Federal Department of Health (https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates)
-2. Converts it into machine-readable statistics (JSON and CSV files)
-3. Publishes data files via Github Actions and Github Pages
+1. Takes in the PDF file published by the [Australian Department of Health](https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates)
+2. Takes in national second dose data from the [WA Health vaccination dashboard](https://www.wa.gov.au/organisation/covid-communications/covid-19-coronavirus-vaccination-dashboard)
+3. Converts it into machine-readable statistics (JSON and CSV files)
+4. Publishes data files via Github Actions and Github Pages
 
 **Looking for COVID-19 Case and Test Data?** That data is in a separate repository: https://github.com/jxeeno/aust-govt-covid19-stats
+
+## Information about approx second dose data
+Approximate second dose data (data values in key format `APPROX_<State>_SECOND_DOSE_TOTAL`) is derived from the [WA Health Vaccination Dashboard](https://www.wa.gov.au/organisation/covid-communications/covid-19-coronavirus-vaccination-dashboard) which is updated weekly on Tuesday (and sometimes Wednesday).
+
+Some states separately publish second dose data which is not captured here.
+
+The percentages are extracted from the WA Health dashboard and multiplied against the [ABS 16 and over population data](https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/sep-2020#data-download) as noted in the [WA Health interpretation guide](https://www.wa.gov.au/sites/default/files/2021-05/COVID-19_Vaccine_Dashboard_Guide%20for%20Interpretation.pdf).
 
 ## Direct access to data
 
