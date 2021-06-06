@@ -29,7 +29,7 @@ const scrape = async () => {
 
         const dictionary = data.results[0].result.data.dsr.DS[0].ValueDicts.D0;
         const entries = data.results[0].result.data.dsr.DS[0].PH[0].DM0.map(v => [dictionary[v.C[0]], v.C[1]]);
-        const date = moment().format('YYYY-MM-DD');
+        const date = moment().subtract(1, 'd').format('YYYY-MM-DD'); // assume data was published for previous day
 
         fs.writeFileSync(`docs/wahealth/${date}.json`, JSON.stringify({date, entries}, null, 4));
     }catch(e){console.error(e)}
