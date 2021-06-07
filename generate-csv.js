@@ -5,6 +5,10 @@ const { format } = require('@fast-csv/format');
 const PUBLICATION_JSON_PATH = 'docs/data/publications.json';
 const DATA_CSV_PATH = 'docs/data/all.csv';
 const DATA_JSON_PATH = 'docs/data/all.json';
+
+const DISTRIBUTION_DATA_CSV_PATH = 'docs/data/distribution.csv';
+const DISTRIBUTION_DATA_JSON_PATH = 'docs/data/distribution.json';
+
 const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
 const SECOND_DOSE_PUBLICATION_JSON_DATA_PATH = 'docs/wahealth/';
 
@@ -94,6 +98,60 @@ const COLUMN_TO_PATH_MAPPING = {
     APPROX_NSW_SECOND_DOSE_TOTAL: 'secondDoseData.NSW',
 }
 
+const DISTRIBUTION_COLUMN_TO_PATH_MAPPING = {
+    DATE_AS_AT: 'dataAsAt',
+    STATE_CLINICS_VIC_DISTRIBUTED: "distribution.VIC.distributed",
+    STATE_CLINICS_QLD_DISTRIBUTED: "distribution.QLD.distributed",
+    STATE_CLINICS_WA_DISTRIBUTED: "distribution.WA.distributed",
+    STATE_CLINICS_TAS_DISTRIBUTED: "distribution.TAS.distributed",
+    STATE_CLINICS_SA_DISTRIBUTED: "distribution.SA.distributed",
+    STATE_CLINICS_ACT_DISTRIBUTED: "distribution.ACT.distributed",
+    STATE_CLINICS_NT_DISTRIBUTED: "distribution.NT.distributed",
+    STATE_CLINICS_NSW_DISTRIBUTED: "distribution.NSW.distributed",
+    CWTH_AGED_CARE_DISTRIBUTED: "distribution.cwthAgedCare.distributed",
+    CWTH_PRIMARY_CARE_DISTRIBUTED: "distribution.cwthPrimaryCare.distributed",
+    STATE_CLINICS_VIC_AVAILABLE: "distribution.VIC.available",
+    STATE_CLINICS_QLD_AVAILABLE: "distribution.QLD.available",
+    STATE_CLINICS_WA_AVAILABLE: "distribution.WA.available",
+    STATE_CLINICS_TAS_AVAILABLE: "distribution.TAS.available",
+    STATE_CLINICS_SA_AVAILABLE: "distribution.SA.available",
+    STATE_CLINICS_ACT_AVAILABLE: "distribution.ACT.available",
+    STATE_CLINICS_NT_AVAILABLE: "distribution.NT.available",
+    STATE_CLINICS_NSW_AVAILABLE: "distribution.NSW.available",
+    CWTH_AGED_CARE_AVAILABLE: "distribution.cwthAgedCare.available",
+    CWTH_PRIMARY_CARE_AVAILABLE: "distribution.cwthPrimaryCare.available",
+    STATE_CLINICS_VIC_ADMINISTERED: "distribution.VIC.administered",
+    STATE_CLINICS_QLD_ADMINISTERED: "distribution.QLD.administered",
+    STATE_CLINICS_WA_ADMINISTERED: "distribution.WA.administered",
+    STATE_CLINICS_TAS_ADMINISTERED: "distribution.TAS.administered",
+    STATE_CLINICS_SA_ADMINISTERED: "distribution.SA.administered",
+    STATE_CLINICS_ACT_ADMINISTERED: "distribution.ACT.administered",
+    STATE_CLINICS_NT_ADMINISTERED: "distribution.NT.administered",
+    STATE_CLINICS_NSW_ADMINISTERED: "distribution.NSW.administered",
+    CWTH_AGED_CARE_ADMINISTERED: "distribution.cwthAgedCare.administered",
+    CWTH_PRIMARY_CARE_ADMINISTERED: "distribution.cwthPrimaryCare.administered",
+    STATE_CLINICS_VIC_AVAILABLE_MINUS_ADMINISTERED: "distribution.VIC.availableMinusAdministered",
+    STATE_CLINICS_QLD_AVAILABLE_MINUS_ADMINISTERED: "distribution.QLD.availableMinusAdministered",
+    STATE_CLINICS_WA_AVAILABLE_MINUS_ADMINISTERED: "distribution.WA.availableMinusAdministered",
+    STATE_CLINICS_TAS_AVAILABLE_MINUS_ADMINISTERED: "distribution.TAS.availableMinusAdministered",
+    STATE_CLINICS_SA_AVAILABLE_MINUS_ADMINISTERED: "distribution.SA.availableMinusAdministered",
+    STATE_CLINICS_ACT_AVAILABLE_MINUS_ADMINISTERED: "distribution.ACT.availableMinusAdministered",
+    STATE_CLINICS_NT_AVAILABLE_MINUS_ADMINISTERED: "distribution.NT.availableMinusAdministered",
+    STATE_CLINICS_NSW_AVAILABLE_MINUS_ADMINISTERED: "distribution.NSW.availableMinusAdministered",
+    CWTH_AGED_CARE_AVAILABLE_MINUS_ADMINISTERED: "distribution.cwthAgedCare.availableMinusAdministered",
+    CWTH_PRIMARY_CARE_AVAILABLE_MINUS_ADMINISTERED: "distribution.cwthPrimaryCare.availableMinusAdministered",
+    STATE_CLINICS_VIC_ESTIMATED_DOSE_UTILISATION: "distribution.VIC.estimatedUtilisationPct",
+    STATE_CLINICS_QLD_ESTIMATED_DOSE_UTILISATION: "distribution.QLD.estimatedUtilisationPct",
+    STATE_CLINICS_WA_ESTIMATED_DOSE_UTILISATION: "distribution.WA.estimatedUtilisationPct",
+    STATE_CLINICS_TAS_ESTIMATED_DOSE_UTILISATION: "distribution.TAS.estimatedUtilisationPct",
+    STATE_CLINICS_SA_ESTIMATED_DOSE_UTILISATION: "distribution.SA.estimatedUtilisationPct",
+    STATE_CLINICS_ACT_ESTIMATED_DOSE_UTILISATION: "distribution.ACT.estimatedUtilisationPct",
+    STATE_CLINICS_NT_ESTIMATED_DOSE_UTILISATION: "distribution.NT.estimatedUtilisationPct",
+    STATE_CLINICS_NSW_ESTIMATED_DOSE_UTILISATION: "distribution.NSW.estimatedUtilisationPct",
+    CWTH_AGED_CARE_ESTIMATED_DOSE_UTILISATION: "distribution.cwthAgedCare.estimatedUtilisationPct",
+    CWTH_PRIMARY_CARE_ESTIMATED_DOSE_UTILISATION: "distribution.cwthPrimaryCare.estimatedUtilisationPct",
+}
+
 const generateCsv = async () => {
     let publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
     publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
@@ -140,4 +198,44 @@ const generateCsv = async () => {
     fs.writeFileSync(DATA_JSON_PATH, JSON.stringify(output, null, 4));
 }
 
+const generateDistributionCsv = async () => {
+    let publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
+    publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
+
+    // handle when health publishes the data multiple times
+    publications = _.uniqBy(publications, 'vaccineDataPath');
+
+    const output = [];
+    const stream = format({ headers: true });
+    stream.pipe(fs.createWriteStream(DISTRIBUTION_DATA_CSV_PATH));
+
+    for(const publication of publications){
+        const localDataFile = publication.vaccineDataPath.replace("https://vaccinedata.covid19nearme.com.au/data/", PUBLICATION_JSON_DATA_PATH);
+        const data = JSON.parse(fs.readFileSync(localDataFile));
+
+        const lookupData = {
+            ...data.pdfData,
+        }
+
+        if(!_.get(lookupData, "distribution.NSW.distributed")){
+            continue;
+        }
+
+        const row = {};
+        for(const key in DISTRIBUTION_COLUMN_TO_PATH_MAPPING){
+            row[key] = _.get(lookupData, DISTRIBUTION_COLUMN_TO_PATH_MAPPING[key])
+        }
+
+        row.URL = publication.pdfUrl;
+
+        stream.write(row);
+        output.push(row);
+    }
+
+    stream.end();
+
+    fs.writeFileSync(DISTRIBUTION_DATA_JSON_PATH, JSON.stringify(output, null, 4));
+}
+
 generateCsv();
+generateDistributionCsv();

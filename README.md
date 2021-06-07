@@ -22,8 +22,15 @@ Second dose totals are **not** published daily and therefore do not necessarily 
 
 The data is also available at the following locations:
 
+**Daily dose administration data (and weekly second dose data)**
 * **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
+
+**Weekly dose distribution data**
+* **CSV (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.csv
+* **JSON (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.json
+
+**Index to raw data extracts**
 * **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.json
 
 **Important note about data quality:**  This data is provided as-is. I'm not guaranteeing the timeliness or accuracy of any data provided above.  Some basic validation steps are present (i.e. we test the data and see if the totals add up to expected values and if there are empty data values), but no manual checks are conducted.  Use at your own risk.
