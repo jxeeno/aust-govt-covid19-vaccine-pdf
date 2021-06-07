@@ -73,3 +73,13 @@ Yeah, it's spaghetti code because it's basically disposable code. I expect to ne
 
 Having said that, you're welcome to raise a PR if you want to make it better! :)
 
+# Data corrections
+
+Department of Health occasionally updates their historical vaccine statistics to correct incorrect data.  See below for summary of changes:
+
+| Date  | Description of changes |
+|---|---|
+| 2021-05-13  | NSW total revised from 266,514 (+10,321) to 264,135 (+7,942)  |
+| 2021-05-13  | National total revised from 2,980,644 (+85,874) to 2,978,265 (+83,495) |
+| 2021-05-14  | National 24 hour difference revised from +76,153 to +78,532  |
+| 2021-05-14  | NSW 24 hour difference revised from +8,237 to +10,616  |
