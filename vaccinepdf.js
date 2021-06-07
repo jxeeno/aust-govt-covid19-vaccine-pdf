@@ -1,5 +1,6 @@
 const PDFExtract = require('pdf.js-extract').PDFExtract;
 const moment = require('moment');
+const pdfTableExtractor = require('./src/pdf-table');
 const pdfExtract = new PDFExtract();
 const options = {}; /* see below */
 
@@ -74,6 +75,7 @@ class AusDeptHealthVaccinePdf {
         const totals = this.getLeftPanelData();
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData();
         const dataAsAt = this.getDataAsAt() || this.getDataAsAt(2) || this.getDataAsAt(3);
+        const distribution = await this.getDistributionData(buffer);
 
         const output = {
             dataAsAt,
@@ -82,6 +84,7 @@ class AusDeptHealthVaccinePdf {
             cwthAgedCare,
             cwthPrimaryCare,
             cwthAgedCareBreakdown,
+            distribution
         };
         
         console.log(output)
@@ -259,6 +262,52 @@ class AusDeptHealthVaccinePdf {
         }
 
         return data;
+    }
+
+    async getDistributionData(buffer){
+        const p = await pdfTableExtractor(buffer);
+        if(!p || !p.pageTables){
+            return;
+        }
+
+        const distrbPage = p.pageTables.find(p => p.page === 7);
+        if(!distrbPage || !distrbPage.tables){
+            return;
+        }
+
+        if(distrbPage.tables.length === 0){
+            return;
+        }
+
+        const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
+        const distributionData = {};
+        for(const row of distrbPage.tables){
+            const firstCol = row[0].trim().replace(/\s*[\n\r]\s*/g, ' ');
+            let key;
+            if(states.includes(firstCol)){
+                key = firstCol; 
+            }else if(firstCol.indexOf('Juristiction') > -1){
+                key = 'stateClinics'
+            }else if(firstCol.indexOf('Aged Care') > -1){
+                key = 'cwthAgedCare'
+            }else if(firstCol.indexOf('Primary Care') > -1){
+                key = 'cwthPrimaryCare'
+            }
+
+            if(key){
+                const estimatedUtilisationRaw = row[5].replace(/\%$/, '');
+                const estimatedUtilisationPct = row[5] && row[5].indexOf('Fully') > -1 ? 100 : isNumber(estimatedUtilisationRaw) ? toNumber(estimatedUtilisationRaw) : undefined;
+                distributionData[key] = {
+                    distributed: isNumber(row[1]) ? toNumber(row[1]) : undefined,
+                    available: isNumber(row[2]) ? toNumber(row[2]) : undefined,
+                    administered: isNumber(row[3]) ? toNumber(row[3]) : undefined,
+                    availableMinusAdministered: isNumber(row[4]) ? toNumber(row[4]) : undefined,
+                    estimatedUtilisationPct
+                }
+            }
+        }
+
+        return distributionData
     }
 }
 

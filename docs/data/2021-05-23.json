@@ -132,6 +132,77 @@
                 "firstDose": 2411,
                 "secondDose": 1712
             }
+        },
+        "distribution": {
+            "NSW": {
+                "distributed": 555620,
+                "available": 484250,
+                "administered": 345393,
+                "availableMinusAdministered": 138857,
+                "estimatedUtilisationPct": 81
+            },
+            "VIC": {
+                "distributed": 666060,
+                "available": 568590,
+                "administered": 370495,
+                "availableMinusAdministered": 198095,
+                "estimatedUtilisationPct": 75
+            },
+            "QLD": {
+                "distributed": 409070,
+                "available": 354080,
+                "administered": 187517,
+                "availableMinusAdministered": 166563,
+                "estimatedUtilisationPct": 63
+            },
+            "WA": {
+                "distributed": 252104,
+                "available": 213184,
+                "administered": 148503,
+                "availableMinusAdministered": 64681,
+                "estimatedUtilisationPct": 80
+            },
+            "SA": {
+                "distributed": 167500,
+                "available": 137200,
+                "administered": 92887,
+                "availableMinusAdministered": 44313,
+                "estimatedUtilisationPct": 78
+            },
+            "TAS": {
+                "distributed": 82834,
+                "available": 73714,
+                "administered": 58472,
+                "availableMinusAdministered": 15242,
+                "estimatedUtilisationPct": 89
+            },
+            "NT": {
+                "distributed": 54672,
+                "available": 52332,
+                "administered": 27853,
+                "availableMinusAdministered": 24479,
+                "estimatedUtilisationPct": 63
+            },
+            "ACT": {
+                "distributed": 67480,
+                "available": 60460,
+                "administered": 43630,
+                "availableMinusAdministered": 16830,
+                "estimatedUtilisationPct": 82
+            },
+            "cwthAgedCare": {
+                "distributed": 374388,
+                "available": 340704,
+                "administered": 326117,
+                "availableMinusAdministered": 14587
+            },
+            "cwthPrimaryCare": {
+                "distributed": 3779282,
+                "available": 3256332,
+                "administered": 2012186,
+                "availableMinusAdministered": 1244146,
+                "estimatedUtilisationPct": 72
+            }
         }
     },
     "validation": []
