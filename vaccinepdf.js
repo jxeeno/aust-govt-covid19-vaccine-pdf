@@ -181,7 +181,7 @@ class AusDeptHealthVaccinePdf {
         const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX)));
         values.sort((a, b) => a.y - b.y);
 
-        const isLast24HrNumber = str => str.trim().match(/\(([\+\-])\s?([0-9,]+) last 24 hours\)/);
+        const isLast24HrNumber = str => str.trim().match(/\(([\+\-])\s?([0-9,]+)\s*?last\s*?24\s*?hours\)/);
 
         // console.log(values.map(s => s.str));
 
