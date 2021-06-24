@@ -18,7 +18,17 @@ The percentages are extracted from the WA Health dashboard and multiplied agains
 
 Second dose totals are **not** published daily and therefore do not necessarily correlate with daily dose totals.  This means that deducting total doses from approx second dose total **does not produce an accurate value for first doses**.
 
-## Direct access to data
+## Attribution
+
+You must attribute the source of the data as [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose data) and [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all other data).
+
+When using this data extract, I'd appreciate it if you attribute data extraction to myself (Ken Tsang) and link to this repository.  This will be greatly appreciated, but not required.
+
+Example:
+
+> Source: WA Health (second dose data) and Department of Health (all other data); Data extracted by [Ken Tsang](https://github.com/jxeeno/aust-govt-covid19-vaccine-pdf)
+
+## Programmatic access to data
 
 The data is also available at the following locations:
 
