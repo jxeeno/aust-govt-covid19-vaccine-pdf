@@ -81,15 +81,16 @@ const fetchAllClinics = async () => {
     fs.writeFileSync(`${LATEST_FILE_PREFIX}-simplified.json`, csvJSON);
 
     const stream = format({ headers: true });
-    stream.pipe(fs.createWriteStream(`${DAILY_FILE_PREFIX}-simplified.csv`));
+    stream.pipe(fs.createWriteStream(`${DAILY_FILE_PREFIX}-simplified.csv`)).on('end', () => {
+        fs.copyFileSync(`${DAILY_FILE_PREFIX}-simplified.csv`, `${LATEST_FILE_PREFIX}-simplified.csv`);
+        process.exit()
+    });
 
     for(const row of csvData){
         stream.write(row);
     }
 
     stream.end();
-
-    fs.copyFileSync(`${DAILY_FILE_PREFIX}-simplified.csv`, `${LATEST_FILE_PREFIX}-simplified.csv`)
 }
 
 const toCSV = (rows, startTime) => {
