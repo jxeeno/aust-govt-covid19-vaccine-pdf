@@ -1,6 +1,5 @@
 on:
   schedule:
-    - on: push
     - cron: '22 * * * *'
 
 name: Fetch and store (Vaccine clinics)
