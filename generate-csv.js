@@ -9,6 +9,9 @@ const DATA_JSON_PATH = 'docs/data/all.json';
 const DISTRIBUTION_DATA_CSV_PATH = 'docs/data/distribution.csv';
 const DISTRIBUTION_DATA_JSON_PATH = 'docs/data/distribution.json';
 
+const AIR_DATA_CSV_PATH = 'docs/data/air.csv';
+const AIR_DATA_JSON_PATH = 'docs/data/air.json';
+
 const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
 const SECOND_DOSE_PUBLICATION_JSON_DATA_PATH = 'docs/wahealth/';
 
@@ -152,6 +155,28 @@ const DISTRIBUTION_COLUMN_TO_PATH_MAPPING = {
     CWTH_PRIMARY_CARE_ESTIMATED_DOSE_UTILISATION: "distribution.cwthPrimaryCare.estimatedUtilisationPct",
 }
 
+const AIR_COLUMN_TO_PATH_MAPPING = {
+    DATE_AS_AT: 'dataAsAt',
+
+    AIR_95_PLUS_FIRST_DOSE_COUNT: 'doseBreakdown.national[0].firstDoseCount',AIR_95_PLUS_FIRST_DOSE_PCT: 'doseBreakdown.national[0].firstDosePct',AIR_95_PLUS_SECOND_DOSE_COUNT: 'doseBreakdown.national[0].secondDoseCount',AIR_95_PLUS_SECOND_DOSE_PCT: 'doseBreakdown.national[0].secondDosePct',AIR_95_PLUS_FEMALE_PCT: 'doseBreakdown.national[0].femalePct',AIR_95_PLUS_MALE_PCT: 'doseBreakdown.national[0].malePct',
+    AIR_90_94_FIRST_DOSE_COUNT: 'doseBreakdown.national[1].firstDoseCount',AIR_90_94_FIRST_DOSE_PCT: 'doseBreakdown.national[1].firstDosePct',AIR_90_94_SECOND_DOSE_COUNT: 'doseBreakdown.national[1].secondDoseCount',AIR_90_94_SECOND_DOSE_PCT: 'doseBreakdown.national[1].secondDosePct',AIR_90_94_FEMALE_PCT: 'doseBreakdown.national[1].femalePct',AIR_90_94_MALE_PCT: 'doseBreakdown.national[1].malePct',
+    AIR_85_89_FIRST_DOSE_COUNT: 'doseBreakdown.national[2].firstDoseCount',AIR_85_89_FIRST_DOSE_PCT: 'doseBreakdown.national[2].firstDosePct',AIR_85_89_SECOND_DOSE_COUNT: 'doseBreakdown.national[2].secondDoseCount',AIR_85_89_SECOND_DOSE_PCT: 'doseBreakdown.national[2].secondDosePct',AIR_85_89_FEMALE_PCT: 'doseBreakdown.national[2].femalePct',AIR_85_89_MALE_PCT: 'doseBreakdown.national[2].malePct',
+    AIR_80_84_FIRST_DOSE_COUNT: 'doseBreakdown.national[3].firstDoseCount',AIR_80_84_FIRST_DOSE_PCT: 'doseBreakdown.national[3].firstDosePct',AIR_80_84_SECOND_DOSE_COUNT: 'doseBreakdown.national[3].secondDoseCount',AIR_80_84_SECOND_DOSE_PCT: 'doseBreakdown.national[3].secondDosePct',AIR_80_84_FEMALE_PCT: 'doseBreakdown.national[3].femalePct',AIR_80_84_MALE_PCT: 'doseBreakdown.national[3].malePct',
+    AIR_75_79_FIRST_DOSE_COUNT: 'doseBreakdown.national[4].firstDoseCount',AIR_75_79_FIRST_DOSE_PCT: 'doseBreakdown.national[4].firstDosePct',AIR_75_79_SECOND_DOSE_COUNT: 'doseBreakdown.national[4].secondDoseCount',AIR_75_79_SECOND_DOSE_PCT: 'doseBreakdown.national[4].secondDosePct',AIR_75_79_FEMALE_PCT: 'doseBreakdown.national[4].femalePct',AIR_75_79_MALE_PCT: 'doseBreakdown.national[4].malePct',
+    AIR_70_74_FIRST_DOSE_COUNT: 'doseBreakdown.national[5].firstDoseCount',AIR_70_74_FIRST_DOSE_PCT: 'doseBreakdown.national[5].firstDosePct',AIR_70_74_SECOND_DOSE_COUNT: 'doseBreakdown.national[5].secondDoseCount',AIR_70_74_SECOND_DOSE_PCT: 'doseBreakdown.national[5].secondDosePct',AIR_70_74_FEMALE_PCT: 'doseBreakdown.national[5].femalePct',AIR_70_74_MALE_PCT: 'doseBreakdown.national[5].malePct',
+    AIR_65_69_FIRST_DOSE_COUNT: 'doseBreakdown.national[6].firstDoseCount',AIR_65_69_FIRST_DOSE_PCT: 'doseBreakdown.national[6].firstDosePct',AIR_65_69_SECOND_DOSE_COUNT: 'doseBreakdown.national[6].secondDoseCount',AIR_65_69_SECOND_DOSE_PCT: 'doseBreakdown.national[6].secondDosePct',AIR_65_69_FEMALE_PCT: 'doseBreakdown.national[6].femalePct',AIR_65_69_MALE_PCT: 'doseBreakdown.national[6].malePct',
+    AIR_60_64_FIRST_DOSE_COUNT: 'doseBreakdown.national[7].firstDoseCount',AIR_60_64_FIRST_DOSE_PCT: 'doseBreakdown.national[7].firstDosePct',AIR_60_64_SECOND_DOSE_COUNT: 'doseBreakdown.national[7].secondDoseCount',AIR_60_64_SECOND_DOSE_PCT: 'doseBreakdown.national[7].secondDosePct',AIR_60_64_FEMALE_PCT: 'doseBreakdown.national[7].femalePct',AIR_60_64_MALE_PCT: 'doseBreakdown.national[7].malePct',
+    AIR_55_59_FIRST_DOSE_COUNT: 'doseBreakdown.national[8].firstDoseCount',AIR_55_59_FIRST_DOSE_PCT: 'doseBreakdown.national[8].firstDosePct',AIR_55_59_SECOND_DOSE_COUNT: 'doseBreakdown.national[8].secondDoseCount',AIR_55_59_SECOND_DOSE_PCT: 'doseBreakdown.national[8].secondDosePct',AIR_55_59_FEMALE_PCT: 'doseBreakdown.national[8].femalePct',AIR_55_59_MALE_PCT: 'doseBreakdown.national[8].malePct',
+    AIR_50_54_FIRST_DOSE_COUNT: 'doseBreakdown.national[9].firstDoseCount',AIR_50_54_FIRST_DOSE_PCT: 'doseBreakdown.national[9].firstDosePct',AIR_50_54_SECOND_DOSE_COUNT: 'doseBreakdown.national[9].secondDoseCount',AIR_50_54_SECOND_DOSE_PCT: 'doseBreakdown.national[9].secondDosePct',AIR_50_54_FEMALE_PCT: 'doseBreakdown.national[9].femalePct',AIR_50_54_MALE_PCT: 'doseBreakdown.national[9].malePct',
+    AIR_45_49_FIRST_DOSE_COUNT: 'doseBreakdown.national[10].firstDoseCount',AIR_45_49_FIRST_DOSE_PCT: 'doseBreakdown.national[10].firstDosePct',AIR_45_49_SECOND_DOSE_COUNT: 'doseBreakdown.national[10].secondDoseCount',AIR_45_49_SECOND_DOSE_PCT: 'doseBreakdown.national[10].secondDosePct',AIR_45_49_FEMALE_PCT: 'doseBreakdown.national[10].femalePct',AIR_45_49_MALE_PCT: 'doseBreakdown.national[10].malePct',
+    AIR_40_44_FIRST_DOSE_COUNT: 'doseBreakdown.national[11].firstDoseCount',AIR_40_44_FIRST_DOSE_PCT: 'doseBreakdown.national[11].firstDosePct',AIR_40_44_SECOND_DOSE_COUNT: 'doseBreakdown.national[11].secondDoseCount',AIR_40_44_SECOND_DOSE_PCT: 'doseBreakdown.national[11].secondDosePct',AIR_40_44_FEMALE_PCT: 'doseBreakdown.national[11].femalePct',AIR_40_44_MALE_PCT: 'doseBreakdown.national[11].malePct',
+    AIR_35_39_FIRST_DOSE_COUNT: 'doseBreakdown.national[12].firstDoseCount',AIR_35_39_FIRST_DOSE_PCT: 'doseBreakdown.national[12].firstDosePct',AIR_35_39_SECOND_DOSE_COUNT: 'doseBreakdown.national[12].secondDoseCount',AIR_35_39_SECOND_DOSE_PCT: 'doseBreakdown.national[12].secondDosePct',AIR_35_39_FEMALE_PCT: 'doseBreakdown.national[12].femalePct',AIR_35_39_MALE_PCT: 'doseBreakdown.national[12].malePct',
+    AIR_30_34_FIRST_DOSE_COUNT: 'doseBreakdown.national[13].firstDoseCount',AIR_30_34_FIRST_DOSE_PCT: 'doseBreakdown.national[13].firstDosePct',AIR_30_34_SECOND_DOSE_COUNT: 'doseBreakdown.national[13].secondDoseCount',AIR_30_34_SECOND_DOSE_PCT: 'doseBreakdown.national[13].secondDosePct',AIR_30_34_FEMALE_PCT: 'doseBreakdown.national[13].femalePct',AIR_30_34_MALE_PCT: 'doseBreakdown.national[13].malePct',
+    AIR_25_29_FIRST_DOSE_COUNT: 'doseBreakdown.national[14].firstDoseCount',AIR_25_29_FIRST_DOSE_PCT: 'doseBreakdown.national[14].firstDosePct',AIR_25_29_SECOND_DOSE_COUNT: 'doseBreakdown.national[14].secondDoseCount',AIR_25_29_SECOND_DOSE_PCT: 'doseBreakdown.national[14].secondDosePct',AIR_25_29_FEMALE_PCT: 'doseBreakdown.national[14].femalePct',AIR_25_29_MALE_PCT: 'doseBreakdown.national[14].malePct',
+    AIR_20_24_FIRST_DOSE_COUNT: 'doseBreakdown.national[15].firstDoseCount',AIR_20_24_FIRST_DOSE_PCT: 'doseBreakdown.national[15].firstDosePct',AIR_20_24_SECOND_DOSE_COUNT: 'doseBreakdown.national[15].secondDoseCount',AIR_20_24_SECOND_DOSE_PCT: 'doseBreakdown.national[15].secondDosePct',AIR_20_24_FEMALE_PCT: 'doseBreakdown.national[15].femalePct',AIR_20_24_MALE_PCT: 'doseBreakdown.national[15].malePct',
+    AIR_16_19_FIRST_DOSE_COUNT: 'doseBreakdown.national[16].firstDoseCount',AIR_16_19_FIRST_DOSE_PCT: 'doseBreakdown.national[16].firstDosePct',AIR_16_19_SECOND_DOSE_COUNT: 'doseBreakdown.national[16].secondDoseCount',AIR_16_19_SECOND_DOSE_PCT: 'doseBreakdown.national[16].secondDosePct',AIR_16_19_FEMALE_PCT: 'doseBreakdown.national[16].femalePct',AIR_16_19_MALE_PCT: 'doseBreakdown.national[16].malePct',
+}
+
 const generateCsv = async () => {
     let publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
     publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
@@ -198,7 +223,7 @@ const generateCsv = async () => {
     fs.writeFileSync(DATA_JSON_PATH, JSON.stringify(output, null, 4));
 }
 
-const generateDistributionCsv = async () => {
+const generateDistributionCsv = async (csvPath, jsonPath, mapping, checkPath) => {
     let publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
     publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
 
@@ -207,7 +232,7 @@ const generateDistributionCsv = async () => {
 
     const output = [];
     const stream = format({ headers: true });
-    stream.pipe(fs.createWriteStream(DISTRIBUTION_DATA_CSV_PATH));
+    stream.pipe(fs.createWriteStream(csvPath));
 
     for(const publication of publications){
         const localDataFile = publication.vaccineDataPath.replace("https://vaccinedata.covid19nearme.com.au/data/", PUBLICATION_JSON_DATA_PATH);
@@ -217,13 +242,13 @@ const generateDistributionCsv = async () => {
             ...data.pdfData,
         }
 
-        if(!_.get(lookupData, "distribution.NSW.distributed")){
+        if(!_.get(lookupData, checkPath)){
             continue;
         }
 
         const row = {};
-        for(const key in DISTRIBUTION_COLUMN_TO_PATH_MAPPING){
-            row[key] = _.get(lookupData, DISTRIBUTION_COLUMN_TO_PATH_MAPPING[key])
+        for(const key in mapping){
+            row[key] = _.get(lookupData, mapping[key])
         }
 
         row.URL = publication.pdfUrl;
@@ -234,8 +259,9 @@ const generateDistributionCsv = async () => {
 
     stream.end();
 
-    fs.writeFileSync(DISTRIBUTION_DATA_JSON_PATH, JSON.stringify(output, null, 4));
+    fs.writeFileSync(jsonPath, JSON.stringify(output, null, 4));
 }
 
 generateCsv();
-generateDistributionCsv();
+generateDistributionCsv(DISTRIBUTION_DATA_CSV_PATH, DISTRIBUTION_DATA_JSON_PATH, DISTRIBUTION_COLUMN_TO_PATH_MAPPING, "distribution.NSW.distributed");
+generateDistributionCsv(AIR_DATA_CSV_PATH, AIR_DATA_JSON_PATH, AIR_COLUMN_TO_PATH_MAPPING, "doseBreakdown.national[0].firstDoseCount");

@@ -36,6 +36,10 @@ The data is also available at the following locations:
 * **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
 
+**Daily dose breakdown from AIR (available from 30 June 2021 onwards)**
+* **CSV (AIR):** https://vaccinedata.covid19nearme.com.au/data/air.csv
+* **JSON (AIR):** https://vaccinedata.covid19nearme.com.au/data/air.json
+
 **Weekly dose distribution data**
 * **CSV (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.csv
 * **JSON (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.json
