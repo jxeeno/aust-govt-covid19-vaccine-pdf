@@ -1,4 +1,4 @@
-# Australian COVID-19 Vaccination Stats Data
+# Australian COVID-19 Vaccination Data
 
 This repository is a mess of code which:
 
