@@ -54,13 +54,22 @@ class AusDeptHealthVaccinePdf {
         return output;
     }
 
-    cleanCells(values){
-        // this removes all the unnecessary content like asterisk
-        // or hashes then filters out empty lines for simplicity 
-        return values.map(v => ({
-            ...v,
-            str: v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s]/g, '').trim()
-        })).filter(v => v.str !== '');
+    cleanCells(values, mode = 1){
+        if(mode === 1){
+            // this removes all the unnecessary content like asterisk
+            // or hashes then filters out empty lines for simplicity 
+            return values.map(v => ({
+                ...v,
+                str: v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s]/g, '').trim()
+            })).filter(v => v.str !== '');
+        }else if(mode === 2) {
+            // this removes all the unnecessary content like asterisk
+            // or hashes then filters out empty lines for simplicity 
+            return values.map(v => ({
+                ...v,
+                str: v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s\.%]/g, '').trim()
+            })).filter(v => v.str !== '');
+        }
     }
 
     async parsePdf(buffer){
@@ -69,13 +78,18 @@ class AusDeptHealthVaccinePdf {
             page.content = page.content.map(l => ({ ...l, cx: l.x + l.width / 2, cy: l.y + l.height / 2 }));
         }
 
+        const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth aged care doses administered') > -1))
+        const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
+        const pageForDoses = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Doses by age and sex') > -1))
+
         const stateClinics = this.getStateData(1);
-        const cwthAgedCare = this.getStateData(4);
-        const cwthPrimaryCare = this.getStateData(5);
+        const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
+        const cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
         const totals = this.getLeftPanelData();
-        const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData();
+        const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
         const dataAsAt = this.getDataAsAt() || this.getDataAsAt(2) || this.getDataAsAt(3);
         const distribution = await this.getDistributionData(buffer);
+        const doseBreakdown = this.getDoseBreakdown(pageForDoses);
 
         const output = {
             dataAsAt,
@@ -84,12 +98,113 @@ class AusDeptHealthVaccinePdf {
             cwthAgedCare,
             cwthPrimaryCare,
             cwthAgedCareBreakdown,
-            distribution
+            distribution,
+            doseBreakdown
         };
         
         console.log(output)
 
         return output;
+    }
+
+    getDoseBreakdown(pageIndex = 1){
+
+        const content = this.data.pages[pageIndex].content;
+
+        const getValuesFor = (str) => {
+            const centrepoint = content.find(t => t.str.includes(str));
+            if(!centrepoint){return}
+
+            let minX = centrepoint.cx - centrepoint.width;
+            let maxX = centrepoint.cx + centrepoint.width;
+            // let minY = state.cy;
+            // let maxY = state.cy + height;
+
+            const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX)), 2);
+            values.sort((a, b) => a.y - b.y);
+            return values;
+        }
+
+        const getGenderBreakdown = () => {
+            const centrepointFemale = content.find(t => t.str.includes('Female'));
+            const centrepointMale = content.find(t => t.str.includes('Male'));
+
+            if(!centrepointFemale || !centrepointMale){return;}
+
+            const graphCentreX = (centrepointMale.cx + centrepointFemale.cx)/2;
+            const graphWidth = (centrepointMale.cx - graphCentreX) * 2;
+
+            const minY = centrepointFemale.y;
+
+            const maleValues = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= graphCentreX && t.cx <= (graphCentreX+graphWidth) && t.cy > minY)), 2).filter(s => s.str !== 'Male' && s.str !== 'Female');
+            maleValues.sort((a, b) => a.y - b.y);
+
+            const femaleValues = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= (graphCentreX-graphWidth) && t.cx <= graphCentreX && t.cy > minY)), 2).filter(s => s.str !== 'Male' && s.str !== 'Female');
+            femaleValues.sort((a, b) => a.y - b.y);
+            
+            const extractNumbers = (n) => {
+                const out = [];
+                for(let i = 0; i < n.length; i++){
+                    if(n[i].str.match(/^[0-9\.]+%$/)){
+                        out.push(Number(n[i].str.replace(/[^0-9\.]+/g, '')));
+                    }
+                }
+
+                if(out.length === 17){
+                    return out;
+                }
+            }
+
+            return {
+                female: extractNumbers(femaleValues),
+                male: extractNumbers(maleValues)
+            }
+        }
+
+        const firstDoseRaw = getValuesFor('Dose 1');
+        const secondDoseRaw = getValuesFor('Dose 2');
+
+        const parseDoseData = (texts, c) => {
+            let doseStart = false;
+            let values = [];
+            for(let i = 0; i < texts.length; i++){
+                const matches = texts[i].str.match(/([0-9,]+)\s*\(([0-9\.%]+)\)/);
+                if(texts[i].str.match(/Dose [0-9]/)){
+                    doseStart = true;
+                }else if(doseStart && matches){
+                    values.push({
+                        [c + 'Count']: Number(matches[1].replace(/[^0-9\.]+/g, '')),
+                        [c + 'Pct']: Number(matches[2].replace(/[^0-9\.]+/g, ''))
+                    })
+                }
+            }
+
+            if(values.length === 17){
+                return values;
+            }
+        }
+
+        const firstDose = parseDoseData(firstDoseRaw, 'firstDose');
+        const secondDose = parseDoseData(secondDoseRaw, 'secondDose');
+        const genderBreakdown = getGenderBreakdown();
+
+        if(!firstDose || !secondDose){return;}
+
+        const output = [];
+        
+        // stitch
+        const ageGroups = [{ageLower: 16, ageUpper: 19},{ageLower: 20, ageUpper: 24},{ageLower: 25, ageUpper: 29},{ageLower: 30, ageUpper: 34},{ageLower: 35, ageUpper: 39},{ageLower: 40, ageUpper: 44},{ageLower: 45, ageUpper: 49},{ageLower: 50, ageUpper: 54},{ageLower: 55, ageUpper: 59},{ageLower: 60, ageUpper: 64},{ageLower: 65, ageUpper: 69},{ageLower: 70, ageUpper: 74},{ageLower: 75, ageUpper: 79},{ageLower: 80, ageUpper: 84},{ageLower: 85, ageUpper: 89},{ageLower: 90, ageUpper: 94},{ageLower: 95}].reverse();
+        for(let i = 0; i < ageGroups.length; i++){
+            output.push({
+                ...ageGroups[i],
+                ...firstDose[i],
+                ...secondDose[i],
+                femalePct: (genderBreakdown && genderBreakdown.female ? genderBreakdown.female[i] : undefined),
+                malePct: (genderBreakdown && genderBreakdown.male ? genderBreakdown.male[i] : undefined)
+            })
+        }
+
+        return {national: output};
     }
 
     getStateData(pageIndex = 1){
