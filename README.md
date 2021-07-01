@@ -40,7 +40,7 @@ Example:
 
 The data is also available at the following locations:
 
-**Daily dose administration data (and weekly second dose data)**
+**Daily dose administration data (and weekly second dose by state data from 18 May 2021 onwards)**
 * **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
 
