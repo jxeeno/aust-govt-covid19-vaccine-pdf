@@ -1,10 +1,4 @@
 on:
-  workflow_dispatch:
-    inputs:
-      url:
-        description: 'Publication URL'
-        required: true
-        default: 'https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-28-april-2021'
   schedule:
     - cron: '22 * * * *'
 
