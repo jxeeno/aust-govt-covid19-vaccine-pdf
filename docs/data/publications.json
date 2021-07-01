@@ -756,5 +756,37 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/06/covid-19-vaccine-rollout-update-30-june-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-06-29.json",
         "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 1 July 2021",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-1-july-2021",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/07/covid-19-vaccine-rollout-update-1-july-2021.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-06-30.json",
+        "validation": [
+            "cwthAgedCare.VIC.total is null",
+            "cwthAgedCare.VIC.last24hr is null",
+            "cwthAgedCare.QLD.total is null",
+            "cwthAgedCare.QLD.last24hr is null",
+            "cwthAgedCare.WA.total is null",
+            "cwthAgedCare.WA.last24hr is null",
+            "cwthAgedCare.TAS.total is null",
+            "cwthAgedCare.TAS.last24hr is null",
+            "cwthAgedCare.SA.total is null",
+            "cwthAgedCare.SA.last24hr is null",
+            "cwthAgedCare.ACT.total is null",
+            "cwthAgedCare.ACT.last24hr is null",
+            "cwthAgedCare.NT.total is null",
+            "cwthAgedCare.NT.last24hr is null",
+            "cwthAgedCare.NSW.total is null",
+            "cwthAgedCare.NSW.last24hr is null",
+            "cwthAgedCareBreakdown.cwthAgedCareDoses.firstDose is null",
+            "cwthAgedCareBreakdown.cwthAgedCareDoses.secondDose is null",
+            "cwthAgedCareBreakdown.cwthAgedCareFacilities.firstDose is null",
+            "cwthAgedCareBreakdown.cwthAgedCareFacilities.secondDose is null",
+            "cwthPrimaryCareTotal is not 4056014 (435212)",
+            "cwthAgedCareTotal is not 435212 (0)",
+            "cwthPrimaryCareTotal + cwthAgedCareTotal is not 4491226 (435212)",
+            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 7806975 (3750961)"
+        ]
     }
 ]
