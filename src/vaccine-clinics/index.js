@@ -16,7 +16,7 @@ const fetchApiKey = async () => {
 
 const NHSD_ENDPOINT = 'https://api.nhsd.healthdirect.org.au/v51/healthcareServices/_search';
 const PAGE_SIZE = 50;
-const CLINICS_DATA_DIR = '../../docs/clinics';
+const CLINICS_DATA_DIR = 'docs/clinics';
 
 const fetchVaccineClinicPage = async (apikey, page) => {
     console.log(`Fetching clinics - page ${page}`);
