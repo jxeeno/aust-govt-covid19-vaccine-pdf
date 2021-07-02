@@ -61,6 +61,8 @@ const fetchAllClinics = async () => {
 
     console.log(`Total ${rows.length} entries`);
 
+    rows.sort((a, b) => a.id.localeCompare(b.id));
+
     const MONTH_DIR = path.join(CLINICS_DATA_DIR, 'daily', startTime.format('YYYY-MM'));
     const LATEST_DIR = path.join(CLINICS_DATA_DIR, 'latest');
 
