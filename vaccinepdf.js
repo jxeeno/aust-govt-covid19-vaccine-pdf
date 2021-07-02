@@ -128,18 +128,20 @@ class AusDeptHealthVaccinePdf {
         const getGenderBreakdown = () => {
             const centrepointFemale = content.find(t => t.str.includes('Female'));
             const centrepointMale = content.find(t => t.str.includes('Male'));
+            const centrepointZeroMillion = content.find(t => t.str.includes('0m'));
 
-            if(!centrepointFemale || !centrepointMale){return;}
+            if(!centrepointFemale || !centrepointMale || !centrepointZeroMillion){return;}
 
             const graphCentreX = (centrepointMale.cx + centrepointFemale.cx)/2;
             const graphWidth = (centrepointMale.cx - graphCentreX) * 2;
 
             const minY = centrepointFemale.y;
+            const maxY = centrepointZeroMillion.y + centrepointZeroMillion.height;
 
-            const maleValues = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= graphCentreX && t.cx <= (graphCentreX+graphWidth) && t.cy > minY)), 2).filter(s => s.str !== 'Male' && s.str !== 'Female');
+            const maleValues = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= graphCentreX && t.cx <= (graphCentreX+graphWidth) && t.cy > minY && t.cy < maxY)), 2).filter(s => s.str !== 'Male' && s.str !== 'Female');
             maleValues.sort((a, b) => a.y - b.y);
 
-            const femaleValues = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= (graphCentreX-graphWidth) && t.cx <= graphCentreX && t.cy > minY)), 2).filter(s => s.str !== 'Male' && s.str !== 'Female');
+            const femaleValues = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= (graphCentreX-graphWidth) && t.cx <= graphCentreX && t.cy > minY && t.cy < maxY)), 2).filter(s => s.str !== 'Male' && s.str !== 'Female');
             femaleValues.sort((a, b) => a.y - b.y);
             
             const extractNumbers = (n) => {
