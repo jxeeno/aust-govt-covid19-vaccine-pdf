@@ -192,12 +192,12 @@ class AusDeptHealthVaccinePdf {
 
         if(!firstDose || !secondDose){return;}
 
-        const output = [];
-        
+        const national = [];
+
         // stitch
         const ageGroups = [{ageLower: 16, ageUpper: 19},{ageLower: 20, ageUpper: 24},{ageLower: 25, ageUpper: 29},{ageLower: 30, ageUpper: 34},{ageLower: 35, ageUpper: 39},{ageLower: 40, ageUpper: 44},{ageLower: 45, ageUpper: 49},{ageLower: 50, ageUpper: 54},{ageLower: 55, ageUpper: 59},{ageLower: 60, ageUpper: 64},{ageLower: 65, ageUpper: 69},{ageLower: 70, ageUpper: 74},{ageLower: 75, ageUpper: 79},{ageLower: 80, ageUpper: 84},{ageLower: 85, ageUpper: 89},{ageLower: 90, ageUpper: 94},{ageLower: 95}].reverse();
         for(let i = 0; i < ageGroups.length; i++){
-            output.push({
+            national.push({
                 ...ageGroups[i],
                 ...firstDose[i],
                 ...secondDose[i],
@@ -206,7 +206,59 @@ class AusDeptHealthVaccinePdf {
             })
         }
 
-        return {national: output};
+        // state breakdown
+
+        const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
+        const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
+
+        const width = Math.max(...stateLabelLocations.map(l => l.width)) * 2;
+        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 20;
+
+        const stateData = {};
+
+        for (const state of stateLabelLocations) {
+            let minX = state.cx - width;
+            let maxX = state.cx + width;
+            let minY = state.cy;
+            let maxY = state.cy + height;
+
+            const stateCode = state.str.trim();
+
+            const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY));
+
+            if(values.length === 15){
+                stateData[stateCode] = [
+                    {
+                        ageLower: 16,
+                        firstDoseCount: Number(values[0].str.replace(/[^0-9\.]+/g, '')),
+                        firstDosePct: Number(values[3].str.replace(/[^0-9\.]+/g, '')),
+                        secondDoseCount: Number(values[1].str.replace(/[^0-9\.]+/g, '')),
+                        secondDosePct: Number(values[4].str.replace(/[^0-9\.]+/g, '')),
+                        cohortPopulation: Number(values[2].str.replace(/[^0-9\.]+/g, ''))
+                    },
+                    {
+                        ageLower: 50,
+                        firstDoseCount: Number(values[5+0].str.replace(/[^0-9\.]+/g, '')),
+                        firstDosePct: Number(values[5+3].str.replace(/[^0-9\.]+/g, '')),
+                        secondDoseCount: Number(values[5+1].str.replace(/[^0-9\.]+/g, '')),
+                        secondDosePct: Number(values[5+4].str.replace(/[^0-9\.]+/g, '')),
+                        cohortPopulation: Number(values[5+2].str.replace(/[^0-9\.]+/g, ''))
+                    },
+                    {
+                        ageLower: 70,
+                        firstDoseCount: Number(values[10+0].str.replace(/[^0-9\.]+/g, '')),
+                        firstDosePct: Number(values[10+3].str.replace(/[^0-9\.]+/g, '')),
+                        secondDoseCount: Number(values[10+1].str.replace(/[^0-9\.]+/g, '')),
+                        secondDosePct: Number(values[10+4].str.replace(/[^0-9\.]+/g, '')),
+                        cohortPopulation: Number(values[10+2].str.replace(/[^0-9\.]+/g, ''))
+                    }
+                ]
+                    
+                
+            }
+        }
+
+        return {national, ...stateData};
     }
 
     getStateData(pageIndex = 1){
