@@ -173,6 +173,9 @@ const getPublications = async () => {
         const pdfUrl = $$("a.health-file__link").attr('href');
 
         const { data: pdfBuffer } = await axios.get(pdfUrl, {
+            params: {
+                ts: new Date().valueOf()
+            },
             responseType: 'arraybuffer'
         });
     
