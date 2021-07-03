@@ -211,7 +211,7 @@ class AusDeptHealthVaccinePdf {
         const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
         const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
 
-        const width = Math.max(...stateLabelLocations.map(l => l.width)) * 2;
+        const width = Math.max(...stateLabelLocations.map(l => l.width)) * 3; // cater for left aligned
         const height = Math.max(...stateLabelLocations.map(l => l.height)) * 20;
 
         const stateData = {};
@@ -224,7 +224,7 @@ class AusDeptHealthVaccinePdf {
 
             const stateCode = state.str.trim();
 
-            const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY));
+            const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9%\.,]+/));
 
             if(values.length === 15){
                 stateData[stateCode] = [
@@ -253,8 +253,9 @@ class AusDeptHealthVaccinePdf {
                         cohortPopulation: Number(values[10+2].str.replace(/[^0-9\.]+/g, ''))
                     }
                 ]
-                    
-                
+            }else{
+                console.error(`Failed to pull ${stateCode}`);
+                console.log(values.map(v => v.str));
             }
         }
 
