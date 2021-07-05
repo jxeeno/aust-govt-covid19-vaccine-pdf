@@ -262,7 +262,7 @@ const generateDistributionCsv = async (csvPath, jsonPath, mapping, checkPath) =>
     publications = _.uniqBy(publications, 'vaccineDataPath');
 
     const output = [];
-    const stream = format({ headers: Object.keys(mapping) });
+    const stream = format({ headers: [...Object.keys(mapping), 'VALIDATED', 'URL'] });
     stream.pipe(fs.createWriteStream(csvPath));
 
     for(const publication of publications){
@@ -282,6 +282,7 @@ const generateDistributionCsv = async (csvPath, jsonPath, mapping, checkPath) =>
             row[key] = _.get(lookupData, mapping[key])
         }
 
+        row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';
         row.URL = publication.pdfUrl;
 
         stream.write(row);
