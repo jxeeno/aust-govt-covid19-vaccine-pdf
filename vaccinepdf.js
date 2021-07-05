@@ -81,6 +81,7 @@ class AusDeptHealthVaccinePdf {
         const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth aged care doses administered') > -1))
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
         const pageForDoses = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Doses by age and sex') > -1))
+        const pageForDistribution = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Administration and Utilisation') > -1))
 
         const stateClinics = this.getStateData(1);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
@@ -88,7 +89,7 @@ class AusDeptHealthVaccinePdf {
         const totals = this.getLeftPanelData();
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
         const dataAsAt = this.getDataAsAt() || this.getDataAsAt(2) || this.getDataAsAt(3);
-        const distribution = await this.getDistributionData(buffer);
+        const distribution = await this.getDistributionData(buffer, pageForDistribution);
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
 
         const output = {
@@ -434,13 +435,13 @@ class AusDeptHealthVaccinePdf {
         return data;
     }
 
-    async getDistributionData(buffer){
+    async getDistributionData(buffer, pageNumber = 6){
         const p = await pdfTableExtractor(buffer);
         if(!p || !p.pageTables){
             return;
         }
 
-        const distrbPage = p.pageTables.find(p => p.page === 7);
+        const distrbPage = p.pageTables.find(p => p.page === (pageNumber+1));
         if(!distrbPage || !distrbPage.tables){
             return;
         }
