@@ -208,7 +208,7 @@ class AusDeptHealthVaccinePdf {
 
         // state breakdown
 
-        const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
+        const states = ['AUS', 'NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
         const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
 
         const width = Math.max(...stateLabelLocations.map(l => l.width)) * 3; // cater for left aligned
