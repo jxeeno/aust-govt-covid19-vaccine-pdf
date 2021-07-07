@@ -208,25 +208,24 @@ class AusDeptHealthVaccinePdf {
         }
 
         // state breakdown
-
+        const mergedContent = this.mergeAdjacentCells(content);
         const states = ['AUS', 'NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
-        const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
+        const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.trim()));
 
-        const width = Math.max(...stateLabelLocations.map(l => l.width)) * 3; // cater for left aligned
+        const width = Math.max(...stateLabelLocations.map(l => l.width));
         const height = Math.max(...stateLabelLocations.map(l => l.height)) * 20;
 
         const stateData = {};
 
         for (const state of stateLabelLocations) {
-            let minX = state.cx - width;
-            let maxX = state.cx + width;
+            let minX = state.x - width;  // cater for left aligned
+            let maxX = state.cx + width * 3;  // cater for left aligned
             let minY = state.cy;
             let maxY = state.cy + height;
 
             const stateCode = state.str.trim();
 
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9%\.,]+/));
-
             if(values.length === 15){
                 stateData[stateCode] = [
                     {

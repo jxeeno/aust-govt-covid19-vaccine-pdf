@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2021/07/covid-19-vaccine-rollout-update-7-july-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-07-06",
@@ -305,6 +305,32 @@
                     "malePct": 2.2
                 }
             ],
+            "AUS": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 6496236,
+                    "firstDosePct": 31.5,
+                    "secondDoseCount": 2023638,
+                    "secondDosePct": 9.81,
+                    "cohortPopulation": 20619959
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 4795206,
+                    "firstDosePct": 54.8,
+                    "secondDoseCount": 1044882,
+                    "secondDosePct": 11.94,
+                    "cohortPopulation": 8749703
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 2100780,
+                    "firstDosePct": 71.58,
+                    "secondDoseCount": 597515,
+                    "secondDosePct": 20.36,
+                    "cohortPopulation": 2934706
+                }
+            ],
             "ACT": [
                 {
                     "ageLower": 16,
@@ -515,23 +541,5 @@
             ]
         }
     },
-    "validation": [
-        "doseBreakdown.AUS[0].firstDoseCount is null",
-        "doseBreakdown.AUS[0].firstDosePct is null",
-        "doseBreakdown.AUS[0].secondDoseCount is null",
-        "doseBreakdown.AUS[0].secondDosePct is null",
-        "doseBreakdown.AUS[0].cohortPopulation is null",
-        "doseBreakdown.AUS[1].firstDoseCount is null",
-        "doseBreakdown.AUS[1].firstDosePct is null",
-        "doseBreakdown.AUS[1].secondDoseCount is null",
-        "doseBreakdown.AUS[1].secondDosePct is null",
-        "doseBreakdown.AUS[1].cohortPopulation is null",
-        "doseBreakdown.AUS[2].firstDoseCount is null",
-        "doseBreakdown.AUS[2].firstDosePct is null",
-        "doseBreakdown.AUS[2].secondDoseCount is null",
-        "doseBreakdown.AUS[2].secondDosePct is null",
-        "doseBreakdown.AUS[2].cohortPopulation is null",
-        "firstDoseCountFromAus16Plus is not 0 (6496236)",
-        "secondDoseCountFromAus16Plus is not 0 (2023638)"
-    ]
+    "validation": []
 }
