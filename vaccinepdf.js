@@ -213,7 +213,7 @@ class AusDeptHealthVaccinePdf {
         const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.trim()));
 
         const width = Math.max(...stateLabelLocations.map(l => l.width));
-        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 20;
+        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 16;
 
         const stateData = {};
 
