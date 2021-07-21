@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2021/07/covid-19-vaccine-rollout-update-21-july-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-07-20",
@@ -487,6 +487,32 @@
                     "cohortPopulation": 77155
                 }
             ],
+            "VIC": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 2073360,
+                    "firstDosePct": 38.34,
+                    "secondDoseCount": 806196,
+                    "secondDosePct": 14.91,
+                    "cohortPopulation": 5407574
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 1436899,
+                    "firstDosePct": 64.98,
+                    "secondDoseCount": 372574,
+                    "secondDosePct": 16.85,
+                    "cohortPopulation": 2211211
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 571813,
+                    "firstDosePct": 74.89,
+                    "secondDoseCount": 226076,
+                    "secondDosePct": 29.61,
+                    "cohortPopulation": 763519
+                }
+            ],
             "WA": [
                 {
                     "ageLower": 16,
@@ -515,21 +541,5 @@
             ]
         }
     },
-    "validation": [
-        "doseBreakdown.VIC[0].firstDoseCount is null",
-        "doseBreakdown.VIC[0].firstDosePct is null",
-        "doseBreakdown.VIC[0].secondDoseCount is null",
-        "doseBreakdown.VIC[0].secondDosePct is null",
-        "doseBreakdown.VIC[0].cohortPopulation is null",
-        "doseBreakdown.VIC[1].firstDoseCount is null",
-        "doseBreakdown.VIC[1].firstDosePct is null",
-        "doseBreakdown.VIC[1].secondDoseCount is null",
-        "doseBreakdown.VIC[1].secondDosePct is null",
-        "doseBreakdown.VIC[1].cohortPopulation is null",
-        "doseBreakdown.VIC[2].firstDoseCount is null",
-        "doseBreakdown.VIC[2].firstDosePct is null",
-        "doseBreakdown.VIC[2].secondDoseCount is null",
-        "doseBreakdown.VIC[2].secondDosePct is null",
-        "doseBreakdown.VIC[2].cohortPopulation is null"
-    ]
+    "validation": []
 }
