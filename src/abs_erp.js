@@ -925,7 +925,7 @@ const getPopulation = (state, ageLower, ageUpper, plus) => {
     const stateSumTotal = stateRows.filter(row => row[1] !== 'TT').reduce((runningTotal, item) => runningTotal + item[2], 0);
     const plusTotal = stateTotal - stateSumTotal;
 
-    console.log({stateTotal, stateSumTotal, plusTotal})
+    // console.log({stateTotal, stateSumTotal, plusTotal})
 
     const subTotal = stateRows.filter(row => row[1] >= ageLower && row[1] <= ageUpper).reduce((runningTotal, item) => runningTotal + item[2], 0);
 

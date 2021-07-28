@@ -356,6 +356,8 @@ class AusDeptHealthVaccinePdf {
         const secondDoseRow = getRow(rowHeaders[1]);
         const populationRow = getRow(rowHeaders[2]);
 
+        const ageGroups = [{ageLower: 0},{ageLower: 50},{ageLower: 70}];
+
         return {
             ageBucketsEstimatedPopulation: ages.map((age, i) => {
                 const firstDosePct = Number(atLeastOne[i].str.replace(/[^0-9\.]+/g, ''));
@@ -370,6 +372,14 @@ class AusDeptHealthVaccinePdf {
                 const firstDoseCount = Math.round(cohortPopulation * firstDosePct / 100);
                 const secondDoseCount = Math.round(cohortPopulation * secondDosePct / 100);
 
+                return {...ageObj, firstDosePct, secondDosePct, firstDoseCount, secondDoseCount, cohortPopulation}
+            }),
+            ageBucketsActualPopulation: ageGroups.map((ageObj, i) => {
+                const firstDosePct = Number(firstDoseRow[i*2].str.replace(/[^0-9\.]+/g, ''));
+                const firstDoseCount = Number(firstDoseRow[i*2+1].str.replace(/[^0-9\.]+/g, ''));
+                const secondDosePct = Number(secondDoseRow[i*2].str.replace(/[^0-9\.]+/g, ''));
+                const secondDoseCount = Number(secondDoseRow[i*2+1].str.replace(/[^0-9\.]+/g, ''));
+                const cohortPopulation = Number(populationRow[i].str.replace(/[^0-9\.]+/g, ''));
                 return {...ageObj, firstDosePct, secondDosePct, firstDoseCount, secondDoseCount, cohortPopulation}
             })
         }

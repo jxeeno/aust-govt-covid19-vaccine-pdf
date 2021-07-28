@@ -359,6 +359,27 @@ const generateAirStateOfResidence = async (csvPath, jsonPath) => {
                 output.push(row);
 
             }
+
+            for(const ageGroup of stateOfResidence[stateCode].ageBucketsActualPopulation){
+                const row = {
+                    DATE_AS_AT: _.get(lookupData, 'dataAsAt'),
+                    STATE: stateCode,
+                    AGE_LOWER: ageGroup.ageLower,
+                    AGE_UPPER: ageGroup.ageUpper || 999,
+                    AIR_RESIDENCE_FIRST_DOSE_PCT: ageGroup.firstDosePct,
+                    AIR_RESIDENCE_SECOND_DOSE_PCT: ageGroup.secondDosePct,
+                    AIR_RESIDENCE_FIRST_DOSE_COUNT: ageGroup.firstDoseCount,
+                    AIR_RESIDENCE_SECOND_DOSE_COUNT: ageGroup.secondDoseCount,
+                    ABS_ERP_JUN_2020_POP: ageGroup.cohortPopulation
+                };
+
+                row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';
+                row.URL = publication.pdfUrl;
+
+                stream.write(row);
+                output.push(row);
+
+            }
         }
     }
 
