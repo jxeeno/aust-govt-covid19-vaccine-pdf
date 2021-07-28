@@ -1,6 +1,7 @@
 const PDFExtract = require('pdf.js-extract').PDFExtract;
 const moment = require('moment');
 const pdfTableExtractor = require('./src/pdf-table');
+const {getPopulation} = require('./src/abs_erp');
 const pdfExtract = new PDFExtract();
 const options = {}; /* see below */
 
@@ -91,6 +92,28 @@ class AusDeptHealthVaccinePdf {
         const dataAsAt = this.getDataAsAt() || this.getDataAsAt(2) || this.getDataAsAt(3);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
+        const stateOfResidence = {};
+
+        const states = {
+            'NSW': 'Wales', // lmao yes because sometimes New South Wales is split
+            'VIC': 'Victoria',
+            'QLD': 'Queensland',
+            'ACT': 'Capital', // lmao yes because sometimes Australian Capital Territory is split
+            'SA': 'South', // lmao yes because sometimes South Australia is split
+            'NT': 'Northern', // lmao yes because sometimes Northern Territory is split
+            'WA': 'Western', // lmao yes because sometimes Western Australia is split
+            'TAS': 'Tasmania'
+        };
+
+        for(const stateCode in states){
+            const pageForState = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Vaccinations by State or Territory of residence') > -1) && page.content.find(r => r.str.indexOf(states[stateCode]) > -1))
+            if(pageForState > -1){
+                stateOfResidence[stateCode] = await this.getStateOfResidenceBreakdown(pageForState, stateCode);
+            }else{
+                console.error('Unable to find '+stateCode)
+            }
+        }
+        // console.log(stateOfResidence)
 
         const output = {
             dataAsAt,
@@ -100,7 +123,8 @@ class AusDeptHealthVaccinePdf {
             cwthPrimaryCare,
             cwthAgedCareBreakdown,
             distribution,
-            doseBreakdown
+            doseBreakdown,
+            stateOfResidence
         };
         
         console.log(output)
@@ -260,6 +284,95 @@ class AusDeptHealthVaccinePdf {
         }
 
         return {national, ...stateData};
+    }
+
+    getStateOfResidenceBreakdown(pageIndex = 4, stateCode){
+        const content = this.data.pages[pageIndex].content;
+
+        const getValuesFor = (strs, width, stripStrs = true) => {
+            const [str, ...remaining] = strs;
+            
+            const centrepoints = content.filter(t => t.str.includes(str));
+            for(const centrepoint of centrepoints){
+                let minX = centrepoint.cx - (width || centrepoint.width)/2;
+                let maxX = centrepoint.cx + (width || centrepoint.width)/2;
+                let minY = centrepoint.cy;
+
+                const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY)), 2);
+                values.sort((a, b) => a.y - b.y);
+
+                if(stripStrs){
+                    values.splice(0, 1) // remove split rows
+                }
+
+                if(remaining.length > 0){
+                    let pass = true;
+                    let prevIdx = -1;
+                    for(const sstr of remaining){
+                        let i = values.findIndex(v => v.str.includes(sstr));
+                        if(i > -1 && i > prevIdx){
+                            prevIdx = i;
+                        }else{
+                            pass = false;
+                        }
+                    }
+
+                    if(!pass){
+                        continue;
+                    }
+
+                    if(stripStrs){
+                        values.splice(0, prevIdx+1) // remove split rows
+                    }
+                }
+
+                return values;
+            }
+
+            return []
+        }
+
+        const getRow = (cell) => {
+            const minX = cell.x + cell.width;
+            const minY = cell.y;
+            const maxY = cell.y + cell.height;
+
+            const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cy >= minY && t.cy <= maxY)), 2);
+            values.sort((a, b) => a.x - b.x);
+            return values;
+        }
+
+        const referenceWidth = content.find(t => t.str.includes('At least one')); // use at least one as reference width
+
+        const ages = getValuesFor(['Age'], referenceWidth.width).filter(s => s.str.match(/^([0-9]+\+|[0-9]+\-[0-9]+)$/));
+        const atLeastOne = getValuesFor(['At least one', 'dose'], referenceWidth.width);
+        const firstDoseProtected = getValuesFor(['First dose', 'protected'], referenceWidth.width);
+        const fullyVaccinated = getValuesFor(['Fully', 'vaccinated'], referenceWidth.width);
+
+        const rowHeaders = getValuesFor(['First dose', 'Second dose', 'Population'], null, false);
+
+        // to be implemented, save tables on top right corner
+        const firstDoseRow = getRow(rowHeaders[0]);
+        const secondDoseRow = getRow(rowHeaders[1]);
+        const populationRow = getRow(rowHeaders[2]);
+
+        return {
+            ageBucketsEstimatedPopulation: ages.map((age, i) => {
+                const firstDosePct = Number(atLeastOne[i].str.replace(/[^0-9\.]+/g, ''));
+                const secondDosePct = Number(fullyVaccinated[i].str.replace(/[^0-9\.]+/g, ''));
+                let ageObj = {ageLower: 95};
+                if(age.str !== '95+'){
+                    const [ageLower, ageUpper] = age.str.split('-').map(i => parseInt(i));
+                    ageObj = {ageLower, ageUpper};
+                }
+
+                const cohortPopulation = getPopulation(stateCode, ageObj.ageLower, ageObj.ageUpper == null ? 999 : ageObj.ageUpper, ageObj.ageUpper==null);
+                const firstDoseCount = Math.round(cohortPopulation * firstDosePct / 100);
+                const secondDoseCount = Math.round(cohortPopulation * secondDosePct / 100);
+
+                return {...ageObj, firstDosePct, secondDosePct, firstDoseCount, secondDoseCount, cohortPopulation}
+            })
+        }
     }
 
     getStateData(pageIndex = 1){

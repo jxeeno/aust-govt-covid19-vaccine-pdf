@@ -16,7 +16,7 @@ This repository is a mess of code which:
 
 **18 May 2021 to 1 July 2021**
 
-From 18 May 2021 to 1 July 2021, approximate second dose data by state (data values in key format `APPROX_<State>_SECOND_DOSE_TOTAL` in `all.csv`) is derived from the [WA Health Vaccination Dashboard](https://www.wa.gov.au/organisation/covid-communications/covid-19-coronavirus-vaccination-dashboard) which is updated weekly usually at the start of the week (exact day of week varies).
+From 18 May 2021 to 1 July 2021, approximate second dose data by state of administration (data values in key format `APPROX_<State>_SECOND_DOSE_TOTAL` in `all.csv`) is derived from the [WA Health Vaccination Dashboard](https://www.wa.gov.au/organisation/covid-communications/covid-19-coronavirus-vaccination-dashboard) which is updated weekly usually at the start of the week (exact day of week varies).
 
 The percentages are extracted from the WA Health dashboard and multiplied against the [ABS 16 and over population data](https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/sep-2020#data-download) as noted in the [WA Health interpretation guide](https://www.wa.gov.au/sites/default/files/2021-05/COVID-19_Vaccine_Dashboard_Guide%20for%20Interpretation.pdf).
 
@@ -30,9 +30,13 @@ Refer to section on "Information about AIR dose breakdown" below.
 ### Information about AIR dose breakdown
 From 30 June 2021, the Department of Health started publishing breakdowns of doses by age group and first/second doses.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
-From 1 July 2021, the Department of Health started publishing breakdowns of doses by age group, first/second doses and by state.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
+From 1 July 2021, the Department of Health started publishing breakdowns of doses by age group, first/second doses and by state of **administration**.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
 This data is published separately as `air.csv` and `air.json` files.
+
+From 28 July 2021, the Department of Health started publishing breakdowns of doses by age group, first/second doses and by state of **residence**.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
+
+This data is published separately as `air_residence.csv` and `air_residence.json` files.
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
@@ -51,9 +55,13 @@ The data is also available at the following locations:
 * **CSV (all):** https://vaccinedata.covid19nearme.com.au/data/all.csv
 * **JSON (all):** https://vaccinedata.covid19nearme.com.au/data/all.json
 
-**Daily dose breakdown from AIR (available from 30 June 2021 onwards)**
-* **CSV (AIR):** https://vaccinedata.covid19nearme.com.au/data/air.csv
-* **JSON (AIR):** https://vaccinedata.covid19nearme.com.au/data/air.json
+**Daily dose breakdown from AIR incl state of administration data (available from 30 June 2021 onwards)**
+* **CSV (AIR - Administration):** https://vaccinedata.covid19nearme.com.au/data/air.csv
+* **JSON (AIR - Administration):** https://vaccinedata.covid19nearme.com.au/data/air.json
+
+**Daily dose breakdown from AIR incl state of residence data (available from 28 July 2021 onwards)**
+* **CSV (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.csv
+* **JSON (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.json
 
 **Weekly dose distribution data**
 * **CSV (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.csv

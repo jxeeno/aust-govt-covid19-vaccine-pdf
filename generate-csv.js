@@ -12,6 +12,9 @@ const DISTRIBUTION_DATA_JSON_PATH = 'docs/data/distribution.json';
 const AIR_DATA_CSV_PATH = 'docs/data/air.csv';
 const AIR_DATA_JSON_PATH = 'docs/data/air.json';
 
+const AIR_RESI_DATA_CSV_PATH = 'docs/data/air_residence.csv';
+const AIR_RESI_DATA_JSON_PATH = 'docs/data/air_residence.json';
+
 const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
 const SECOND_DOSE_PUBLICATION_JSON_DATA_PATH = 'docs/wahealth/';
 
@@ -294,6 +297,75 @@ const generateDistributionCsv = async (csvPath, jsonPath, mapping, checkPath) =>
     fs.writeFileSync(jsonPath, JSON.stringify(output, null, 4));
 }
 
+const generateAirStateOfResidence = async (csvPath, jsonPath) => {
+    let publications = JSON.parse(fs.readFileSync(PUBLICATION_JSON_PATH)).filter(v => v.vaccineDataPath != null);
+    publications.sort((a, b) => a.vaccineDataPath.localeCompare(b.vaccineDataPath));
+
+    // handle when health publishes the data multiple times
+    publications = _.uniqBy(publications, 'vaccineDataPath');
+
+    const output = [];
+    const stream = format({ headers: [
+        'STATE',
+        'AGE_LOWER',
+        'AGE_UPPER',
+        'AIR_RESIDENCE_FIRST_DOSE_PCT',
+        'AIR_RESIDENCE_SECOND_DOSE_PCT',
+        'AIR_RESIDENCE_FIRST_DOSE_COUNT',
+        'AIR_RESIDENCE_SECOND_DOSE_COUNT',
+        'AIR_RESIDENCE_FIRST_DOSE_APPROX_COUNT',
+        'AIR_RESIDENCE_SECOND_DOSE_APPROX_COUNT',
+        'ABS_ERP_JUN_2020_POP',
+        'VALIDATED',
+        'URL'
+    ] });
+    
+    stream.pipe(fs.createWriteStream(csvPath));
+
+    for(const publication of publications){
+        const localDataFile = publication.vaccineDataPath.replace("https://vaccinedata.covid19nearme.com.au/data/", PUBLICATION_JSON_DATA_PATH);
+        const data = JSON.parse(fs.readFileSync(localDataFile));
+
+        const lookupData = {
+            ...data.pdfData,
+        }
+
+        const stateOfResidence = _.get(lookupData, 'stateOfResidence');
+
+        if(!stateOfResidence){
+            continue;
+        }
+
+        
+        for(const stateCode in stateOfResidence){
+            for(const ageGroup of stateOfResidence[stateCode].ageBucketsEstimatedPopulation){
+                const row = {
+                    STATE: stateCode,
+                    AGE_LOWER: ageGroup.ageLower,
+                    AGE_UPPER: ageGroup.ageUpper || '999',
+                    AIR_RESIDENCE_FIRST_DOSE_PCT: ageGroup.firstDosePct,
+                    AIR_RESIDENCE_SECOND_DOSE_PCT: ageGroup.secondDosePct,
+                    AIR_RESIDENCE_FIRST_DOSE_APPROX_COUNT: ageGroup.firstDoseCount,
+                    AIR_RESIDENCE_SECOND_DOSE_APPROX_COUNT: ageGroup.secondDoseCount,
+                    ABS_ERP_JUN_2020_POP: ageGroup.cohortPopulation
+                };
+
+                row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';
+                row.URL = publication.pdfUrl;
+
+                stream.write(row);
+                output.push(row);
+
+            }
+        }
+    }
+
+    stream.end();
+
+    fs.writeFileSync(jsonPath, JSON.stringify(output, null, 4));
+}
+
 generateCsv();
 generateDistributionCsv(DISTRIBUTION_DATA_CSV_PATH, DISTRIBUTION_DATA_JSON_PATH, DISTRIBUTION_COLUMN_TO_PATH_MAPPING, "distribution.NSW.distributed");
 generateDistributionCsv(AIR_DATA_CSV_PATH, AIR_DATA_JSON_PATH, AIR_COLUMN_TO_PATH_MAPPING, "doseBreakdown.national[0].firstDoseCount");
+generateAirStateOfResidence(AIR_RESI_DATA_CSV_PATH, AIR_RESI_DATA_JSON_PATH);
