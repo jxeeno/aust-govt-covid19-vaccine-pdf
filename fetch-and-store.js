@@ -467,7 +467,7 @@ const getPublications = async () => {
 
         const {data: publicationHtml} = await axios.get(landingUrl);
         const $$ = cheerio.load(publicationHtml);
-        const pdfUrl = $$("a.health-file__link").attr('href');
+        const pdfUrl = 'https://www.health.gov.au/sites/default/files/documents/2021/07/covid-19-vaccine-rollout-update-28-july-2021.pdf'; //$$("a.health-file__link").attr('href');
 
         const { data: pdfBuffer } = await axios.get(pdfUrl, {
             params: {
