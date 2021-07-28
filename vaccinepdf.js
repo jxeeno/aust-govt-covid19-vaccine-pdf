@@ -99,7 +99,7 @@ class AusDeptHealthVaccinePdf {
             'VIC': 'Victoria',
             'QLD': 'Queensland',
             'ACT': 'Capital', // lmao yes because sometimes Australian Capital Territory is split
-            'SA': 'South', // lmao yes because sometimes South Australia is split
+            'SA': 'South Australia', // lmao yes because sometimes South Australia is split
             'NT': 'Northern', // lmao yes because sometimes Northern Territory is split
             'WA': 'Western', // lmao yes because sometimes Western Australia is split
             'TAS': 'Tasmania'
