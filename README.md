@@ -60,6 +60,7 @@ The data is also available at the following locations:
 * **JSON (AIR - Administration):** https://vaccinedata.covid19nearme.com.au/data/air.json
 
 **Daily dose breakdown from AIR incl state of residence data (available from 28 July 2021 onwards)**
+Note: AIR residence data is normalised differently from the other data. Each row represents a separate day, state and age bucket.  Counts are estimated by reverse calculating percentage and ABS Estiamted Resident Population.
 * **CSV (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.csv
 * **JSON (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.json
 
