@@ -306,6 +306,7 @@ const generateAirStateOfResidence = async (csvPath, jsonPath) => {
 
     const output = [];
     const stream = format({ headers: [
+        'DATE_AS_AT',
         'STATE',
         'AGE_LOWER',
         'AGE_UPPER',
@@ -340,6 +341,7 @@ const generateAirStateOfResidence = async (csvPath, jsonPath) => {
         for(const stateCode in stateOfResidence){
             for(const ageGroup of stateOfResidence[stateCode].ageBucketsEstimatedPopulation){
                 const row = {
+                    DATE_AS_AT: _.get(lookupData, 'dataAsAt'),
                     STATE: stateCode,
                     AGE_LOWER: ageGroup.ageLower,
                     AGE_UPPER: ageGroup.ageUpper || '999',
