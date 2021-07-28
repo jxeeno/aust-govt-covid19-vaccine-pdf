@@ -344,7 +344,7 @@ const generateAirStateOfResidence = async (csvPath, jsonPath) => {
                     DATE_AS_AT: _.get(lookupData, 'dataAsAt'),
                     STATE: stateCode,
                     AGE_LOWER: ageGroup.ageLower,
-                    AGE_UPPER: ageGroup.ageUpper || '999',
+                    AGE_UPPER: ageGroup.ageUpper || 999,
                     AIR_RESIDENCE_FIRST_DOSE_PCT: ageGroup.firstDosePct,
                     AIR_RESIDENCE_SECOND_DOSE_PCT: ageGroup.secondDosePct,
                     AIR_RESIDENCE_FIRST_DOSE_APPROX_COUNT: ageGroup.firstDoseCount,
