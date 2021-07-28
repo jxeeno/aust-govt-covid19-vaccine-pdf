@@ -99,9 +99,9 @@ class AusDeptHealthVaccinePdf {
             'VIC': 'Victoria',
             'QLD': 'Queensland',
             'ACT': 'Capital', // lmao yes because sometimes Australian Capital Territory is split
-            'SA': 'South',
-            'NT': 'Northern',
-            'WA': 'Western',
+            'SA': 'South', // lmao yes because sometimes South Australia is split
+            'NT': 'Northern', // lmao yes because sometimes Northern Territory is split
+            'WA': 'Western', // lmao yes because sometimes Western Australia is split
             'TAS': 'Tasmania'
         };
 
@@ -113,7 +113,7 @@ class AusDeptHealthVaccinePdf {
                 console.error('Unable to find '+stateCode)
             }
         }
-        console.log(stateOfResidence)
+        // console.log(stateOfResidence)
 
         const output = {
             dataAsAt,
@@ -351,12 +351,13 @@ class AusDeptHealthVaccinePdf {
 
         const rowHeaders = getValuesFor(['First dose', 'Second dose', 'Population'], null, false);
 
+        // to be implemented, save tables on top right corner
         const firstDoseRow = getRow(rowHeaders[0]);
         const secondDoseRow = getRow(rowHeaders[1]);
         const populationRow = getRow(rowHeaders[2]);
 
         return {
-            buckets: ages.map((age, i) => {
+            ageBucketsEstimatedPopulation: ages.map((age, i) => {
                 const firstDosePct = Number(atLeastOne[i].str.replace(/[^0-9\.]+/g, ''));
                 const secondDosePct = Number(fullyVaccinated[i].str.replace(/[^0-9\.]+/g, ''));
                 let ageObj = {ageLower: 95};
