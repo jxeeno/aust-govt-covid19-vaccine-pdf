@@ -287,7 +287,7 @@ class AusDeptHealthVaccinePdf {
     }
 
     getStateOfResidenceBreakdown(pageIndex = 4, stateCode){
-        const content = this.data.pages[pageIndex].content;
+        const content = this.cleanCells(this.mergeAdjacentCells(this.data.pages[pageIndex].content));
 
         const getValuesFor = (strs, width, stripStrs = true) => {
             const [str, ...remaining] = strs;
@@ -349,7 +349,12 @@ class AusDeptHealthVaccinePdf {
         const firstDoseProtected = getValuesFor(['First dose', 'protected'], referenceWidth.width);
         const fullyVaccinated = getValuesFor(['Fully', 'vaccinated'], referenceWidth.width);
 
-        const rowHeaders = getValuesFor(['First dose', 'Second dose', 'Population'], null, false);
+        let rowHeaders = getValuesFor(['First dose', 'Second dose', 'Population'], null, false);
+        if(rowHeaders.length === 0){
+            rowHeaders = getValuesFor(['At least one dose', 'Fully vaccinated', 'Population'], null, false);
+        }
+
+        console.log({rowHeaders})
 
         // to be implemented, save tables on top right corner
         const firstDoseRow = getRow(rowHeaders[0]);
