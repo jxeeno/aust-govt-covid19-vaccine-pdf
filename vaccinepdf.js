@@ -287,7 +287,7 @@ class AusDeptHealthVaccinePdf {
     }
 
     getStateOfResidenceBreakdown(pageIndex = 4, stateCode){
-        const content = this.cleanCells(this.mergeAdjacentCells(this.data.pages[pageIndex].content));
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
 
         const getValuesFor = (strs, width, stripStrs = true) => {
             const [str, ...remaining] = strs;
@@ -298,7 +298,7 @@ class AusDeptHealthVaccinePdf {
                 let maxX = centrepoint.cx + (width || centrepoint.width)/2;
                 let minY = centrepoint.cy;
 
-                const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY)), 2);
+                const values = this.cleanCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY), 2);
                 values.sort((a, b) => a.y - b.y);
 
                 if(stripStrs){
@@ -337,7 +337,7 @@ class AusDeptHealthVaccinePdf {
             const minY = cell.y;
             const maxY = cell.y + cell.height;
 
-            const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cy >= minY && t.cy <= maxY)), 2);
+            const values = this.cleanCells(content.filter(t => t.cx >= minX && t.cy >= minY && t.cy <= maxY), 2);
             values.sort((a, b) => a.x - b.x);
             return values;
         }
@@ -365,6 +365,7 @@ class AusDeptHealthVaccinePdf {
 
         return {
             ageBucketsEstimatedPopulation: ages.map((age, i) => {
+                console.log(atLeastOne[i].str)
                 const firstDosePct = Number(atLeastOne[i].str.replace(/[^0-9\.]+/g, ''));
                 const secondDosePct = Number(fullyVaccinated[i].str.replace(/[^0-9\.]+/g, ''));
                 let ageObj = {ageLower: 95};
