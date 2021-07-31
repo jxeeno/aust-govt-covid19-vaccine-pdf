@@ -357,15 +357,14 @@ class AusDeptHealthVaccinePdf {
         console.log({rowHeaders})
 
         // to be implemented, save tables on top right corner
-        const firstDoseRow = getRow(rowHeaders[0]);
-        const secondDoseRow = getRow(rowHeaders[1]);
-        const populationRow = getRow(rowHeaders[2]);
+        const firstDoseRow = getRow(rowHeaders[0]).flatMap(z => z.str.split(/\s+/));
+        const secondDoseRow = getRow(rowHeaders[1]).flatMap(z => z.str.split(/\s+/));
+        const populationRow = getRow(rowHeaders[2]).flatMap(z => z.str.split(/\s+/));
 
         const ageGroups = [{ageLower: 0},{ageLower: 50},{ageLower: 70}];
 
         return {
             ageBucketsEstimatedPopulation: ages.map((age, i) => {
-                console.log(atLeastOne[i].str)
                 const firstDosePct = Number(atLeastOne[i].str.replace(/[^0-9\.]+/g, ''));
                 const secondDosePct = Number(fullyVaccinated[i].str.replace(/[^0-9\.]+/g, ''));
                 let ageObj = {ageLower: 95};
@@ -381,11 +380,11 @@ class AusDeptHealthVaccinePdf {
                 return {...ageObj, firstDosePct, secondDosePct, firstDoseCount, secondDoseCount, cohortPopulation}
             }),
             ageBucketsActualPopulation: ageGroups.map((ageObj, i) => {
-                const firstDosePct = Number(firstDoseRow[i*2].str.replace(/[^0-9\.]+/g, ''));
-                const firstDoseCount = Number(firstDoseRow[i*2+1].str.replace(/[^0-9\.]+/g, ''));
-                const secondDosePct = Number(secondDoseRow[i*2].str.replace(/[^0-9\.]+/g, ''));
-                const secondDoseCount = Number(secondDoseRow[i*2+1].str.replace(/[^0-9\.]+/g, ''));
-                const cohortPopulation = Number(populationRow[i].str.replace(/[^0-9\.]+/g, ''));
+                const firstDosePct = Number(firstDoseRow[i*2].replace(/[^0-9\.]+/g, ''));
+                const firstDoseCount = Number(firstDoseRow[i*2+1].replace(/[^0-9\.]+/g, ''));
+                const secondDosePct = Number(secondDoseRow[i*2].replace(/[^0-9\.]+/g, ''));
+                const secondDoseCount = Number(secondDoseRow[i*2+1].replace(/[^0-9\.]+/g, ''));
+                const cohortPopulation = Number(populationRow[i].replace(/[^0-9\.]+/g, ''));
                 return {...ageObj, firstDosePct, secondDosePct, firstDoseCount, secondDoseCount, cohortPopulation}
             })
         }
