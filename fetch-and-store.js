@@ -467,7 +467,11 @@ const getPublications = async () => {
 
         const {data: publicationHtml} = await axios.get(landingUrl);
         const $$ = cheerio.load(publicationHtml);
-        const pdfUrl = $$("a.health-file__link").attr('href');
+        var pdfUrl = $$("a.health-file__link").attr('href');
+
+        if(landingUrl.includes('.pdf')){
+        pdfUrl = landingUrl;
+        }
 
         const { data: pdfBuffer } = await axios.get(pdfUrl, {
             params: {
