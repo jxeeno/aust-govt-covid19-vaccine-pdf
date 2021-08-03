@@ -2,6 +2,7 @@ const fs = require('fs');
 const { format } = require('@fast-csv/format');
 const axios = require('axios');
 const pdfTableExtractor = require('./src/pdf-table');
+const sa4Population = require('./src/abs/sa4_2019_population');
 
 const stateMap = {
     'Other Territories': 'OT',
@@ -51,6 +52,8 @@ async function scrape() {
                 for(const r of table){
                     if(r[0] === 'State'){continue;}
                     const sa4 = SA4S.find(s => s[2] === r[1].toUpperCase().replace(/[^A-Z]/g, ''));
+                    const sa4pop = sa4Population[sa4[0]];
+
                     const row = {
                         DATE_AS_AT: '2021-08-01',
                         STATE: stateMap[r[0]] || r[0],
@@ -61,6 +64,10 @@ async function scrape() {
                         AIR_SA4_FIRST_DOSE_PCT: Number(r[2].replace(/[^0-9\.]+/g, '')),
                         AIR_SA4_SECOND_DOSE_PCT: Number(r[3].replace(/[^0-9\.]+/g, '')),
                     }
+
+                    row.AIR_SA4_FIRST_DOSE_APPROX_COUNT = sa4pop ? Math.round(sa4pop.population15plus * (row.AIR_SA4_FIRST_DOSE_PCT/100)) : '';
+                    row.AIR_SA4_SECOND_DOSE_APPROX_COUNT = sa4pop ? Math.round(sa4pop.population15plus * (row.AIR_SA4_SECOND_DOSE_PCT/100)) : '';
+                    row.ABS_ERP_2019_POPULATION = sa4pop ? sa4pop.population15plus : '';
 
                     row.VALIDATED = 'Y';
                     row.URL = url;
