@@ -64,6 +64,11 @@ Note: AIR residence data is normalised differently from the other data. Each row
 * **CSV (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.csv
 * **JSON (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.json
 
+
+**Daily dose breakdown by SA4**
+* **CSV (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.csv
+* **JSON (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.json
+
 **Weekly dose distribution data**
 * **CSV (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.csv
 * **JSON (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.json
