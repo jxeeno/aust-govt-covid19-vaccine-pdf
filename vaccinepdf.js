@@ -38,7 +38,7 @@ class AusDeptHealthVaccinePdf {
                     const adj = valuesSortX[adjIndex];
                     const xdiff = Math.abs(adj.x - rightX);
                     const ydiff = Math.abs(adj.cy - value.cy);
-                    console.log(`merge ${value.str} with ${adj.str} (${xdiff}, ${ydiff})`);
+                    // console.log(`merge ${value.str} with ${adj.str} (${xdiff}, ${ydiff})`);
                     value.str = value.str.trim() + (xdiff > thresh ? ' ' : '') + adj.str.trim();
                     value.width = adj.x + adj.width - value.x;
                     value.cx = value.x + value.width/2;
@@ -89,7 +89,7 @@ class AusDeptHealthVaccinePdf {
         const cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
         const totals = this.getLeftPanelData();
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
-        const dataAsAt = this.getDataAsAt() || this.getDataAsAt(2) || this.getDataAsAt(3);
+        const dataAsAt = this.getDataAsAt(1);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
         const stateOfResidence = {};
@@ -106,12 +106,17 @@ class AusDeptHealthVaccinePdf {
         };
 
         for(const stateCode in states){
-            const pageForState = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Vaccinations by State or Territory of residence') > -1) && page.content.find(r => r.str.indexOf(states[stateCode]) > -1))
-            if(pageForState > -1){
-                stateOfResidence[stateCode] = await this.getStateOfResidenceBreakdown(pageForState, stateCode);
-            }else{
-                console.error('Unable to find '+stateCode)
+            try{
+                const pageForState = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Vaccinations by State or Territory of residence') > -1) && page.content.find(r => r.str.indexOf(states[stateCode]) > -1))
+                if(pageForState > -1){
+                    stateOfResidence[stateCode] = await this.getStateOfResidenceBreakdown(pageForState, stateCode);
+                }else{
+                    console.error('Unable to find '+stateCode)
+                }
+            }catch(e){
+                console.error('Unable to find '+stateCode, e)
             }
+
         }
         // console.log(stateOfResidence)
 
@@ -127,7 +132,7 @@ class AusDeptHealthVaccinePdf {
             stateOfResidence
         };
         
-        console.log(output)
+        console.log(JSON.stringify(output, null, 4))
 
         return output;
     }
@@ -354,7 +359,7 @@ class AusDeptHealthVaccinePdf {
             rowHeaders = getValuesFor(['At least one dose', 'Fully vaccinated', 'Population'], null, false);
         }
 
-        console.log({rowHeaders})
+        // console.log({rowHeaders})
 
         // to be implemented, save tables on top right corner
         const firstDoseRow = getRow(rowHeaders[0]).flatMap(z => z.str.split(/\s+/));
@@ -425,15 +430,15 @@ class AusDeptHealthVaccinePdf {
         return stateData;
     }
 
-    getDataAsAt(pageIndex = 1, matchText = 'Data as at:'){
-        const content = this.data.pages[pageIndex].content;
-        const centrepoint = content.find(t => t.str.includes(matchText));
+    getDataAsAt(pageIndex = 1, matchText = /data\s*as\s*at/i){
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
+        const centrepoint = content.find(t => t.str.match(matchText));
         if(!centrepoint){return;}
 
         let minX = centrepoint.cx - centrepoint.width;
         let maxX = centrepoint.cx + centrepoint.width;
 
-        const values = content.filter(t => t.cx >= minX && t.cx <= maxX);
+        const values = content.filter(t => t.cx >= minX && t.cx <= maxX).map(s => s.str.replace(/\s+/g, ' '));
         values.sort((a, b) => a.y - b.y);
 
         for(let i = 0; i < values.length; i++){
@@ -441,8 +446,8 @@ class AusDeptHealthVaccinePdf {
             const vnext = values[i+1];
             const vprev = values[i-1];
 
-            if(v.str.includes(matchText) && vnext && vnext.str.match(/[0-9]+ [A-Za-z]+ 202[0-9]+/)){
-                return moment(vnext.str.trim(), 'DD MMM YYYY').format('YYYY-MM-DD');
+            if(v.match(matchText) && vnext && vnext.match(/[0-9]+ [A-Za-z]+ 202[0-9]+/)){
+                return moment(vnext.trim(), 'DD MMM YYYY').format('YYYY-MM-DD');
             }
         }
     }
