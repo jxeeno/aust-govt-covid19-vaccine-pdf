@@ -96,9 +96,12 @@ const fetchAllClinics = async () => {
 }
 
 const toCSV = (rows, startTime) => {
-    const flattenValueType = (arr, def) => {
+    const flattenValueType = (arr, def, path = 'valueType.label') => {
         if(arr && Array.isArray(arr)){
-            return arr.map(v => v.valueType.label).join(', ');
+            const resolvedValues = arr.map(v => lodash.get(v, path)).filter(v => v != null);
+            if(resolvedValues.length>0){
+                return resolvedValues.join(', ');
+            }
         }
 
         return def
@@ -116,6 +119,7 @@ const toCSV = (rows, startTime) => {
             offerings: flattenValueType(row.offerings, 'Unknown'),
             billingOptions: flattenValueType(row.billingOptions, 'Unknown'),
             booking: flattenValueType(row.bookingProviders, 'Unknown'),
+            bookingUrls: flattenValueType(row.bookingProviders, undefined, 'value'),
             addressLine1: lodash.get(row, 'location.physicalLocation.addressLine1'),
             addressLine2: lodash.get(row, 'location.physicalLocation.addressLine2'),
             addressLine3: lodash.get(row, 'location.physicalLocation.addressLine3'),
