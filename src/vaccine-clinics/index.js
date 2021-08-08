@@ -120,6 +120,7 @@ const toCSV = (rows, startTime) => {
             billingOptions: flattenValueType(row.billingOptions, 'Unknown'),
             booking: flattenValueType(row.bookingProviders, 'Unknown'),
             bookingUrls: flattenValueType(row.bookingProviders, undefined, 'value'),
+            description: lodash.get(row, 'description'),
             addressLine1: lodash.get(row, 'location.physicalLocation.addressLine1'),
             addressLine2: lodash.get(row, 'location.physicalLocation.addressLine2'),
             addressLine3: lodash.get(row, 'location.physicalLocation.addressLine3'),
