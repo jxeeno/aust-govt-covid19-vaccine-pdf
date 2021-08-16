@@ -12,9 +12,11 @@ This repository is a mess of code which:
 
 ## Notes
 
-### Information about approx second dose by state data
+Due to changes in the way vaccination data is reported throughout this year, some of the data may not be comparable.  This section tries to summarise many of the data issues and reporting changes.  It's lengthly -- you have been warned!
 
-**18 May 2021 to 1 July 2021**
+### From 18 May 2021 to 1 July 2021
+
+Prior to 18 May 2021, statistics about second dose (or number of fully vaccinated people) were not available.
 
 From 18 May 2021 to 1 July 2021, approximate second dose data by state of administration (data values in key format `APPROX_<State>_SECOND_DOSE_TOTAL` in `all.csv`) is derived from the [WA Health Vaccination Dashboard](https://www.wa.gov.au/organisation/covid-communications/covid-19-coronavirus-vaccination-dashboard) which is updated weekly usually at the start of the week (exact day of week varies).
 
@@ -22,21 +24,34 @@ The percentages are extracted from the WA Health dashboard and multiplied agains
 
 State-level second dose totals are **not** published daily and therefore do not necessarily correlate with daily dose totals.  This means that deducting total doses from approx second dose total **does not produce an accurate value for first doses**.
 
-**From 1 July 2021 and onwards**
+**From 1 July 2021 to 27 July 2021**
 
-This field has been deprecated.  Instead, use the AIR data provided by the federal government directly.
+The `APPROX_<State>_SECOND_DOSE_TOTAL` field in `all.csv` is deprecated and should not be used any more.
 
-Refer to section on "Information about AIR dose breakdown" below.
-### Information about AIR dose breakdown
 From 30 June 2021, the Department of Health started publishing breakdowns of doses by age group and first/second doses.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
 From 1 July 2021, the Department of Health started publishing breakdowns of doses by age group, first/second doses and by state of **administration**.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
 This data is published separately as `air.csv` and `air.json` files.
 
+**From 28 July 2021 to 15 August 2021**
+
 From 28 July 2021, the Department of Health started publishing breakdowns of doses by age group, first/second doses and by state of **residence**.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
-This data is published separately as `air_residence.csv` and `air_residence.json` files.
+The switch from reporting state of **administration** to state of **residence** resulted in some states reporting a decrease in total number of doses.  ACT and NT both reported drops.
+
+Additional data points (doses by state of residence, by age group) were also published and is made available separately as `air_residence.csv` and `air_residence.json` files.
+
+**From 15 August 2021 onwards**
+
+From 15 August 2021, all data reported by the Department of Health is obtained from the Australian Immunisation Register (AIR).  Previously, some statistics were based on self-reported figures from state-run clinics.
+
+This reporting change resulted in negative doses in some states reported in the `all.csv` file.  This drop is due to the lag between a dose being administered and the record being entered into AIR.
+
+This change resulted meant that the statistics in the `all.csv` file prior to 15 Aug 2021 is not directly comparable to the the data published on or after 15 Aug 2021.
+
+All data up to this point is based on **date of reporting**.  Department of Health has also begun reporting doses on the **date of administration**.  This data is not available in this repository yet.
+
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
