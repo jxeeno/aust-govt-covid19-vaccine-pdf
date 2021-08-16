@@ -1,14 +1,103 @@
 {
-    "success": false,
+    "success": true,
     "pdfData": {
         "dataAsAt": "2021-08-15",
         "totals": {
-            "national": {},
-            "cwthAll": {},
-            "cwthPrimaryCare": {},
-            "cwthAgedCare": {}
+            "national": {
+                "total": 15338926,
+                "last24hr": 94497
+            },
+            "cwthAll": {
+                "total": 8935315,
+                "last24hr": 41742
+            },
+            "cwthPrimaryCare": {
+                "total": 8274354,
+                "last24hr": 0
+            },
+            "cwthAgedCare": {
+                "total": 660961,
+                "last24hr": 0
+            }
         },
-        "stateClinics": {},
+        "stateClinics": {
+            "VIC": {
+                "total": 1921533,
+                "last24hr": 736
+            },
+            "QLD": {
+                "total": 1091641,
+                "last24hr": 11686
+            },
+            "WA": {
+                "total": 629240,
+                "last24hr": 7644
+            },
+            "TAS": {
+                "total": 201431,
+                "last24hr": 1714
+            },
+            "SA": {
+                "total": 455884,
+                "last24hr": 3707
+            },
+            "ACT": {
+                "total": 167034,
+                "last24hr": 22
+            },
+            "NT": {
+                "total": 107639,
+                "last24hr": 461
+            },
+            "NSW": {
+                "total": 1829209,
+                "last24hr": 26785
+            }
+        },
+        "cwthAgedCare": {
+            "VIC": {
+                "total": 137386,
+                "last24hr": 379
+            },
+            "QLD": {
+                "total": 100938,
+                "last24hr": 351
+            },
+            "WA": {
+                "total": 49498,
+                "last24hr": 342
+            },
+            "TAS": {
+                "total": 14562,
+                "last24hr": 11
+            },
+            "SA": {
+                "total": 44849,
+                "last24hr": 180
+            },
+            "ACT": {
+                "total": 8241,
+                "last24hr": 3
+            },
+            "NT": {
+                "total": 4372,
+                "last24hr": 3
+            },
+            "NSW": {
+                "total": 281922,
+                "last24hr": 890
+            }
+        },
+        "cwthAgedCareBreakdown": {
+            "cwthAgedCareDoses": {
+                "firstDose": 287213,
+                "secondDose": 272759
+            },
+            "cwthAgedCareFacilities": {
+                "firstDose": 2568,
+                "secondDose": 2567
+            }
+        },
         "doseBreakdown": {
             "national": [
                 {
@@ -1875,70 +1964,5 @@
             }
         }
     },
-    "validation": [
-        "totals.national.total is null",
-        "totals.national.last24hr is null",
-        "totals.cwthAll.total is null",
-        "totals.cwthAll.last24hr is null",
-        "totals.cwthPrimaryCare.total is null",
-        "totals.cwthPrimaryCare.last24hr is null",
-        "totals.cwthAgedCare.total is null",
-        "totals.cwthAgedCare.last24hr is null",
-        "stateClinics.VIC.total is null",
-        "stateClinics.VIC.last24hr is null",
-        "stateClinics.QLD.total is null",
-        "stateClinics.QLD.last24hr is null",
-        "stateClinics.WA.total is null",
-        "stateClinics.WA.last24hr is null",
-        "stateClinics.TAS.total is null",
-        "stateClinics.TAS.last24hr is null",
-        "stateClinics.SA.total is null",
-        "stateClinics.SA.last24hr is null",
-        "stateClinics.ACT.total is null",
-        "stateClinics.ACT.last24hr is null",
-        "stateClinics.NT.total is null",
-        "stateClinics.NT.last24hr is null",
-        "stateClinics.NSW.total is null",
-        "stateClinics.NSW.last24hr is null",
-        "cwthAgedCare.VIC.total is null",
-        "cwthAgedCare.VIC.last24hr is null",
-        "cwthAgedCare.QLD.total is null",
-        "cwthAgedCare.QLD.last24hr is null",
-        "cwthAgedCare.WA.total is null",
-        "cwthAgedCare.WA.last24hr is null",
-        "cwthAgedCare.TAS.total is null",
-        "cwthAgedCare.TAS.last24hr is null",
-        "cwthAgedCare.SA.total is null",
-        "cwthAgedCare.SA.last24hr is null",
-        "cwthAgedCare.ACT.total is null",
-        "cwthAgedCare.ACT.last24hr is null",
-        "cwthAgedCare.NT.total is null",
-        "cwthAgedCare.NT.last24hr is null",
-        "cwthAgedCare.NSW.total is null",
-        "cwthAgedCare.NSW.last24hr is null",
-        "cwthPrimaryCare.VIC.total is null",
-        "cwthPrimaryCare.VIC.last24hr is null",
-        "cwthPrimaryCare.QLD.total is null",
-        "cwthPrimaryCare.QLD.last24hr is null",
-        "cwthPrimaryCare.WA.total is null",
-        "cwthPrimaryCare.WA.last24hr is null",
-        "cwthPrimaryCare.TAS.total is null",
-        "cwthPrimaryCare.TAS.last24hr is null",
-        "cwthPrimaryCare.SA.total is null",
-        "cwthPrimaryCare.SA.last24hr is null",
-        "cwthPrimaryCare.ACT.total is null",
-        "cwthPrimaryCare.ACT.last24hr is null",
-        "cwthPrimaryCare.NT.total is null",
-        "cwthPrimaryCare.NT.last24hr is null",
-        "cwthPrimaryCare.NSW.total is null",
-        "cwthPrimaryCare.NSW.last24hr is null",
-        "cwthAgedCareBreakdown.cwthAgedCareDoses.firstDose is null",
-        "cwthAgedCareBreakdown.cwthAgedCareDoses.secondDose is null",
-        "cwthAgedCareBreakdown.cwthAgedCareFacilities.firstDose is null",
-        "cwthAgedCareBreakdown.cwthAgedCareFacilities.secondDose is null",
-        "cwthPrimaryCareTotal is not undefined (0)",
-        "cwthAgedCareTotal is not undefined (0)",
-        "cwthPrimaryCareTotal + cwthAgedCareTotal is not undefined (0)",
-        "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not undefined (0)"
-    ]
+    "validation": []
 }
