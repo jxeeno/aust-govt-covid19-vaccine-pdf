@@ -10,7 +10,14 @@ const PUBLICATION_JSON_DATA_PATH = 'docs/data/';
 
 const getExistingPublications = () => {
     const jsonRaw = fs.existsSync(PUBLICATION_JSON_PATH) ? fs.readFileSync(PUBLICATION_JSON_PATH, {encoding: 'utf8'}) : '{}';
-    return _.keyBy(JSON.parse(jsonRaw), 'landingUrl');
+    const json = JSON.parse(jsonRaw);
+    return {
+        all: json,
+        byLanding: _.keyBy(json.filter(f => f.landingUrl), 'landingUrl'),
+        byPdf: _.keyBy(json.filter(f => f.pdfUrl), 'pdfUrl'),
+        byJurisdictionLanding: _.keyBy(json.filter(f => f.jurisdictionalLandingUrl), 'jurisdictionalLandingUrl'),
+        byJurisdictionPdf: _.keyBy(json.filter(f => f.jurisdictionalPdfUrl), 'jurisdictionalPdfUrl'),
+    };
 }
 
 const validateData = (data) => {
@@ -413,11 +420,11 @@ const validateData = (data) => {
 
     // sum values
     const statesTotal = states.reduce((runningTotal, state) => _.get(data, `stateClinics.${state}.total`, 0) + runningTotal,0);
-    const cwthPrimaryCareTotal = states.reduce((runningTotal, state) => _.get(data, `cwthPrimaryCare.${state}.total`, 0) + runningTotal,0);
-    const cwthAgedCareTotal = states.reduce((runningTotal, state) => _.get(data, `cwthAgedCare.${state}.total`, 0) + runningTotal,0);
-    logErrorNotEq(cwthPrimaryCareTotal, _.get(data, 'totals.cwthPrimaryCare.total'), true, 'cwthPrimaryCareTotal');
-    logErrorNotEq(cwthAgedCareTotal, _.get(data, 'totals.cwthAgedCare.total'), true, 'cwthAgedCareTotal');
-    logErrorNotEq(cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.cwthAll.total'), true, 'cwthPrimaryCareTotal + cwthAgedCareTotal');
+    const cwthPrimaryCareTotal = _.get(data, 'totals.cwthPrimaryCare.total'); // states.reduce((runningTotal, state) => _.get(data, `cwthPrimaryCare.${state}.total`, 0) + runningTotal,0);
+    const cwthAgedCareTotal = _.get(data, 'totals.cwthAgedCare.total'); // states.reduce((runningTotal, state) => _.get(data, `cwthAgedCare.${state}.total`, 0) + runningTotal,0);
+    // logErrorNotEq(cwthPrimaryCareTotal, _.get(data, 'totals.cwthPrimaryCare.total'), true, 'cwthPrimaryCareTotal');
+    // logErrorNotEq(cwthAgedCareTotal, _.get(data, 'totals.cwthAgedCare.total'), true, 'cwthAgedCareTotal');
+    // logErrorNotEq(cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.cwthAll.total'), true, 'cwthPrimaryCareTotal + cwthAgedCareTotal');
     logErrorNotEq(statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.national.total'), true, 'statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal');
 
     // AIR data
@@ -442,77 +449,150 @@ const validateData = (data) => {
 const getPublications = async () => {
     const {data: html} = await axios.get('https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates');
     const $ = cheerio.load(html);
-    const items = $(".paragraphs-items-full a").toArray().map(item => {
+
+    const itemsByKey = {};
+
+    $(".paragraphs-items-full a").toArray().forEach(item => {
         const $v = $(item);
         const name = $v.text();
+        const dateMatches = name.match(/[0-9]+ [A-Za-z]+ 202[0-9]$/);
+        const dateKey = dateMatches ? dateMatches[0] : name;
+        const type = name.indexOf('jurisdictional breakdown') > -1 ? 'jurisdictional' : 'main';
         const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
 
-        return {
-            name,
-            landingUrl
+        if(!itemsByKey[dateKey]){
+            itemsByKey[dateKey] = {
+                name,
+                type,
+                dateKey,
+            }
+        }
+
+        if(type === 'jurisdictional'){
+            itemsByKey[dateKey].jurisdictionalLandingUrl = landingUrl;
+        }else{
+            itemsByKey[dateKey].landingUrl = landingUrl;
         }
     });
 
+    const items = Object.values(itemsByKey);
+
+    // TODO handle jurisdictional
     if(process.argv[2] != null){
-        items.push({
-            name: 'Custom fetch',
-            landingUrl: process.argv[2]
-        });
-        console.log(`Added custom URL ${process.argv[2]}`)
-    }
-
-    const {data: mainhtml} = await axios.get("https://www.health.gov.au/initiatives-and-programs/covid-19-vaccines/australias-covid-19-vaccine-rollout");
-    const $$ = cheerio.load(mainhtml);
-
-    const link = $$(".node-publication a:contains('vaccine rollout update')").first();
-    if(link && link.length){
-        const $v = $(link);
-        const name = $v.text();
-        const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
-
-        console.log(`Main landing page links to ${name}: ${landingUrl}`);
-
-        const hasExisting = items.find(item => item.landingUrl === landingUrl);
-        if(!hasExisting){
-            console.log(`Resource linked from main landing page not found in collection. Appending.`);
+        if(process.argv[2].endsWith('.pdf') && process.argv[2].startsWith('http')){
             items.push({
-                name,
-                landingUrl
-            })
+                name: 'Custom fetch',
+                pdfUrl: process.argv[2],
+                jurisdictionalPdfUrl: process.argv[3]
+            });
+            console.log(`Added custom landing URL ${process.argv[2]}`)
+        }else if(process.argv[2].endsWith('.pdf') && !process.argv[2].startsWith('http')){
+            items.push({
+                name: 'Custom fetch',
+                filename: process.argv[2],
+                jurisdictionalFilename: process.argv[3]
+            });
+            console.log(`Added custom file ${process.argv[2]}`)
+        }else{
+            items.push({
+                name: 'Custom fetch',
+                landingUrl: process.argv[2]
+            });
+            console.log(`Added custom PDF URL ${process.argv[2]}`)
         }
     }
+
+    // TODO: fix fetch from main page
+    // const {data: mainhtml} = await axios.get("https://www.health.gov.au/initiatives-and-programs/covid-19-vaccines/australias-covid-19-vaccine-rollout");
+    // const $$ = cheerio.load(mainhtml);
+
+    // const link = $$(".node-publication a:contains('vaccine rollout update')").first();
+    // if(link && link.length){
+    //     const $v = $(link);
+    //     const name = $v.text();
+    //     const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
+
+    //     console.log(`Main landing page links to ${name}: ${landingUrl}`);
+
+    //     const hasExisting = items.find(item => item.landingUrl === landingUrl);
+    //     if(!hasExisting){
+    //         console.log(`Resource linked from main landing page not found in collection. Appending.`);
+    //         items.push({
+    //             name,
+    //             landingUrl
+    //         })
+    //     }
+    // }
 
     const existingPublications = getExistingPublications();
 
-    const publications = {...existingPublications};
+    const publications = existingPublications.all; //{...existingPublications};
     for(const item of items){
-        const {name, landingUrl} = item;
+        let {name, landingUrl, jurisdictionalLandingUrl, pdfUrl, jurisdictionalPdfUrl, filename, jurisdictionalFilename} = item;
         
         console.log(`Found "${name}" at ${landingUrl}`);
 
+        let matchedItem = existingPublications.all.find(publication => landingUrl && publication.landingUrl === landingUrl);
+        if(!matchedItem){
+            matchedItem = existingPublications.all.find(publication => jurisdictionalLandingUrl && publication.jurisdictionalLandingUrl === jurisdictionalLandingUrl);
+        }
+        if(!matchedItem){
+            matchedItem = existingPublications.all.find(publication => pdfUrl && publication.pdfUrl === pdfUrl);
+        }
+        if(!matchedItem){
+            matchedItem = existingPublications.all.find(publication => filename && publication.filename === filename);
+        }
+
         if(
-            existingPublications[landingUrl] &&
-            (existingPublications[landingUrl].validation.length === 0 || existingPublications[landingUrl].exempt)
+            // existingPublications[landingUrl] &&
+            // (existingPublications[landingUrl].validation.length === 0 || existingPublications[landingUrl].exempt)
+            matchedItem &&
+            (matchedItem.validation.length === 0 || matchedItem.exempt)
         ){
             console.log(`Already processed ${landingUrl}`);
-            publications[landingUrl] = existingPublications[landingUrl];
+            // publications[landingUrl] = existingPublications[landingUrl];
             continue;
         }
 
-        const {data: publicationHtml} = await axios.get(landingUrl);
-        const $$ = cheerio.load(publicationHtml);
-        const pdfUrl = $$("a.health-file__link").attr('href');
+        let pdfBuffer;
+        let pdfJurisdictionalBuffer;
+        if(landingUrl){
+            const {data: publicationHtml} = await axios.get(landingUrl);
+            const $$ = cheerio.load(publicationHtml);
+            pdfUrl = $$("a.health-file__link").attr('href');
 
-        const { data: pdfBuffer } = await axios.get(pdfUrl, {
-            params: {
-                ts: new Date().valueOf()
-            },
-            responseType: 'arraybuffer'
-        });
+            const { data } = await axios.get(pdfUrl, {
+                params: {
+                    ts: new Date().valueOf()
+                },
+                responseType: 'arraybuffer'
+            });
+            console.log(`Downloaded PDF: ${pdfUrl}`);
+            pdfBuffer = data;
+        }else if(filename){
+            pdfBuffer = fs.readFileSync(filename);
+        }
+
+        if(jurisdictionalLandingUrl){
+            const {data: publicationHtml} = await axios.get(jurisdictionalLandingUrl);
+            const $$ = cheerio.load(publicationHtml);
+            jurisdictionalPdfUrl = $$("a.health-file__link").attr('href');
+
+            const { data } = await axios.get(jurisdictionalPdfUrl, {
+                params: {
+                    ts: new Date().valueOf()
+                },
+                responseType: 'arraybuffer'
+            });
+            console.log(`Downloaded PDF: ${jurisdictionalPdfUrl}`);
+            pdfJurisdictionalBuffer = data;
+        }else if(jurisdictionalFilename){
+            pdfJurisdictionalBuffer = fs.readFileSync(jurisdictionalFilename);
+        }
     
-        console.log(`Downloaded PDF: ${pdfUrl}`);
+        
         const vpdf = new AusDeptHealthVaccinePdf();
-        const pdfData = await vpdf.parsePdf(pdfBuffer);
+        const pdfData = await vpdf.parsePdf(pdfBuffer, pdfJurisdictionalBuffer);
         console.log(`Parsed PDF: ${pdfUrl}`);
         const validation = validateData(pdfData);
         console.log(`Validated PDF: ${pdfUrl}`);
@@ -525,13 +605,23 @@ const getPublications = async () => {
             fs.writeFileSync(vaccineDataPath, JSON.stringify({success: validation.length === 0, url: pdfUrl, pdfData, validation}, null, 4));
         }
 
-        publications[landingUrl] = {
+        const pub = {
             name,
             landingUrl,
+            jurisdictionalLandingUrl,
             pdfUrl,
+            filename,
+            jurisdictionalPdfUrl: jurisdictionalPdfUrl,
             vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath.replace("docs/", "")}`,
             validation
         };
+
+        if(matchedItem){
+            const index = publications.findIndex((p) => p === matchedItem);
+            publications[index] = pub
+        }else{
+            publications.push(pub);
+        }
     }
 
     fs.writeFileSync(PUBLICATION_JSON_PATH, JSON.stringify(Object.values(publications), null, 4));
