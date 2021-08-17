@@ -13,11 +13,11 @@ const toNumber = (str, sign) => {
 const isNumber = str => !!str.trim().match(/^[0-9,]+$/);
 
 class AusDeptHealthVaccinePdf {
-    constructor(){
-
+    constructor(variant){
+        this.variant = variant;
     }
 
-    mergeAdjacentCells(values, thresh = 0.07){
+    mergeAdjacentCells(values, thresh = 0.07, joinThresh = 4){
         // sometimes the PDF file will split up the text
         // into separate cells.  this function will try
         // to adjacent cells back together
@@ -33,7 +33,7 @@ class AusDeptHealthVaccinePdf {
             
             while(true){
                 const rightX = value.x + value.width;
-                const adjIndex = valuesSortX.findIndex((adjacentValue, ii) => !excluded.has(ii) && Math.abs(adjacentValue.x - rightX) < 4 && Math.abs(adjacentValue.cy - value.cy) < 4);
+                const adjIndex = valuesSortX.findIndex((adjacentValue, ii) => !excluded.has(ii) && Math.abs(adjacentValue.x - rightX) < joinThresh && Math.abs(adjacentValue.cy - value.cy) < joinThresh);
                 if(adjIndex > -1){
                     const adj = valuesSortX[adjIndex];
                     const xdiff = Math.abs(adj.x - rightX);
@@ -73,26 +73,113 @@ class AusDeptHealthVaccinePdf {
         }
     }
 
-    async parsePdf(buffer){
+    async parsePdf(buffer, bufferJurisdictional){
         this.data = await pdfExtract.extractBuffer(buffer, options);
+        this.jurisdictionalData = bufferJurisdictional ? await pdfExtract.extractBuffer(bufferJurisdictional, options) : null;
+
         for(const page of this.data.pages){
             page.content = page.content.map(l => ({ ...l, cx: l.x + l.width / 2, cy: l.y + l.height / 2 }));
         }
 
-        const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth aged care doses administered') > -1))
-        const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
-        const pageForDoses = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Doses by age and sex') > -1))
-        const pageForDistribution = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Administration and Utilisation') > -1))
+        if(this.jurisdictionalData){
+            for(const page of this.jurisdictionalData.pages){
+                page.content = page.content.map(l => ({ ...l, cx: l.x + l.width / 2, cy: l.y + l.height / 2 }));
+            }
+        }
 
-        const stateClinics = this.getStateData(1);
+        const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
+        const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
+        const pageForDoses = (this.jurisdictionalData || this.data).pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
+        const pageForDistribution = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Administration and Utilisation') > -1))
+        const jurisdictionAdministeredPage = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Jurisdiction administered') > -1))
+        const totalDosesPage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Total\s*vaccine\s*doses/)))
+        const primaryCarePage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Commonwealth\s*primary\s*care/)))
+
+        const totalDoses = this.getStateData(totalDosesPage);
+        const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
-        const cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
-        const totals = this.getLeftPanelData();
+        let cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
+        let totals = this.getLeftPanelData(totalDosesPage);
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
         const dataAsAt = this.getDataAsAt(1);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
         const stateOfResidence = {};
+
+        // handle missing primary care
+        if(
+            (!cwthPrimaryCare || Object.keys(cwthPrimaryCare).length === 0) &&
+            (totalDoses && Object.keys(totalDoses).length > 0) &&
+            (stateClinics && Object.keys(stateClinics).length > 0) &&
+            (cwthAgedCare && Object.keys(cwthAgedCare).length > 0)
+        ){
+            cwthPrimaryCare = {}
+            for(const k in totalDoses){
+                cwthPrimaryCare[k] = {
+                    total: totalDoses[k].total - stateClinics[k].total - cwthAgedCare[k].total,
+                    last24hr: totalDoses[k].last24hr - stateClinics[k].last24hr - cwthAgedCare[k].last24hr
+                }
+            }
+        }
+
+        // handle missing primary care
+        if(
+            (!cwthPrimaryCare || Object.keys(cwthPrimaryCare).length === 0) &&
+            (totalDoses && Object.keys(totalDoses).length > 0) &&
+            (stateClinics && Object.keys(stateClinics).length > 0) &&
+            (cwthAgedCare && Object.keys(cwthAgedCare).length > 0)
+        ){
+            cwthPrimaryCare = {}
+            for(const k in totalDoses){
+                cwthPrimaryCare[k] = {
+                    total: totalDoses[k].total - stateClinics[k].total - cwthAgedCare[k].total,
+                    last24hr: totalDoses[k].last24hr - stateClinics[k].last24hr - cwthAgedCare[k].last24hr
+                }
+            }
+        }
+
+        // handle missing totals
+        if(!totals.national.total){
+            totals.national = this.getSlideSummary(totalDosesPage);
+        }
+
+        if(!totals.cwthPrimaryCare.total){
+            totals.cwthPrimaryCare = this.getSlideSummary(primaryCarePage);
+        }
+
+        if(!totals.cwthAgedCare.total){
+            totals.cwthAgedCare = this.getSlideSummary(pageForAgedCare, 2);
+        }
+
+        if(!totals.cwthAll.total && totals.cwthAgedCare.total && totals.cwthAgedCare.last24hr){
+            totals.cwthAll = {
+                total: totals.cwthAgedCare.total + totals.cwthPrimaryCare.total,
+                last24hr: totals.cwthAgedCare.last24hr + totals.cwthPrimaryCare.last24hr
+            };
+        }
+
+        // if(!totals.cwthPrimaryCare.total){
+        //     totals.cwthPrimaryCare = this.getSlideSummary(primaryCarePage);
+        // }
+            // totals = {
+            //     national: {
+            //         total: Object.values(totalDoses).reduce((a, v) => a+v.total, 0),
+            //         last24hr: Object.values(totalDoses).reduce((a, v) => a+v.last24hr, 0)
+            //     },
+            //     cwthAll: {
+            //         total: Object.values(totalDoses).reduce((a, v) => a+v.total, 0) - Object.values(stateClinics).reduce((a, v) => a+v.total, 0),
+            //         last24hr: Object.values(totalDoses).reduce((a, v) => a+v.last24hr, 0) - Object.values(stateClinics).reduce((a, v) => a+v.last24hr, 0)
+            //     },
+            //     cwthPrimaryCare: {
+            //         total: Object.values(totalDoses).reduce((a, v) => a+v.total, 0) - Object.values(stateClinics).reduce((a, v) => a+v.total, 0) - Object.values(cwthAgedCare).reduce((a, v) => a+v.total, 0),
+            //         last24hr: Object.values(totalDoses).reduce((a, v) => a+v.last24hr, 0) - Object.values(stateClinics).reduce((a, v) => a+v.last24hr, 0) - Object.values(cwthAgedCare).reduce((a, v) => a+v.last24hr, 0)
+            //     },
+            //     cwthAgedCare: {
+            //         total: Object.values(cwthAgedCare).reduce((a, v) => a+v.total, 0),
+            //         last24hr: Object.values(cwthAgedCare).reduce((a, v) => a+v.last24hr, 0)
+            //     }
+            // }
+        // }
 
         const states = {
             'NSW': 'Wales', // lmao yes because sometimes New South Wales is split
@@ -107,9 +194,13 @@ class AusDeptHealthVaccinePdf {
 
         for(const stateCode in states){
             try{
-                const pageForState = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Vaccinations by State or Territory of residence') > -1) && page.content.find(r => r.str.indexOf(states[stateCode]) > -1))
+                const pageForState = (this.jurisdictionalData || this.data).pages.findIndex(page => page.content.find(r => r.str.match(/Vaccinations\s*by\s*State\s*or\s*Territory\s*of\s*residence/)) && page.content.find(r => r.str.indexOf(states[stateCode]) > -1))
                 if(pageForState > -1){
                     stateOfResidence[stateCode] = await this.getStateOfResidenceBreakdown(pageForState, stateCode);
+                    // console.log(stateOfResidence[stateCode])
+                    if(stateOfResidence[stateCode].ageBucketsActualPopulation.length === 0){
+                        console.log(`Failed to fetch ${stateCode} AIR residence`)
+                    }
                 }else{
                     console.error('Unable to find '+stateCode)
                 }
@@ -120,9 +211,12 @@ class AusDeptHealthVaccinePdf {
         }
         // console.log(stateOfResidence)
 
+        
+
         const output = {
             dataAsAt,
             totals,
+            totalDoses,
             stateClinics,
             cwthAgedCare,
             cwthPrimaryCare,
@@ -132,17 +226,54 @@ class AusDeptHealthVaccinePdf {
             stateOfResidence
         };
         
-        console.log(JSON.stringify(output, null, 4))
+        // console.log(JSON.stringify(output, null, 4))
 
         return output;
     }
 
+    getSlideSummary(pageIndex = 8, variant = 1){
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content, undefined, 20);
+        // console.log(content.map(c => c.str))
+        if(variant === 1){
+            const total = content.find(s => s.str.match(/[0-9,]+\s*total\s*vaccine/))
+            const last24hr = content.find(s => s.str.match(/[0-9,]+\s*recorded\s*in\s*the\s*last\s*24\s*hours/))
+
+            if(total && last24hr){
+                return {
+                    total: toNumber(total.str.match(/([0-9,]+)\s*total\s*vaccine/)[1]),
+                    last24hr: toNumber(last24hr.str.match(/([0-9,]+)\s*recorded\s*in\s*the\s*last\s*24\s*hours/)[1])
+                }
+            }
+        }
+
+        if(variant === 2){
+            const baseline = content.find(s => s.str.match(/Total\s*vaccine\s*doses\s*administered\s*in\s*aged\s*care/));
+            if(!baseline){ return; }
+
+            const filteredContent = content.filter(f => f.cx >= baseline.x && f.cx <= (baseline.x+baseline.width) && f.cy < baseline.y);
+            console.log({filteredContent})
+            console.log(filteredContent.map(c => c.str))
+
+            const total = filteredContent.find(c => c.str.match(/^([0-9,]+)$/))
+            const last24hr = filteredContent.find(c => c.str.match(/(\+[0-9,]+) last 24 hours/))
+
+            console.log({total, last24hr})
+
+            if(total && last24hr){
+                return {
+                    total: toNumber(total.str.match(/^([0-9,]+)$/)[1]),
+                    last24hr: toNumber(last24hr.str.match(/(\+[0-9,]+) last 24 hours/)[1])
+                }
+            }
+        }
+    }
+
     getDoseBreakdown(pageIndex = 1){
+        const content = this.mergeAdjacentCells((this.jurisdictionalData || this.data).pages[pageIndex].content);
 
-        const content = this.data.pages[pageIndex].content;
-
-        const getValuesFor = (str) => {
-            const centrepoint = content.find(t => t.str.includes(str));
+        const getValuesFor = (str, within) => {
+            const bounds = within ? content.find(t => t.str.match(within)) : null;
+            const centrepoint = content.find(t => t.str.match(str) && (!bounds || (t.cx >= bounds.x && t.cx <= (bounds.x+bounds.width))));
             if(!centrepoint){return}
 
             let minX = centrepoint.cx - centrepoint.width;
@@ -193,15 +324,15 @@ class AusDeptHealthVaccinePdf {
             }
         }
 
-        const firstDoseRaw = getValuesFor('Dose 1');
-        const secondDoseRaw = getValuesFor('Dose 2');
+        const firstDoseRaw = getValuesFor(/Dose\s*1/, /First\s*and\s*second\s*doses\s*by\s*age\s*and\s*sex/);
+        const secondDoseRaw = getValuesFor(/Dose\s*2/, /First\s*and\s*second\s*doses\s*by\s*age\s*and\s*sex/);
 
         const parseDoseData = (texts, c) => {
             let doseStart = false;
             let values = [];
             for(let i = 0; i < texts.length; i++){
                 const matches = texts[i].str.match(/([0-9,]+)\s*\(([0-9\.%]+)\)/);
-                if(texts[i].str.match(/Dose [0-9]/)){
+                if(texts[i].str.match(/Dose\s*[0-9]/)){
                     doseStart = true;
                 }else if(doseStart && matches){
                     values.push({
@@ -238,8 +369,9 @@ class AusDeptHealthVaccinePdf {
 
         // state breakdown
         const mergedContent = this.mergeAdjacentCells(content);
+        // console.log(JSON.stringify(mergedContent.map(v => v.str), null, 4))
         const states = ['AUS', 'NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
-        const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.trim()));
+        const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.replace(/\s/g, '').trim()));
 
         const width = Math.max(...stateLabelLocations.map(l => l.width));
         const height = Math.max(...stateLabelLocations.map(l => l.height)) * 16;
@@ -252,9 +384,10 @@ class AusDeptHealthVaccinePdf {
             let minY = state.cy;
             let maxY = state.cy + height;
 
-            const stateCode = state.str.trim();
+            const stateCode = state.str.replace(/\s/g, '').trim();
 
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9%\.,]+/));
+            // console.log(stateCode, values.map(v => v.str))
             if(values.length === 15){
                 stateData[stateCode] = [
                     {
@@ -283,8 +416,7 @@ class AusDeptHealthVaccinePdf {
                     }
                 ]
             }else{
-                console.error(`Failed to pull ${stateCode}`);
-                console.log(values.map(v => v.str));
+                console.error(`Failed to pull ${stateCode}`, {values: values.map(v => v.str)});
             }
         }
 
@@ -292,12 +424,12 @@ class AusDeptHealthVaccinePdf {
     }
 
     getStateOfResidenceBreakdown(pageIndex = 4, stateCode){
-        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
+        const content = this.mergeAdjacentCells((this.jurisdictionalData || this.data).pages[pageIndex].content);
 
         const getValuesFor = (strs, width, stripStrs = true) => {
             const [str, ...remaining] = strs;
             
-            const centrepoints = content.filter(t => t.str.includes(str));
+            const centrepoints = content.filter(t => t.str.match(str));
             for(const centrepoint of centrepoints){
                 let minX = centrepoint.cx - (width || centrepoint.width)/2;
                 let maxX = centrepoint.cx + (width || centrepoint.width)/2;
@@ -314,7 +446,7 @@ class AusDeptHealthVaccinePdf {
                     let pass = true;
                     let prevIdx = -1;
                     for(const sstr of remaining){
-                        let i = values.findIndex(v => v.str.includes(sstr));
+                        let i = values.findIndex(v => v.str.match(sstr));
                         if(i > -1 && i > prevIdx){
                             prevIdx = i;
                         }else{
@@ -347,19 +479,20 @@ class AusDeptHealthVaccinePdf {
             return values;
         }
 
-        const referenceWidth = content.find(t => t.str.includes('At least one')); // use at least one as reference width
+        const referenceWidth = content.find(t => t.str.match(/At\s*least\s*one/)); // use at least one as reference width
 
-        const ages = getValuesFor(['Age'], referenceWidth.width).filter(s => s.str.match(/^([0-9]+\+|[0-9]+\-[0-9]+)$/));
-        const atLeastOne = getValuesFor(['At least one', 'dose'], referenceWidth.width);
-        const firstDoseProtected = getValuesFor(['First dose', 'protected'], referenceWidth.width);
-        const fullyVaccinated = getValuesFor(['Fully', 'vaccinated'], referenceWidth.width);
+        const ages = getValuesFor(['Age'], referenceWidth.width).filter(s => s.str.replace(/\s*/g, "").match(/^([0-9]+\+|[0-9]+\-[0-9]+)$/));
+        const atLeastOne = getValuesFor([/At\s*least\s*one/, /dose/], referenceWidth.width);
+        const firstDoseProtected = getValuesFor([/First\s*dose/, /protected/], referenceWidth.width);
+        const fullyVaccinated = getValuesFor([/Fully/, /vaccinated/], referenceWidth.width);
 
-        let rowHeaders = getValuesFor(['First dose', 'Second dose', 'Population'], null, false);
+        let rowHeaders = getValuesFor([/First\s*dose/, /Second\s*dose/, /Population/], null, false);
         if(rowHeaders.length === 0){
-            rowHeaders = getValuesFor(['At least one dose', 'Fully vaccinated', 'Population'], null, false);
+            rowHeaders = getValuesFor([/At\s*least\s*one\s*dose/, /Fully\s*vaccinated/, /Population/], null, false);
         }
 
         // console.log({rowHeaders})
+        // console.log(stateCode, ages)
 
         // to be implemented, save tables on top right corner
         const firstDoseRow = getRow(rowHeaders[0]).flatMap(z => z.str.split(/\s+/));
@@ -374,7 +507,7 @@ class AusDeptHealthVaccinePdf {
                 const secondDosePct = Number(fullyVaccinated[i].str.replace(/[^0-9\.]+/g, ''));
                 let ageObj = {ageLower: 95};
                 if(age.str !== '95+'){
-                    const [ageLower, ageUpper] = age.str.split('-').map(i => parseInt(i));
+                    const [ageLower, ageUpper] = age.str.replace(/\s*/g, "").split('-').map(i => parseInt(i));
                     ageObj = {ageLower, ageUpper};
                 }
 
@@ -396,7 +529,8 @@ class AusDeptHealthVaccinePdf {
     }
 
     getStateData(pageIndex = 1){
-        const content = this.data.pages[pageIndex].content;
+        if(!this.data.pages[pageIndex]){return}
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
         const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
         const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
 
@@ -416,7 +550,7 @@ class AusDeptHealthVaccinePdf {
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY));
 
             const combinedStr = values.map(v => v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s]/g, '')).join(' ');
-            const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)\s*last\s*24\s*hours\s*\)/);
+            const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);
             // console.log(pageIndex, combinedStr, matches)
 
             if(matches){
@@ -524,7 +658,7 @@ class AusDeptHealthVaccinePdf {
         return data;
     }
 
-    getAgedCareLeftPanelData(pageIndex = 4, matchText = 'disability doses administered'){
+    getAgedCareLeftPanelData(pageIndex = 4, matchText = 'and residential disability facilities'){
         const data = {
             cwthAgedCareDoses: {
                 firstDose: undefined,
@@ -536,6 +670,7 @@ class AusDeptHealthVaccinePdf {
             }
         }
 
+        if(!this.data.pages[pageIndex]){return;}
         const content = this.data.pages[pageIndex].content;
         const centrepoint = content.find(t => t.str.includes(matchText));
         if(!centrepoint){return data}
@@ -546,20 +681,18 @@ class AusDeptHealthVaccinePdf {
         const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX), 0.1));
         values.sort((a, b) => a.y - b.y);
 
-        // console.log(values.map(s => s.str));
-
         for(let i = 0; i < values.length; i++){
             const v = values[i];
             const vnext = values[i+1];
             const vprev = values[i-1];
 
-            if(v.str.includes('First doses') && vprev && isNumber(vprev.str) && data.cwthAgedCareDoses.firstDose === undefined){
+            if(v.str.match(/(First\s*doses|People\s*with\s*a\s*first\s*dose)/) && vprev && isNumber(vprev.str) && data.cwthAgedCareDoses.firstDose === undefined){
                 data.cwthAgedCareDoses.firstDose = toNumber(vprev.str)
-            }else if(v.str.includes('Second doses') && vprev && isNumber(vprev.str) && data.cwthAgedCareDoses.secondDose === undefined){
+            }else if(v.str.match(/(Second\s*doses|People\s*fully\s*vaccinated)/) && vprev && isNumber(vprev.str) && data.cwthAgedCareDoses.secondDose === undefined){
                 data.cwthAgedCareDoses.secondDose = toNumber(vprev.str)
-            }else if(v.str.includes('Sites visited for first doses') && vprev && isNumber(vprev.str) && data.cwthAgedCareFacilities.firstDose === undefined){
+            }else if(v.str.match(/Sites\s*visited\s*for\s*first\s*doses/) && vprev && isNumber(vprev.str) && data.cwthAgedCareFacilities.firstDose === undefined){
                 data.cwthAgedCareFacilities.firstDose = toNumber(vprev.str)
-            }else if(v.str.includes('Sites visited for second doses') && vprev && isNumber(vprev.str) && data.cwthAgedCareFacilities.secondDose === undefined){
+            }else if(v.str.match(/(Sites\s*visited\s*for\s*second\s*doses|Sites\s*visited\s*for\s*second\s*doses)/) && vprev && isNumber(vprev.str) && data.cwthAgedCareFacilities.secondDose === undefined){
                 data.cwthAgedCareFacilities.secondDose = toNumber(vprev.str)
             }
         }

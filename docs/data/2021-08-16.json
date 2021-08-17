@@ -1,5 +1,6 @@
 {
     "success": true,
+    "url": "https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccine-rollout-update-17-august-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-08-16",
         "totals": {
@@ -21,6 +22,10 @@
             }
         },
         "totalDoses": {
+            "NSW": {
+                "total": 5276446,
+                "last24hr": 106122
+            },
             "VIC": {
                 "total": 4061751,
                 "last24hr": 79810
@@ -48,17 +53,9 @@
             "NT": {
                 "total": 179887,
                 "last24hr": 1846
-            },
-            "NSW": {
-                "total": 5276446,
-                "last24hr": 106122
             }
         },
         "stateClinics": {
-            "NSW": {
-                "total": 1855820,
-                "last24hr": 26611
-            },
             "VIC": {
                 "total": 1967053,
                 "last24hr": 45520
@@ -71,24 +68,32 @@
                 "total": 641450,
                 "last24hr": 12210
             },
-            "TAS": {
-                "total": 203008,
-                "last24hr": 1577
+            "NSW": {
+                "total": 1855820,
+                "last24hr": 26611
             },
-            "SA": {
-                "total": 462293,
-                "last24hr": 6409
+            "NT": {
+                "total": 108708,
+                "last24hr": 1069
             },
             "ACT": {
                 "total": 169120,
                 "last24hr": 2086
             },
-            "NT": {
-                "total": 108708,
-                "last24hr": 1069
+            "SA": {
+                "total": 462293,
+                "last24hr": 6409
+            },
+            "TAS": {
+                "total": 203008,
+                "last24hr": 1577
             }
         },
         "cwthAgedCare": {
+            "NSW": {
+                "total": 285273,
+                "last24hr": 3351
+            },
             "VIC": {
                 "total": 137642,
                 "last24hr": 256
@@ -116,13 +121,13 @@
             "NT": {
                 "total": 4371,
                 "last24hr": -1
-            },
-            "NSW": {
-                "total": 285273,
-                "last24hr": 3351
             }
         },
         "cwthPrimaryCare": {
+            "NSW": {
+                "total": 3135353,
+                "last24hr": 76160
+            },
             "VIC": {
                 "total": 1957056,
                 "last24hr": 34034
@@ -150,10 +155,6 @@
             "NT": {
                 "total": 66808,
                 "last24hr": 778
-            },
-            "NSW": {
-                "total": 3135353,
-                "last24hr": 76160
             }
         },
         "cwthAgedCareBreakdown": {
@@ -1660,8 +1661,8 @@
                         "ageLower": 70,
                         "firstDosePct": 74,
                         "secondDosePct": 51.24,
-                        "firstDoseCount": 9,
-                        "secondDoseCount": 6,
+                        "firstDoseCount": 9134,
+                        "secondDoseCount": 6324,
                         "cohortPopulation": 12343
                     }
                 ]

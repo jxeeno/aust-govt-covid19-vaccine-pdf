@@ -24,8 +24,10 @@ async function scrape() {
     const csvPath = 'docs/data/air_sa4.csv';
     const jsonPath = 'docs/data/air_sa4.json';
 
-    const url = 'https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccination-geographic-vaccination-rates-2-august-2021.pdf';
-    const {data} = await axios.get(url, {responseType: 'arraybuffer'});
+    // const url = 'https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccination-geographic-vaccination-rates-9-august-2021.pdf'; // 'https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccination-geographic-vaccination-rates-2-august-2021.pdf';
+    // const {data} = await axios.get(url, {responseType: 'arraybuffer'});
+
+    const data = fs.readFileSync('Geographic Vaccination Rates 16-08-2021.pdf')
 
     const {pageTables} = await pdfTableExtractor(data);
 
@@ -55,7 +57,7 @@ async function scrape() {
                     const sa4pop = sa4Population[sa4[0]];
 
                     const row = {
-                        DATE_AS_AT: '2021-08-01',
+                        DATE_AS_AT: '2021-08-16',
                         STATE: stateMap[r[0]] || r[0],
                         SA4_CODE: sa4 ? sa4[0] : '',
                         SA4_NAME: sa4 ? sa4[1] : r[1],
@@ -70,7 +72,7 @@ async function scrape() {
                     row.ABS_ERP_2019_POPULATION = sa4pop ? sa4pop.population15plus : '';
 
                     row.VALIDATED = 'Y';
-                    row.URL = url;
+                    row.URL = 'https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccination-geographic-vaccination-rates-16-august-2021.pdf';
 
                     stream.write(row);
                     rows.push(row)
