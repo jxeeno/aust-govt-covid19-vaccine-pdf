@@ -26,7 +26,7 @@ State-level second dose totals are **not** published daily and therefore do not 
 
 **From 1 July 2021 to 27 July 2021**
 
-The `APPROX_<State>_SECOND_DOSE_TOTAL` field in `all.csv` is deprecated and should not be used any more.
+The `APPROX_<State>_SECOND_DOSE_TOTAL` field in `all.csv` is deprecated and should not be used any more.  From 17 August 2021, these fields will no longer be populated.
 
 From 30 June 2021, the Department of Health started publishing breakdowns of doses by age group and first/second doses.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
