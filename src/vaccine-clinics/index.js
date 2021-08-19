@@ -18,7 +18,7 @@ const NHSD_ENDPOINT = 'https://api.nhsd.healthdirect.org.au/v51/healthcareServic
 const PAGE_SIZE = 50;
 const CLINICS_DATA_DIR = 'docs/clinics';
 
-const fetchVaccineClinicPage = async (apikey, page) => {
+const fetchVaccineClinicPage = async (apikey, state, page) => {
     console.log(`Fetching clinics - page ${page}`);
     const {data} = await axios.get(NHSD_ENDPOINT, {
         headers: {
@@ -29,7 +29,10 @@ const fetchVaccineClinicPage = async (apikey, page) => {
             'filter.serviceType.codes': 'nhsd:/reference/taxonomies/snomed-servicetype/1238911000168108',
             'filter.programs.codes': 'nhsd:/reference/common/program/covid19VaccineService',
             'responseControl.offset': page*PAGE_SIZE,
-            'responseControl.limit': PAGE_SIZE
+            'responseControl.limit': PAGE_SIZE,
+            'location.proximity.near_distance': 1000000,
+            'location.proximity.near': state
+            // 'location.physicalLocation.stateDrIdRef': `nhsd:/reference/geo/AUS.states/${state}`
         }
     });
 
@@ -45,20 +48,27 @@ const fetchAllClinics = async () => {
     const startTime = moment().tz('Australia/Sydney');
 
     const apikey = await fetchApiKey();
-    let page = 0;
-    let end = false;
 
-    const rows = [];
-    while(!end){
-        const results = await fetchVaccineClinicPage(apikey, page);
-        rows.push(...results.services);
-        page++
+    const rowMap = new Map();
+    const states = ['-33.8697,151.2099', '-37.821666,144.978547', '-27.466098,153.029997', '-16.9233991,145.773851', '-23.698042,133.880747', '-12.4633,130.8434', '-34.92869,138.60102', '-42.882138,147.327195', '-31.99212,115.763228'];
 
-        if(!results.hasNextPage){
-            end = true;
+    for(const state of states){
+        let page = 0;
+        let end = false;
+        while(!end){
+            const results = await fetchVaccineClinicPage(apikey, state, page);
+            for(const service of results.services){
+                rowMap.set(service.id, service);
+            }
+            page++
+
+            if(!results.hasNextPage){
+                end = true;
+            }
         }
     }
 
+    const rows = [...rowMap.values()];
     console.log(`Total ${rows.length} entries`);
 
     rows.sort((a, b) => a.id.localeCompare(b.id));
