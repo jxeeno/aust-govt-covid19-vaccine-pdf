@@ -1,9 +1,12 @@
+const rax = require('retry-axios');
 const axios = require('axios');
 const lodash = require('lodash');
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment-timezone');
 const { format } = require('@fast-csv/format');
+
+rax.attach();
 
 const fetchApiKey = async () => {
     const {data} = await axios.get('https://widget.nhsd.healthdirect.org.au/v1/widget/search/detail?widgetId=598d4f8a-9f53-484e-9758-d066f20fb68b');
