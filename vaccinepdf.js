@@ -251,13 +251,13 @@ class AusDeptHealthVaccinePdf {
             if(!baseline){ return; }
 
             const filteredContent = content.filter(f => f.cx >= baseline.x && f.cx <= (baseline.x+baseline.width) && f.cy < baseline.y);
-            console.log({filteredContent})
-            console.log(filteredContent.map(c => c.str))
+            // console.log({filteredContent})
+            // console.log(filteredContent.map(c => c.str))
 
             const total = filteredContent.find(c => c.str.match(/^([0-9,]+)$/))
             const last24hr = filteredContent.find(c => c.str.match(/(\+[0-9,]+) last 24 hours/))
 
-            console.log({total, last24hr})
+            // console.log({total, last24hr})
 
             if(total && last24hr){
                 return {

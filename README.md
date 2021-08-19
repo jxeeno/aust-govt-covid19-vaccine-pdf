@@ -116,7 +116,12 @@ You can also run this code yourself.  You'll need:
 git clone https://github.com/jxeeno/aust-govt-covid19-vaccine-pdf.git
 cd aust-govt-covid19-vaccine-pdf
 yarn # or: npm install
+
+# prior to 16 Aug 2021
 node index.js "https://www.health.gov.au/sites/default/files/documents/2021/04/covid-19-vaccine-rollout-update-19-april-2021.pdf"
+
+# from 16 Aug 2021 onwards
+node index.js "https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccine-rollout-update-19-august-2021.pdf" "https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccine-rollout-update-jurisdictional-breakdown-19-august-2021.pdf"
 ```
 
 ## Help
