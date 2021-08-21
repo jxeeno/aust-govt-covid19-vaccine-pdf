@@ -17,7 +17,7 @@ class AusDeptHealthVaccinePdf {
         this.variant = variant;
     }
 
-    mergeAdjacentCells(values, thresh = 0.07, joinThresh = 4){
+    mergeAdjacentCells(values, thresh = 0.07, joinThreshX = 4, joinThreshY = 4){
         // sometimes the PDF file will split up the text
         // into separate cells.  this function will try
         // to adjacent cells back together
@@ -33,7 +33,7 @@ class AusDeptHealthVaccinePdf {
             
             while(true){
                 const rightX = value.x + value.width;
-                const adjIndex = valuesSortX.findIndex((adjacentValue, ii) => !excluded.has(ii) && Math.abs(adjacentValue.x - rightX) < joinThresh && Math.abs(adjacentValue.cy - value.cy) < joinThresh);
+                const adjIndex = valuesSortX.findIndex((adjacentValue, ii) => !excluded.has(ii) && Math.abs(adjacentValue.x - rightX) < joinThreshX && Math.abs(adjacentValue.cy - value.cy) < joinThreshY);
                 if(adjIndex > -1){
                     const adj = valuesSortX[adjIndex];
                     const xdiff = Math.abs(adj.x - rightX);
@@ -233,15 +233,15 @@ class AusDeptHealthVaccinePdf {
 
     getSlideSummary(pageIndex = 8, variant = 1){
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content, undefined, 20);
-        console.log(content.map(c => c.str))
         if(variant === 1){
-            const total = content.find(s => s.str.match(/[0-9,]+\s*total\s*vaccine/))
-            const last24hr = content.find(s => s.str.match(/[0-9,]+\s*recorded\s*in\s*the\s*last\s*24\s*hours/))
+            const contentCmb = content.map(c => c.str).join(' ').replace(/\s+/, ' ');
+            const total = contentCmb.match(/([0-9,]+)\s*total\s*vaccine/)
+            const last24hr = contentCmb.match(/([0-9,]+)\s*recorded\s*in\s*the\s*last\s*24\s*hours/)
 
             if(total && last24hr){
                 return {
-                    total: toNumber(total.str.match(/([0-9,]+)\s*total\s*vaccine/)[1]),
-                    last24hr: toNumber(last24hr.str.match(/([0-9,]+)\s*recorded\s*in\s*the\s*last\s*24\s*hours/)[1])
+                    total: toNumber(total[1]),
+                    last24hr: toNumber(last24hr[1])
                 }
             }
         }
