@@ -1142,9 +1142,7 @@
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccine-rollout-update-jurisdictional-breakdown-21-august-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-08-20.json",
         "validation": [
-            "totals.national.total is null",
-            "totals.national.last24hr is null",
-            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not undefined (16845098)"
+            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 16815098 (16845098)"
         ]
     }
 ]
