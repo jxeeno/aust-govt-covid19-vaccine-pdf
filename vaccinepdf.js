@@ -499,7 +499,7 @@ class AusDeptHealthVaccinePdf {
         const secondDoseRow = getRow(rowHeaders[1]).flatMap(z => z.str.split(/\s+/));
         const populationRow = getRow(rowHeaders[2]).flatMap(z => z.str.split(/\s+/));
 
-        const ageGroups = [{ageLower: 0},{ageLower: 50},{ageLower: 70}];
+        const ageGroups = [{ageLower: 16},{ageLower: 50},{ageLower: 70}];
 
         return {
             ageBucketsEstimatedPopulation: ages.map((age, i) => {
