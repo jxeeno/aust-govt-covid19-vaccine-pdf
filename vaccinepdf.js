@@ -101,7 +101,7 @@ class AusDeptHealthVaccinePdf {
         let cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
         let totals = this.getLeftPanelData(totalDosesPage);
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
-        const dataAsAt = this.getDataAsAt(1);
+        const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
         const stateOfResidence = {};
@@ -233,7 +233,7 @@ class AusDeptHealthVaccinePdf {
 
     getSlideSummary(pageIndex = 8, variant = 1){
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content, undefined, 20);
-        // console.log(content.map(c => c.str))
+        console.log(content.map(c => c.str))
         if(variant === 1){
             const total = content.find(s => s.str.match(/[0-9,]+\s*total\s*vaccine/))
             const last24hr = content.find(s => s.str.match(/[0-9,]+\s*recorded\s*in\s*the\s*last\s*24\s*hours/))
