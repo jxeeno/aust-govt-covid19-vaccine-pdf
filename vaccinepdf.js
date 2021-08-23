@@ -672,7 +672,7 @@ class AusDeptHealthVaccinePdf {
 
         if(!this.data.pages[pageIndex]){return;}
         const content = this.data.pages[pageIndex].content;
-        const centrepoint = content.find(t => t.str.includes(matchText));
+        const centrepoint = content.find(t => t.str.match(/residential\s*disability\s*facilities/));
         if(!centrepoint){return data}
 
         let minX = centrepoint.cx - centrepoint.width;
@@ -680,6 +680,8 @@ class AusDeptHealthVaccinePdf {
 
         const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX), 0.1));
         values.sort((a, b) => a.y - b.y);
+
+        console.log(values.map(v => v.str))
 
         for(let i = 0; i < values.length; i++){
             const v = values[i];
