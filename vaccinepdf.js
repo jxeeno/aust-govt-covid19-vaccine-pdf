@@ -89,7 +89,7 @@ class AusDeptHealthVaccinePdf {
 
         const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
-        const pageForDoses = (this.jurisdictionalData || this.data).pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
+        const pageForDoses = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
         const pageForDistribution = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Administration and Utilisation') > -1))
         const jurisdictionAdministeredPage = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Jurisdiction administered') > -1))
         const totalDosesPage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Total\s*vaccine\s*doses/)))
@@ -103,6 +103,7 @@ class AusDeptHealthVaccinePdf {
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
         const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
+        console.log({pageForDoses})
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
         const stateOfResidence = {};
 
@@ -269,7 +270,7 @@ class AusDeptHealthVaccinePdf {
     }
 
     getDoseBreakdown(pageIndex = 1){
-        const content = this.mergeAdjacentCells((this.jurisdictionalData || this.data).pages[pageIndex].content);
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
 
         const getValuesFor = (str, within) => {
             const bounds = within ? content.find(t => t.str.match(within)) : null;
