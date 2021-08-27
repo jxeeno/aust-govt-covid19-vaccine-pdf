@@ -150,6 +150,7 @@ class AusDeptHealthVaccinePdf {
 
         if(!totals.cwthAgedCare.total){
             totals.cwthAgedCare = this.getSlideSummary(pageForAgedCare, 2);
+            console.log({pageForAgedCare});
         }
 
         if(!totals.cwthAll.total && totals.cwthAgedCare.total && totals.cwthAgedCare.last24hr){
@@ -249,21 +250,22 @@ class AusDeptHealthVaccinePdf {
 
         if(variant === 2){
             const baseline = content.find(s => s.str.match(/Total\s*vaccine\s*doses\s*administered\s*in\s*aged\s*care/));
+            // console.log({baseline})
             if(!baseline){ return; }
 
             const filteredContent = content.filter(f => f.cx >= baseline.x && f.cx <= (baseline.x+baseline.width) && f.cy < baseline.y);
             // console.log({filteredContent})
-            // console.log(filteredContent.map(c => c.str))
+            console.log(filteredContent.map(c => c.str))
 
             const total = filteredContent.find(c => c.str.match(/^([0-9,]+)$/))
-            const last24hr = filteredContent.find(c => c.str.match(/(\+[0-9,]+) last 24 hours/))
+            const last24hr = filteredContent.find(c => c.str.match(/(\+\s*[0-9,]+) last 24 hours/))
 
-            // console.log({total, last24hr})
+            console.log({total, last24hr})
 
             if(total && last24hr){
                 return {
                     total: toNumber(total.str.match(/^([0-9,]+)$/)[1]),
-                    last24hr: toNumber(last24hr.str.match(/(\+[0-9,]+) last 24 hours/)[1])
+                    last24hr: toNumber(last24hr.str.match(/\+\s*([0-9,]+) last 24 hours/)[1])
                 }
             }
         }
