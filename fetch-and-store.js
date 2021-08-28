@@ -529,6 +529,8 @@ const getPublications = async () => {
     const publications = existingPublications.all; //{...existingPublications};
     for(const item of items){
         let {name, landingUrl, jurisdictionalLandingUrl, pdfUrl, jurisdictionalPdfUrl, filename, jurisdictionalFilename} = item;
+
+        console.log({name, pdfUrl, jurisdictionalPdfUrl})
         
         console.log(`Found "${name}" at ${landingUrl}`);
 
@@ -556,7 +558,16 @@ const getPublications = async () => {
 
         let pdfBuffer;
         let pdfJurisdictionalBuffer;
-        if(landingUrl){
+        if(pdfUrl){
+            const { data } = await axios.get(pdfUrl, {
+                params: {
+                    ts: new Date().valueOf()
+                },
+                responseType: 'arraybuffer'
+            });
+            console.log(`Downloaded PDF: ${pdfUrl}`);
+            pdfBuffer = data;
+        }else if(landingUrl){
             const {data: publicationHtml} = await axios.get(landingUrl);
             const $$ = cheerio.load(publicationHtml);
             pdfUrl = $$("a.health-file__link").attr('href');
@@ -573,7 +584,16 @@ const getPublications = async () => {
             pdfBuffer = fs.readFileSync(filename);
         }
 
-        if(jurisdictionalLandingUrl){
+        if(jurisdictionalPdfUrl){
+            const { data } = await axios.get(jurisdictionalPdfUrl, {
+                params: {
+                    ts: new Date().valueOf()
+                },
+                responseType: 'arraybuffer'
+            });
+            console.log(`Downloaded PDF: ${jurisdictionalPdfUrl}`);
+            pdfJurisdictionalBuffer = data;
+        }else if(jurisdictionalLandingUrl){
             const {data: publicationHtml} = await axios.get(jurisdictionalLandingUrl);
             const $$ = cheerio.load(publicationHtml);
             jurisdictionalPdfUrl = $$("a.health-file__link").attr('href');
