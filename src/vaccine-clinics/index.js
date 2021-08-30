@@ -79,25 +79,25 @@ const fetchAllClinics = async () => {
     const MONTH_DIR = path.join(CLINICS_DATA_DIR, 'daily', startTime.format('YYYY-MM'));
     const LATEST_DIR = path.join(CLINICS_DATA_DIR, 'latest');
 
-    const DAILY_FILE_PREFIX = path.join(MONTH_DIR, startTime.format('YYYY-MM-DD'));
+    // const DAILY_FILE_PREFIX = path.join(MONTH_DIR, startTime.format('YYYY-MM-DD'));
     const LATEST_FILE_PREFIX = path.join(LATEST_DIR, 'latest');
     if(!fs.existsSync(MONTH_DIR)){
         fs.mkdirSync(MONTH_DIR);
     }
 
     const rawJSON = JSON.stringify({services: rows, date: startTime.toISOString()});
-    fs.writeFileSync(`${DAILY_FILE_PREFIX}-raw.json`, rawJSON);
+    // fs.writeFileSync(`${DAILY_FILE_PREFIX}-raw.json`, rawJSON);
     fs.writeFileSync(`${LATEST_FILE_PREFIX}-raw.json`, rawJSON);
 
     const csvData = toCSV(rows, startTime);
     const csvJSON = JSON.stringify(csvData);
 
-    fs.writeFileSync(`${DAILY_FILE_PREFIX}-simplified.json`, csvJSON);
+    // fs.writeFileSync(`${DAILY_FILE_PREFIX}-simplified.json`, csvJSON);
     fs.writeFileSync(`${LATEST_FILE_PREFIX}-simplified.json`, csvJSON);
 
     const stream = format({ headers: true });
-    stream.pipe(fs.createWriteStream(`${DAILY_FILE_PREFIX}-simplified.csv`)).on('finish', () => {
-        fs.copyFileSync(`${DAILY_FILE_PREFIX}-simplified.csv`, `${LATEST_FILE_PREFIX}-simplified.csv`);
+    stream.pipe(fs.createWriteStream(`${LATEST_FILE_PREFIX}-simplified.csv`)).on('finish', () => {
+        // fs.copyFileSync(`${DAILY_FILE_PREFIX}-simplified.csv`, `${LATEST_FILE_PREFIX}-simplified.csv`);
         process.exit()
     });
 
