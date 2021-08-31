@@ -258,14 +258,17 @@ class AusDeptHealthVaccinePdf {
             console.log(filteredContent.map(c => c.str))
 
             const total = filteredContent.find(c => c.str.match(/^([0-9,]+)$/))
-            const last24hr = filteredContent.find(c => c.str.match(/(\+\s*[0-9,]+) last 24 hours/))
+            const last24hr = filteredContent.find(c => c.str.match(/([\+-]\s*[0-9,]+) last 24 hours/))
 
             console.log({total, last24hr})
 
             if(total && last24hr){
                 return {
                     total: toNumber(total.str.match(/^([0-9,]+)$/)[1]),
-                    last24hr: toNumber(last24hr.str.match(/\+\s*([0-9,]+) last 24 hours/)[1])
+                    last24hr: toNumber(
+                        last24hr.str.match(/[\+-]\s*([0-9,]+) last 24 hours/)[1],
+                        last24hr.str.match(/([\+-])\s*([0-9,]+) last 24 hours/)[1]
+                    )
                 }
             }
         }
@@ -390,7 +393,7 @@ class AusDeptHealthVaccinePdf {
             const stateCode = state.str.replace(/\s/g, '').trim();
 
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9%\.,]+/));
-            // console.log(stateCode, values.map(v => v.str))
+            console.log(stateCode, values.map(v => v.str))
             if(values.length === 15){
                 stateData[stateCode] = [
                     {
