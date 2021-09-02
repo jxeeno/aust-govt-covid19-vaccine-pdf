@@ -1,5 +1,6 @@
 {
     "success": true,
+    "url": "https://www.health.gov.au/sites/default/files/documents/2021/09/covid-19-vaccine-rollout-update-1-september-2021_0.pdf",
     "pdfData": {
         "dataAsAt": "2021-08-31",
         "totals": {
@@ -364,6 +365,32 @@
                     "cohortPopulation": 2934706
                 }
             ],
+            "ACT": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 226837,
+                    "firstDosePct": 65.93,
+                    "secondDoseCount": 147551,
+                    "secondDosePct": 42.89,
+                    "cohortPopulation": 344037
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 119188,
+                    "firstDosePct": 93.26,
+                    "secondDoseCount": 83365,
+                    "secondDosePct": 65.23,
+                    "cohortPopulation": 127802
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 39945,
+                    "firstDosePct": 95,
+                    "secondDoseCount": 30775,
+                    "secondDosePct": 77.04,
+                    "cohortPopulation": 39946
+                }
+            ],
             "NSW": [
                 {
                     "ageLower": 16,
@@ -544,32 +571,6 @@
                     "secondDoseCount": 171293,
                     "secondDosePct": 61.11,
                     "cohortPopulation": 280281
-                }
-            ],
-            "ACT": [
-                {
-                    "ageLower": 16,
-                    "firstDoseCount": 226837,
-                    "firstDosePct": 65.93,
-                    "secondDoseCount": 147551,
-                    "secondDosePct": 42.89,
-                    "cohortPopulation": 344037
-                },
-                {
-                    "ageLower": 50,
-                    "firstDoseCount": 119188,
-                    "firstDosePct": 93.26,
-                    "secondDoseCount": 83365,
-                    "secondDosePct": 65.23,
-                    "cohortPopulation": 127802
-                },
-                {
-                    "ageLower": 70,
-                    "firstDoseCount": 39945,
-                    "firstDosePct": 95,
-                    "secondDoseCount": 30775,
-                    "secondDosePct": 77.04,
-                    "cohortPopulation": 39946
                 }
             ]
         },
