@@ -393,6 +393,7 @@ class AusDeptHealthVaccinePdf {
             const stateCode = state.str.replace(/\s/g, '').trim();
 
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9%\.,]+/));
+            console.log(stateCode, content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY).map(v => v.str));
             console.log(stateCode, values.map(v => v.str))
             if(values.length === 15){
                 stateData[stateCode] = [
