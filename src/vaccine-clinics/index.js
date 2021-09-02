@@ -76,14 +76,14 @@ const fetchAllClinics = async () => {
 
     rows.sort((a, b) => a.id.localeCompare(b.id));
 
-    const MONTH_DIR = path.join(CLINICS_DATA_DIR, 'daily', startTime.format('YYYY-MM'));
+    // const MONTH_DIR = path.join(CLINICS_DATA_DIR, 'daily', startTime.format('YYYY-MM'));
     const LATEST_DIR = path.join(CLINICS_DATA_DIR, 'latest');
 
     // const DAILY_FILE_PREFIX = path.join(MONTH_DIR, startTime.format('YYYY-MM-DD'));
     const LATEST_FILE_PREFIX = path.join(LATEST_DIR, 'latest');
-    if(!fs.existsSync(MONTH_DIR)){
-        fs.mkdirSync(MONTH_DIR);
-    }
+    // if(!fs.existsSync(MONTH_DIR)){
+    //     fs.mkdirSync(MONTH_DIR);
+    // }
 
     const rawJSON = JSON.stringify({services: rows, date: startTime.toISOString()});
     // fs.writeFileSync(`${DAILY_FILE_PREFIX}-raw.json`, rawJSON);
