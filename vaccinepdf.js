@@ -101,7 +101,7 @@ class AusDeptHealthVaccinePdf {
         let cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
         let totals = this.getLeftPanelData(totalDosesPage);
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
-        const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3);
+        const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3) || this.getDataAsAt(4) || this.getDataAsAt(5) || this.getDataAsAt(6) || this.getDataAsAt(7);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         console.log({pageForDoses})
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
