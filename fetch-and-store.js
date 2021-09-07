@@ -82,10 +82,10 @@ const validateData = (data) => {
         'cwthPrimaryCare.NSW.total',
         'cwthPrimaryCare.NSW.last24hr',
 
-        'cwthAgedCareBreakdown.cwthAgedCareDoses.firstDose',
-        'cwthAgedCareBreakdown.cwthAgedCareDoses.secondDose',
-        'cwthAgedCareBreakdown.cwthAgedCareFacilities.firstDose',
-        'cwthAgedCareBreakdown.cwthAgedCareFacilities.secondDose',
+        // 'cwthAgedCareBreakdown.cwthAgedCareDoses.firstDose',
+        // 'cwthAgedCareBreakdown.cwthAgedCareDoses.secondDose',
+        // 'cwthAgedCareBreakdown.cwthAgedCareFacilities.firstDose',
+        // 'cwthAgedCareBreakdown.cwthAgedCareFacilities.secondDose',
 
         'doseBreakdown.national[0].firstDoseCount',
         'doseBreakdown.national[0].firstDosePct',
@@ -425,6 +425,7 @@ const validateData = (data) => {
     // logErrorNotEq(cwthPrimaryCareTotal, _.get(data, 'totals.cwthPrimaryCare.total'), true, 'cwthPrimaryCareTotal');
     // logErrorNotEq(cwthAgedCareTotal, _.get(data, 'totals.cwthAgedCare.total'), true, 'cwthAgedCareTotal');
     // logErrorNotEq(cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.cwthAll.total'), true, 'cwthPrimaryCareTotal + cwthAgedCareTotal');
+    console.log({statesTotal})
     logErrorNotEq(statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.national.total'), true, 'statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal');
 
     // AIR data
