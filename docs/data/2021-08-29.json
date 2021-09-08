@@ -1,5 +1,6 @@
 {
     "success": true,
+    "url": "https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccine-rollout-update-30-august-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-08-29",
         "totals": {
@@ -164,6 +165,77 @@
             "cwthAgedCareFacilities": {
                 "firstDose": 2569,
                 "secondDose": 2568
+            }
+        },
+        "distribution": {
+            "NSW": {
+                "distributed": 3220450,
+                "available": 2949010,
+                "administered": 2426195,
+                "availableMinusAdministered": 522815,
+                "estimatedUtilisationPct": 92
+            },
+            "VIC": {
+                "distributed": 2946260,
+                "available": 2643230,
+                "administered": 2332758,
+                "availableMinusAdministered": 310472,
+                "estimatedUtilisationPct": 98
+            },
+            "QLD": {
+                "distributed": 1651020,
+                "available": 1458430,
+                "administered": 1318945,
+                "availableMinusAdministered": 139485,
+                "estimatedUtilisationPct": 100
+            },
+            "WA": {
+                "distributed": 942718,
+                "available": 830398,
+                "administered": 814712,
+                "availableMinusAdministered": 15686,
+                "estimatedUtilisationPct": 100
+            },
+            "SA": {
+                "distributed": 716110,
+                "available": 604040,
+                "administered": 542726,
+                "availableMinusAdministered": 61314,
+                "estimatedUtilisationPct": 100
+            },
+            "TAS": {
+                "distributed": 301030,
+                "available": 283480,
+                "administered": 235629,
+                "availableMinusAdministered": 47851,
+                "estimatedUtilisationPct": 93
+            },
+            "NT": {
+                "distributed": 182504,
+                "available": 161986,
+                "administered": 124464,
+                "availableMinusAdministered": 37522,
+                "estimatedUtilisationPct": 87
+            },
+            "ACT": {
+                "distributed": 241598,
+                "available": 210118,
+                "administered": 204723,
+                "availableMinusAdministered": 5395,
+                "estimatedUtilisationPct": 100
+            },
+            "cwthAgedCare": {
+                "distributed": 821248,
+                "available": 779644,
+                "administered": 764981,
+                "availableMinusAdministered": 14663
+            },
+            "cwthPrimaryCare": {
+                "distributed": 14340237,
+                "available": 12987067,
+                "administered": 10320608,
+                "availableMinusAdministered": 2666459,
+                "estimatedUtilisationPct": 89
             }
         },
         "doseBreakdown": {
