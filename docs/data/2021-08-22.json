@@ -166,6 +166,77 @@
                 "secondDose": 2568
             }
         },
+        "distribution": {
+            "NSW": {
+                "distributed": 2949010,
+                "available": 2367650,
+                "administered": 2093786,
+                "availableMinusAdministered": 273864,
+                "estimatedUtilisationPct": 98
+            },
+            "VIC": {
+                "distributed": 2643230,
+                "available": 2328330,
+                "administered": 2124333,
+                "availableMinusAdministered": 203997,
+                "estimatedUtilisationPct": 100
+            },
+            "QLD": {
+                "distributed": 1500090,
+                "available": 1370570,
+                "administered": 1199132,
+                "availableMinusAdministered": 171438,
+                "estimatedUtilisationPct": 97
+            },
+            "WA": {
+                "distributed": 830398,
+                "available": 787168,
+                "administered": 722659,
+                "availableMinusAdministered": 64509,
+                "estimatedUtilisationPct": 100
+            },
+            "SA": {
+                "distributed": 633040,
+                "available": 566480,
+                "administered": 497424,
+                "availableMinusAdministered": 69056,
+                "estimatedUtilisationPct": 98
+            },
+            "TAS": {
+                "distributed": 283480,
+                "available": 236530,
+                "administered": 217596,
+                "availableMinusAdministered": 18934,
+                "estimatedUtilisationPct": 100
+            },
+            "NT": {
+                "distributed": 171974,
+                "available": 147716,
+                "administered": 116944,
+                "availableMinusAdministered": 30772,
+                "estimatedUtilisationPct": 89
+            },
+            "ACT": {
+                "distributed": 210118,
+                "available": 192788,
+                "administered": 188003,
+                "availableMinusAdministered": 4785,
+                "estimatedUtilisationPct": 100
+            },
+            "cwthAgedCare": {
+                "distributed": 769762,
+                "available": 732988,
+                "administered": 709819,
+                "availableMinusAdministered": 23169
+            },
+            "cwthPrimaryCare": {
+                "distributed": 12903072,
+                "available": 12117248,
+                "administered": 9280958,
+                "availableMinusAdministered": 2836290,
+                "estimatedUtilisationPct": 87
+            }
+        },
         "doseBreakdown": {
             "national": [
                 {
@@ -2029,6 +2100,40 @@
                         "cohortPopulation": 77155
                     }
                 ]
+            }
+        },
+        "firstNations": {
+            "NSW": {
+                "firstDoseCount": 58771,
+                "secondDoseCount": 27927
+            },
+            "VIC": {
+                "firstDoseCount": 42446,
+                "secondDoseCount": 24613
+            },
+            "QLD": {
+                "firstDoseCount": 39120,
+                "secondDoseCount": 20917
+            },
+            "WA": {
+                "firstDoseCount": 11478,
+                "secondDoseCount": 5922
+            },
+            "NT": {
+                "firstDoseCount": 17464,
+                "secondDoseCount": 9838
+            },
+            "TAS": {
+                "firstDoseCount": 6452,
+                "secondDoseCount": 4307
+            },
+            "SA": {
+                "firstDoseCount": 6838,
+                "secondDoseCount": 3904
+            },
+            "ACT": {
+                "firstDoseCount": 2435,
+                "secondDoseCount": 1504
             }
         }
     },
