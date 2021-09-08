@@ -14,7 +14,7 @@ This repository is a mess of code which:
 
 Due to changes in the way vaccination data is reported throughout this year, some of the data may not be comparable.  This section tries to summarise many of the data issues and reporting changes.  It's lengthly -- you have been warned!
 
-### From 18 May 2021 to 1 July 2021
+**From 18 May 2021 to 1 July 2021**
 
 Prior to 18 May 2021, statistics about second dose (or number of fully vaccinated people) were not available.
 
@@ -52,6 +52,14 @@ This change resulted meant that the statistics in the `all.csv` file prior to 15
 
 All data up to this point is based on **date of reporting**.  Department of Health has also begun reporting doses on the **date of administration**.  This data is not available in this repository yet.
 
+**From 16 August 2021 onwards**
+
+Vaccination rates form Aboriginal and Torres Strait Islander peoples (First Nations people) are now included in the dataset.  This data was uploaded on 8 September, dating back to 16 August 2021.
+
+Department of Health updates this data on a weekly basis and was included in the daily vaccination data pack since 16 August 2021.
+
+These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` in `all.csv` and `all.json`.
+
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
@@ -75,7 +83,9 @@ The data is also available at the following locations:
 * **JSON (AIR - Administration):** https://vaccinedata.covid19nearme.com.au/data/air.json
 
 **Daily dose breakdown from AIR incl state of residence data (available from 28 July 2021 onwards)**
+
 Note: AIR residence data is normalised differently from the other data. Each row represents a separate day, state and age bucket.  Counts are estimated by reverse calculating percentage and ABS Estiamted Resident Population.
+
 * **CSV (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.csv
 * **JSON (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.json
 
