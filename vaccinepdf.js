@@ -87,6 +87,7 @@ class AusDeptHealthVaccinePdf {
             }
         }
 
+        const pageForFirstNations = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Aboriginal and Torres Strait Islander peoples/)))
         const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
         const pageForDoses = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
@@ -96,6 +97,7 @@ class AusDeptHealthVaccinePdf {
         const primaryCarePage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Commonwealth\s*primary\s*care/)))
 
         // console.log({totalDosesPage})
+        const firstNations = this.getStateData(pageForFirstNations, 'firstNations');
         const totalDoses = this.getStateData(totalDosesPage);
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
@@ -136,7 +138,7 @@ class AusDeptHealthVaccinePdf {
             totals.cwthPrimaryCare = this.getSlideSummary(primaryCarePage);
         }
 
-        if(!totals.cwthAgedCare.total){
+        if(!totals.cwthAgedCare.total && pageForAgedCare > -1){
             totals.cwthAgedCare = this.getSlideSummary(pageForAgedCare, 2);
             // console.log({pageForAgedCare});
         }
@@ -200,7 +202,7 @@ class AusDeptHealthVaccinePdf {
 
         }
         // console.log(stateOfResidence)
-
+        console.log(firstNations)
         
 
         const output = {
@@ -213,7 +215,8 @@ class AusDeptHealthVaccinePdf {
             cwthAgedCareBreakdown,
             distribution,
             doseBreakdown,
-            stateOfResidence
+            stateOfResidence,
+            firstNations
         };
         
         // console.log(JSON.stringify(output, null, 4))
@@ -523,7 +526,7 @@ class AusDeptHealthVaccinePdf {
         }
     }
 
-    getStateData(pageIndex = 1){
+    getStateData(pageIndex = 1, variant = 'original'){
         if(!this.data.pages[pageIndex]){return}
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
         const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
@@ -549,19 +552,37 @@ class AusDeptHealthVaccinePdf {
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY), 0.07, 6);
 
             const combinedStr = values.map(v => v.str.trim().replace(/[^a-zA-Z0-9,+\-\(\)\s]/g, '')).join(' ');
-            // const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);
-            const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)/);
-            const matchesHeadline = combinedStr.match(/([0-9,]+)/);
-            // console.log(pageIndex, combinedStr, matches)
 
-            // if(pageIndex === 1 && stateCode === 'VIC'){
-            //     console.log(stateCode, values)
-            // }
+            if(variant === 'firstNations'){
+                const matchesFirstDose = combinedStr.match(/([0-9,]+)\s*at\s*least\s*one\s*dose/);
+                const matchesSecondDose = combinedStr.match(/([0-9,]+)\s*fully\s*vaccinated/);
+                // console.log(pageIndex, combinedStr, matches)
 
-            if(matchesHeadline && matchesDaily){
-                stateData[stateCode] = {
-                    total: toNumber(matchesHeadline[1]),
-                    last24hr: toNumber(matchesDaily[2], matchesDaily[1])
+                // if(pageIndex === 1 && stateCode === 'VIC'){
+                //     console.log(stateCode, values)
+                // }
+
+                if(matchesFirstDose && matchesSecondDose){
+                    stateData[stateCode] = {
+                        firstDoseCount: toNumber(matchesFirstDose[1]),
+                        secondDoseCount: toNumber(matchesSecondDose[1])
+                    }
+                }
+            }else{
+                // const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);
+                const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)/);
+                const matchesHeadline = combinedStr.match(/([0-9,]+)/);
+                // console.log(pageIndex, combinedStr, matches)
+
+                // if(pageIndex === 1 && stateCode === 'VIC'){
+                //     console.log(stateCode, values)
+                // }
+
+                if(matchesHeadline && matchesDaily){
+                    stateData[stateCode] = {
+                        total: toNumber(matchesHeadline[1]),
+                        last24hr: toNumber(matchesDaily[2], matchesDaily[1])
+                    }
                 }
             }
         }
