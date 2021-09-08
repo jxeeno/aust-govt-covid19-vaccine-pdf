@@ -119,6 +119,8 @@ const COLUMN_TO_PATH_MAPPING = {
     FIRST_NATIONS_NT_SECOND_DOSE_TOTAL: 'firstNations.NT.secondDoseCount',
     FIRST_NATIONS_NSW_FIRST_DOSE_TOTAL: 'firstNations.NSW.firstDoseCount',
     FIRST_NATIONS_NSW_SECOND_DOSE_TOTAL: 'firstNations.NSW.secondDoseCount',
+    FIRST_NATIONS_AUS_FIRST_DOSE_TOTAL: 'firstNations.AUS.firstDoseCount',
+    FIRST_NATIONS_AUS_SECOND_DOSE_TOTAL: 'firstNations.AUS.secondDoseCount',
 }
 
 const DISTRIBUTION_COLUMN_TO_PATH_MAPPING = {

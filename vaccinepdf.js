@@ -202,7 +202,7 @@ class AusDeptHealthVaccinePdf {
 
         }
         // console.log(stateOfResidence)
-        console.log(firstNations)
+        // console.log(firstNations)
         
 
         const output = {
@@ -539,7 +539,11 @@ class AusDeptHealthVaccinePdf {
         //     console.log({width, height}, stateLabelLocations)
         // }
 
-        const stateData = {};
+        let stateData = {};
+
+        if(variant === 'firstNations'){
+            stateData = this.getFirstNationsLeftPanelData(pageIndex)
+        }
 
         for (const state of stateLabelLocations) {
             let minX = state.cx - width;
@@ -722,6 +726,42 @@ class AusDeptHealthVaccinePdf {
                 data.cwthAgedCareFacilities.firstDose = toNumber(vprev.str)
             }else if(v.str.match(/(Sites\s*visited\s*for\s*second\s*doses|Sites\s*visited\s*for\s*second\s*doses)/) && vprev && isNumber(vprev.str) && data.cwthAgedCareFacilities.secondDose === undefined){
                 data.cwthAgedCareFacilities.secondDose = toNumber(vprev.str)
+            }
+        }
+
+        return data;
+    }
+
+    getFirstNationsLeftPanelData(pageIndex = -1, matchText = 'and residential disability facilities'){
+        const data = {
+            AUS: {
+                firstDoseCount: undefined,
+                secondDoseCount: undefined
+            }
+        }
+
+        if(!this.data.pages[pageIndex]){return;}
+        const content = this.data.pages[pageIndex].content;
+        const centrepoint = content.find(t => t.str.match(/people over the age of 16/));
+        if(!centrepoint){return data}
+
+        let minX = centrepoint.cx - centrepoint.width;
+        let maxX = centrepoint.cx + centrepoint.width;
+
+        const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX), 0.1));
+        values.sort((a, b) => a.y - b.y);
+
+        // console.log(values.map(v => v.str))
+
+        for(let i = 0; i < values.length; i++){
+            const v = values[i];
+            const vnext = values[i+1];
+            const vprev = values[i-1];
+
+            if(v.str.match(/(people\s*over\s*the\s*age\s*of\s*16)/) && vprev && isNumber(vprev.str) && data.AUS.firstDoseCount === undefined){
+                data.AUS.firstDoseCount = toNumber(vprev.str)
+            }else if(v.str.match(/(people\s*over\s*the\s*age\s*of\s*16)/) && vprev && isNumber(vprev.str) && data.AUS.secondDoseCount === undefined){
+                data.AUS.secondDoseCount = toNumber(vprev.str)
             }
         }
 
