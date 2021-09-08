@@ -60,6 +60,17 @@ Department of Health updates this data on a weekly basis and was included in the
 
 These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` in `all.csv` and `all.json`.
 
+**From 6 September 2021 onwards**
+
+Department of Health no longer publishes the first and second dose and visit count breakdowns for aged and disability care.
+
+This means the following fields are now deprecated:
+
+* `CWTH_AGED_CARE_DOSES_FIRST_DOSE`
+* `CWTH_AGED_CARE_DOSES_SECOND_DOSE`
+* `CWTH_AGED_CARE_FACILITIES_FIRST_DOSE`
+* `CWTH_AGED_CARE_FACILITIES_SECOND_DOSE`
+
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
