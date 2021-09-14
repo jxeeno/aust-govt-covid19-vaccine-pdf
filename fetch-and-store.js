@@ -431,8 +431,8 @@ const validateData = (data) => {
     // AIR data
 
     // 16 plus state breakdown vs 16 plus age breakdown
-    const firstDoseCountFromAge = _.get(data, `doseBreakdown.national`, []).reduce((runningTotal, figs) => _.get(figs, `firstDoseCount`, 0) + runningTotal, 0);
-    const secondDoseCountFromAge = _.get(data, `doseBreakdown.national`, []).reduce((runningTotal, figs) => _.get(figs, `secondDoseCount`, 0) + runningTotal, 0);
+    const firstDoseCountFromAge = _.get(data, `doseBreakdown.national`, []).filter(v => v.ageLower >= 16).reduce((runningTotal, figs) => _.get(figs, `firstDoseCount`, 0) + runningTotal, 0);
+    const secondDoseCountFromAge = _.get(data, `doseBreakdown.national`, []).filter(v => v.ageLower >= 16).reduce((runningTotal, figs) => _.get(figs, `secondDoseCount`, 0) + runningTotal, 0);
 
     const firstDoseCountFromAus16Plus = _.get(data, `doseBreakdown.AUS[0].firstDoseCount`, 0);
     const secondDoseCountFromAus16Plus = _.get(data, `doseBreakdown.AUS[0].secondDoseCount`, 0);

@@ -410,6 +410,29 @@ const generateAirStateOfResidence = async (csvPath, jsonPath) => {
                 output.push(row);
 
             }
+
+            const age1215 = _.get(lookupData, 'doseBreakdown.' + stateCode).find(v => v.ageLower === 12 && v.ageUpper === 15);
+            if(age1215){
+                const row = {
+                    DATE_AS_AT: _.get(lookupData, 'dataAsAt'),
+                    STATE: stateCode,
+                    AGE_LOWER: 12,
+                    AGE_UPPER: 15,
+                    AIR_RESIDENCE_FIRST_DOSE_PCT: (age1215 || {}).firstDosePct,
+                    AIR_RESIDENCE_SECOND_DOSE_PCT: (age1215 || {}).secondDosePct,
+                    AIR_RESIDENCE_FIRST_DOSE_COUNT: (age1215 || {}).firstDoseCount,
+                    AIR_RESIDENCE_SECOND_DOSE_COUNT: (age1215 || {}).secondDoseCount,
+                    AIR_RESIDENCE_FIRST_DOSE_APPROX_COUNT: (age1215 || {}).firstDoseCount,
+                    AIR_RESIDENCE_SECOND_DOSE_APPROX_COUNT: (age1215 || {}).secondDoseCount,
+                    ABS_ERP_JUN_2020_POP: (age1215 || {}).cohortPopulation
+                };
+
+                row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';
+                row.URL = publication.pdfUrl;
+
+                stream.write(row);
+                output.push(row);
+            }
         }
     }
 
