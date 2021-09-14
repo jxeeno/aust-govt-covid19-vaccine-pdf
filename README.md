@@ -71,6 +71,14 @@ This means the following fields are now deprecated:
 * `CWTH_AGED_CARE_FACILITIES_FIRST_DOSE`
 * `CWTH_AGED_CARE_FACILITIES_SECOND_DOSE`
 
+**From 13 September 2021 onwards**
+
+Department of Health is now publishing dose data for 12-15 year olds.  This data is available in `air.csv` as:
+
+* `AIR_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`
+* `AIR_<STATE>_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`
+
+We understand these doses aren't counted in some of the totals.  Will be working to confirm which are included and which are excluded and update here in due course.
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
