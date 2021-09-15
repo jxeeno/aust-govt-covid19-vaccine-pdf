@@ -2,9 +2,11 @@ const rax = require('retry-axios');
 const axios = require('axios');
 const lodash = require('lodash');
 const fs = require('fs');
+const turf = require('@turf/turf');
 const path = require('path');
 const moment = require('moment-timezone');
 const { format } = require('@fast-csv/format');
+const augeojson = require('./ausgeojson');
 
 rax.attach();
 
@@ -33,7 +35,7 @@ const fetchVaccineClinicPage = async (apikey, state, page) => {
             'filter.programs.codes': 'nhsd:/reference/common/program/covid19VaccineService',
             'responseControl.offset': page*PAGE_SIZE,
             'responseControl.limit': PAGE_SIZE,
-            'location.proximity.near_distance': 1000000,
+            'location.proximity.near_distance': 400000,
             'location.proximity.near': state
             // 'location.physicalLocation.stateDrIdRef': `nhsd:/reference/geo/AUS.states/${state}`
         }
@@ -52,8 +54,15 @@ const fetchAllClinics = async () => {
 
     const apikey = await fetchApiKey();
 
+    const grid = turf.pointGrid([
+        112.1044921875,
+        -44.11914151643736,
+        154.46777343749997,
+        -9.44906182688142
+    ], 300, {units: 'kilometers', mask: augeojson});
+
     const rowMap = new Map();
-    const states = ['-33.8697,151.2099', '-37.821666,144.978547', '-27.466098,153.029997', '-16.9233991,145.773851', '-23.698042,133.880747', '-12.4633,130.8434', '-34.92869,138.60102', '-42.882138,147.327195', '-31.99212,115.763228'];
+    const states = grid.features.map(v => [v.geometry.coordinates[1], v.geometry.coordinates[0]].join(',')); // ['-33.8697,151.2099', '-37.821666,144.978547', '-27.466098,153.029997', '-16.9233991,145.773851', '-23.698042,133.880747', '-12.4633,130.8434', '-34.92869,138.60102', '-42.882138,147.327195', '-31.99212,115.763228'];
 
     for(const state of states){
         let page = 0;
