@@ -41,10 +41,10 @@ const fetchVaccineClinicPage = async (apikey, state, page) => {
         }
     });
 
-    const services = lodash.get(data, '_embedded.healthcareServices');
-    const hasNextPage = data.count > (page+1)*PAGE_SIZE;
+    const services = lodash.get(data, '_embedded.healthcareServices', []);
+    const hasNextPage = lodash.get(data, 'count', 0) > (page+1)*PAGE_SIZE;
 
-    console.log(`Total ${data.count}`);
+    console.log(`Total ${lodash.get(data, 'count', 'unknown')}`);
 
     return {services, hasNextPage};
 }
