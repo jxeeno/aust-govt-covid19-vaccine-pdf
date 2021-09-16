@@ -78,7 +78,9 @@ Department of Health is now publishing dose data for 12-15 year olds.  This data
 * `AIR_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`
 * `AIR_<STATE>_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`
 
-We understand these doses aren't counted in some of the totals.  Will be working to confirm which are included and which are excluded and update here in due course.
+**From 15 September 2021 onwards**
+
+All totals are now include 12-15 age groups.
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
