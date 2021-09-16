@@ -327,7 +327,7 @@ class AusDeptHealthVaccinePdf {
         }
 
         const firstDoseRaw = getValuesFor(/Dose\s*1/, /First\s*and\s*second\s*doses\s*by\s*age\s*and\s*sex/);
-        const secondDoseRaw = getValuesFor(/Dose\s*2/, /First\s*and\s*second\s*doses\s*by\s*age\s*and\s*sex/);
+        const secondDoseRaw = getValuesFor(/Dose\s*2/);
 
         const parseDoseData = (texts, c) => {
             let doseStart = false;
@@ -350,6 +350,8 @@ class AusDeptHealthVaccinePdf {
                 return values;
             }
         }
+
+
 
         const firstDose = parseDoseData(firstDoseRaw, 'firstDose');
         const secondDose = parseDoseData(secondDoseRaw, 'secondDose');
@@ -380,7 +382,7 @@ class AusDeptHealthVaccinePdf {
         const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.replace(/\s/g, '').trim()));
 
         const width = Math.max(...stateLabelLocations.map(l => l.width));
-        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 20;
+        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 25;
 
         const stateData = {};
 
