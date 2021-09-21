@@ -394,9 +394,20 @@ class AusDeptHealthVaccinePdf {
 
             const stateCode = state.str.replace(/\s/g, '').trim();
 
-            const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9\.,\s]+%?/));
-            // console.log(stateCode, content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY).map(v => v.str));
-            // console.log(stateCode, values.map(v => v.str))
+            const ySeen = new Set()
+            const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY)).filter(v => v.str.match(/[0-9\.,\s]+%?/)).filter(v => {
+                if(!ySeen.has(v.y)){
+                    ySeen.add(v.y);
+                    return true;
+                }
+                return false;
+            });
+            // const unmergedValues = this.data.pages[pageIndex].content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY).filter(v => v.str.match(/[0-9\.,\s]+%?/));
+            // // console.log(stateCode, content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy > minY && t.cy <= maxY).map(v => v.str));
+            // // console.log(stateCode, values.map(v => v.str))
+            // if(stateCode === 'NSW'){
+            //     console.log(stateCode, unmergedValues);
+            // }
             if(values.length >= 20){
                 stateData[stateCode] = [
                     {
