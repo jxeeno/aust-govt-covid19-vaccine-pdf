@@ -110,17 +110,40 @@ Note: AIR residence data is normalised differently from the other data. Each row
 * **CSV (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.csv
 * **JSON (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.json
 
-
-**Daily dose breakdown by SA4**
-* **CSV (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.csv
-* **JSON (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.json
-
 **Weekly dose distribution data**
 * **CSV (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.csv
 * **JSON (distribution):** https://vaccinedata.covid19nearme.com.au/data/distribution.json
 
 **Index to raw data extracts**
 * **Raw JSON data (index):** https://vaccinedata.covid19nearme.com.au/data/publications.json
+
+## Programatic access to geographical vaccination rates
+
+Geographical vaccination rates are updated weekly.
+### Statistical Area 4
+Vaccination rates by address of residence, grouped by ABS [Statistical Area 4](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/by%20Subject/1270.0.55.001~July%202016~Main%20Features~Statistical%20Area%20Level%204%20(SA4)~10016).
+
+* **CSV (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/geo/air_sa4.csv
+* **JSON (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/geo/air_sa4.json
+
+### Statistical Area 3
+Vaccination rates by address of residence, grouped by ABS [Statistical Area 3](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/by%20Subject/1270.0.55.001~July%202016~Main%20Features~Statistical%20Area%20Level%203%20(SA3)~10015).  SA3s with less than 500 people aged 15 and over have been excluded.
+
+* **CSV (AIR - SA3):** https://vaccinedata.covid19nearme.com.au/data/geo/air_sa3.csv
+* **JSON (AIR - SA3):** https://vaccinedata.covid19nearme.com.au/data/geo/air_sa3.json
+
+### Local Government Areas
+Vaccination rates by address of residence, grouped by ABS [Local Government Areas](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/by%20Subject/1270.0.55.003~July%202019~Main%20Features~Local%20Government%20Areas%20(LGAs)~2).  LGAs with large ‘very remote’ and ‘remote’ areas where geo-coding addresses difficult are excluded.
+
+* **CSV (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.csv
+* **JSON (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.json
+### Legacy feed for Statistical Area 4
+
+This is the legacy SA4 feed for backwards compatability.  Column names are slightly different.
+
+* **CSV (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.csv
+* **JSON (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.json
+
 
 **Important note about data quality:**  This data is provided as-is. I'm not guaranteeing the timeliness or accuracy of any data provided above.  Some basic validation steps are present (i.e. we test the data and see if the totals add up to expected values and if there are empty data values), but no manual checks are conducted.  Use at your own risk.
 
