@@ -448,33 +448,39 @@ const validateData = (data) => {
 }
 
 const getPublications = async () => {
-    const {data: html} = await axios.get('https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates');
-    const $ = cheerio.load(html);
-
     const itemsByKey = {};
+    const indexUrls = [
+        'https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates',
+        'https://www.health.gov.au/resources/collections/covid-19-vaccination-daily-jurisdictional-breakdown'
+    ];
 
-    $(".paragraphs-items-full a").toArray().forEach(item => {
-        const $v = $(item);
-        const name = $v.text();
-        const dateMatches = name.match(/[0-9]+ [A-Za-z]+ 202[0-9]$/);
-        const dateKey = dateMatches ? dateMatches[0] : name;
-        const type = name.indexOf('jurisdictional breakdown') > -1 ? 'jurisdictional' : 'main';
-        const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
+    for(const indexUrl of indexUrls){
+        const {data: html} = await axios.get(indexUrl);
+        const $ = cheerio.load(html);
 
-        if(!itemsByKey[dateKey]){
-            itemsByKey[dateKey] = {
-                name,
-                type,
-                dateKey,
+        $(".paragraphs-items-full a").toArray().forEach(item => {
+            const $v = $(item);
+            const name = $v.text();
+            const dateMatches = name.match(/[0-9]+ [A-Za-z]+ 202[0-9]$/);
+            const dateKey = dateMatches ? dateMatches[0] : name;
+            const type = name.indexOf('jurisdictional breakdown') > -1 ? 'jurisdictional' : 'main';
+            const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
+
+            if(!itemsByKey[dateKey]){
+                itemsByKey[dateKey] = {
+                    name,
+                    type,
+                    dateKey,
+                }
             }
-        }
 
-        if(type === 'jurisdictional'){
-            itemsByKey[dateKey].jurisdictionalLandingUrl = landingUrl;
-        }else{
-            itemsByKey[dateKey].landingUrl = landingUrl;
-        }
-    });
+            if(type === 'jurisdictional'){
+                itemsByKey[dateKey].jurisdictionalLandingUrl = landingUrl;
+            }else{
+                itemsByKey[dateKey].landingUrl = landingUrl;
+            }
+        });
+    }
 
     const items = Object.values(itemsByKey);
 
