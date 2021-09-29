@@ -137,9 +137,10 @@ Vaccination rates by address of residence, grouped by ABS [Local Government Area
 
 * **CSV (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.csv
 * **JSON (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.json
+
 ### Legacy feed for Statistical Area 4
 
-This is the legacy SA4 feed for backwards compatability.  Column names are slightly different.
+This is the legacy SA4 feed for backwards compatability.  The data contained in this file is the same as the new SA4 data feed, however, the column names are slightly as SA4-specific terminology has been removed.  This legacy feed will contiue to be updated.  There is no need to switch to the new feed if you've already integrated against the legacy one.
 
 * **CSV (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.csv
 * **JSON (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.json
