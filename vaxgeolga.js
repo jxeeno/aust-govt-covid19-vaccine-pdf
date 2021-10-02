@@ -20,7 +20,7 @@ const stateMap = {
 
 const LGAS = Object.values(lgaMapping).map(s => [s[1].toUpperCase().replace(/[^A-Z]/g, ''), ...s]);
 
-async function scrapeLGA(data) {
+async function scrapeLGA(data, url) {
     const aggLevel = 'ASGS_2020_LGA';
     // const url = 'https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccination-geographic-vaccination-rates-9-august-2021.pdf'; // 'https://www.health.gov.au/sites/default/files/documents/2021/08/covid-19-vaccination-geographic-vaccination-rates-2-august-2021.pdf';
     // const {data} = await axios.get(url, {responseType: 'arraybuffer'});
@@ -37,7 +37,9 @@ async function scrapeLGA(data) {
     const rows = [];
     for(const page of pageTables){
         const table = page.tables.map(r => r.map(s => cleanCell(s)));
-        // console.log(page)
+        if(page.page === 9){
+            console.log(page)
+        }
         // for(const table of page.tables){
             const header = table[0].map(s => cleanCell(s));
             if(header.length < 5){
@@ -45,7 +47,7 @@ async function scrapeLGA(data) {
                 continue;
             }
 
-            if(header[0] === 'State of Residence' && header[1] === 'LGA 2019 Name of Residence'){
+            if(header[0] === 'State of Residence' || header[1] === 'LGA 2019 Name of Residence'){
                 for(const r of table){
                     if(r[0] === 'State of Residence'){continue;}
                     if(r[0] === ''){continue;}
@@ -79,7 +81,7 @@ async function scrapeLGA(data) {
                     row.SA4_CODE_2016 = lga ? lga[3].join(';') : '';
                     row.SA3_CODE_2016 = lga ? lga[4].join(';') : '';
                     row.VALIDATED = 'Y';
-                    row.URL = 'https://www.health.gov.au/sites/default/files/documents/2021/09/covid-19-vaccination-geographic-vaccination-rates-19-september-2021.pdf';
+                    row.URL = url; //'https://www.health.gov.au/sites/default/files/documents/2021/09/covid-19-vaccination-geographic-vaccination-rates-19-september-2021.pdf';
 
                     // stream.write(row);
                     rows.push(row)

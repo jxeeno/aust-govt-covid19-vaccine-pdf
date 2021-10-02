@@ -27,6 +27,7 @@ const generateCsv = async () => {
             const data = JSON.parse(fs.readFileSync(localDataFile));
 
             for(const row of data.pdfData.rows){
+                row.URL = publication.pdfUrl;
                 stream.write(row);
                 output.push(row);
             }
