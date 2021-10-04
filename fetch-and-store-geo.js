@@ -491,10 +491,12 @@ const getPublications = async () => {
             });
             console.log(`Added custom landing URL ${process.argv[2]}`)
         }else if(process.argv[2].endsWith('.pdf') && !process.argv[2].startsWith('http')){
+            const type = process.argv[2].indexOf('LGA') > -1 ? 'lga' : process.argv[2].indexOf('SA3') > -1 ? 'sa3' : process.argv[2].indexOf('SA4') > -1 ? 'sa4' : 'unknown';
             items.push({
                 name: 'Custom fetch',
                 filename: process.argv[2],
-                jurisdictionalFilename: process.argv[3]
+                jurisdictionalFilename: process.argv[3],
+                type
             });
             console.log(`Added custom file ${process.argv[2]}`)
         }else{
