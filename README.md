@@ -138,6 +138,16 @@ Vaccination rates by address of residence, grouped by ABS [Local Government Area
 * **CSV (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.csv
 * **JSON (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.json
 
+### By Postal Area (VIC only)
+Vaccination rates by address of residence, grouped by ABS [Postal Areas (POA)](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/by%20Subject/1270.0.55.003~July%202016~Main%20Features~Postal%20Areas%20(POA)~8).  POAs with significant population change since the 2016 census are excluded as it is not possible to accurately provide vaccination rates.
+
+Vaccination rates are expressed as percent ranges in 5% increments.
+
+This data is obtained from https://www.coronavirus.vic.gov.au/weekly-covid-19-vaccine-data
+
+* **CSV (AIR - VIC POA):** https://vicvaxdata.covid19nearme.com.au/data/air_poa.csv
+* **JSON (AIR - VIC POA):** https://vicvaxdata.covid19nearme.com.au/data/air_poa.json
+
 ### Legacy feed for Statistical Area 4
 
 This is the legacy SA4 feed for backwards compatability.  The data contained in this file is the same as the new SA4 data feed, however, the column names are slightly as SA4-specific terminology has been removed.  This legacy feed will contiue to be updated.  There is no need to switch to the new feed if you've already integrated against the legacy one.
