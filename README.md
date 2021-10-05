@@ -145,8 +145,8 @@ Vaccination rates are expressed as percent ranges in 5% increments.
 
 This data is obtained from https://www.coronavirus.vic.gov.au/weekly-covid-19-vaccine-data
 
-* **CSV (AIR - VIC POA):** https://vicvaxdata.covid19nearme.com.au/data/air_poa.csv
-* **JSON (AIR - VIC POA):** https://vicvaxdata.covid19nearme.com.au/data/air_poa.json
+* **CSV (AIR - VIC POA):** https://vicvaxdata.covid19nearme.com.au/data/vic_poa.csv
+* **JSON (AIR - VIC POA):** https://vicvaxdata.covid19nearme.com.au/data/vic_poa.json
 
 ### Legacy feed for Statistical Area 4
 
