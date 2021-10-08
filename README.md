@@ -5,14 +5,14 @@ This repository is a mess of code which:
 1. Takes in the PDF file published by the [Australian Department of Health](https://www.health.gov.au/resources/collections/covid-19-vaccine-rollout-updates)
 2. Takes in national second dose data from the [WA Health vaccination dashboard](https://www.wa.gov.au/organisation/covid-communications/covid-19-coronavirus-vaccination-dashboard)
 3. Converts it into machine-readable statistics (JSON and CSV files)
-4. Publishes data files via Github Actions and Github Pages
+4. Publishes data files via GitHub Actions and GitHub Pages
 
 **Looking for COVID-19 Case and Test Data?** That data is in a separate repository: https://github.com/jxeeno/aust-govt-covid19-stats
 
 
 ## Notes
 
-Due to changes in the way vaccination data is reported throughout this year, some of the data may not be comparable.  This section tries to summarise many of the data issues and reporting changes.  It's lengthly -- you have been warned!
+Due to changes in the way vaccination data is reported throughout this year, some of the data may not be comparable.  This section tries to summarise many of the data issues and reporting changes.  It's lengthy -- you have been warned!
 
 **From 18 May 2021 to 1 July 2021**
 
@@ -48,7 +48,7 @@ From 15 August 2021, all data reported by the Department of Health is obtained f
 
 This reporting change resulted in negative doses in some states reported in the `all.csv` file.  This drop is due to the lag between a dose being administered and the record being entered into AIR.
 
-This change resulted meant that the statistics in the `all.csv` file prior to 15 Aug 2021 is not directly comparable to the the data published on or after 15 Aug 2021.
+This change resulted meant that the statistics in the `all.csv` file prior to 15 Aug 2021 is not directly comparable to the data published on or after 15 Aug 2021.
 
 All data up to this point is based on **date of reporting**.  Department of Health has also begun reporting doses on the **date of administration**.  This data is not available in this repository yet.
 
@@ -105,7 +105,7 @@ The data is also available at the following locations:
 
 **Daily dose breakdown from AIR incl state of residence data (available from 28 July 2021 onwards)**
 
-Note: AIR residence data is normalised differently from the other data. Each row represents a separate day, state and age bucket.  Counts are estimated by reverse calculating percentage and ABS Estiamted Resident Population.
+Note: AIR residence data is normalised differently from the other data. Each row represents a separate day, state and age bucket.  Counts are estimated by reverse calculating percentage and ABS Estimated Resident Population.
 
 * **CSV (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.csv
 * **JSON (AIR - Residence):** https://vaccinedata.covid19nearme.com.au/data/air_residence.json
@@ -150,7 +150,7 @@ This data is obtained from https://www.coronavirus.vic.gov.au/weekly-covid-19-va
 
 ### Legacy feed for Statistical Area 4
 
-This is the legacy SA4 feed for backwards compatability.  The data contained in this file is the same as the new SA4 data feed, however, the column names are slightly as SA4-specific terminology has been removed.  This legacy feed will contiue to be updated.  There is no need to switch to the new feed if you've already integrated against the legacy one.
+This is the legacy SA4 feed for backwards compatability.  The data contained in this file is the same as the new SA4 data feed, however, the column names are slightly as SA4-specific terminology has been removed.  This legacy feed will continue to be updated.  There is no need to switch to the new feed if you've already integrated against the legacy one.
 
 * **CSV (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.csv
 * **JSON (AIR - SA4):** https://vaccinedata.covid19nearme.com.au/data/air_sa4.json
@@ -158,7 +158,7 @@ This is the legacy SA4 feed for backwards compatability.  The data contained in 
 
 **Important note about data quality:**  This data is provided as-is. I'm not guaranteeing the timeliness or accuracy of any data provided above.  Some basic validation steps are present (i.e. we test the data and see if the totals add up to expected values and if there are empty data values), but no manual checks are conducted.  Use at your own risk.
 
-The data files above are usually updated daily.  Github Actions is configured to scrape and extract data from the Department of Health website every 5 minutes and published via Github Pages.  The data is also available via this git repo in under `docs/data`.
+The data files above are usually updated daily.  GitHub Actions is configured to scrape and extract data from the Department of Health website every 5 minutes and published via GitHub Pages.  The data is also available via this git repo in under `docs/data`.
 
 Documentation for these data files will come in due course.
 
@@ -195,7 +195,7 @@ node index.js "https://www.health.gov.au/sites/default/files/documents/2021/08/c
 
 Because for some reason, our Health department reckons the best way to provide statistical data is in a PDF file generated from Microsoft PowerPoint.
 
-This data should be available in machine readable formats for transparency and to enable ease of access.
+This data should be available in machine-readable formats for transparency and to enable ease of access.
 ### Oh no, it's broken
 
 Yeah, that's probably going to happen.  Every time the Health department decides to add some new disclaimers or tweak the layout/wording a little, this thing will break.
