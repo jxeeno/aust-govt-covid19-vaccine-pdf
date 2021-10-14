@@ -5,6 +5,7 @@ const path = require('path');
 const _ = require('lodash');
 const AusDeptHealthVaccinePdf = require('./vaccinepdf');
 const scrapeSAX = require('./vaxgeosax');
+const scrapeSAXI = require('./vaxgeosaxi');
 const scrapeLGA = require('./vaxgeolga');
 
 const PUBLICATION_JSON_PATH = 'docs/data/geo/publications.json';
@@ -450,9 +451,10 @@ const validateData = (data) => {
 const getPublications = async () => {
     const itemsByKey = {};
     const indexUrls = [
-        // 'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-sa3',
-        // 'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-sa4',
-        'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-lga'
+        'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-sa3',
+        'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-sa4',
+        'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-lga',
+        'https://www.health.gov.au/resources/collections/covid-19-vaccination-geographic-vaccination-rates-sa4-indigenous-population'
     ];
 
     for(const indexUrl of indexUrls){
@@ -463,7 +465,7 @@ const getPublications = async () => {
             const $v = $(item);
             const name = $v.text();
             const dateMatches = name.match(/[0-9]+ [A-Za-z]+ 202[0-9]$/);
-            const type = name.indexOf('LGA') > -1 ? 'lga' : name.indexOf('SA3') > -1 ? 'sa3' : name.indexOf('SA4') > -1 ? 'sa4' : 'unknown';
+            const type = name.indexOf('SA4 Indigenous') > -1 ? 'sa4_indigenous' : name.indexOf('LGA') > -1 ? 'lga' : name.indexOf('SA3') > -1 ? 'sa3' : name.indexOf('SA4') > -1 ? 'sa4' : 'unknown';
             const dateKey = `${dateMatches ? dateMatches[0] : name}.${type}`;
             
             const landingUrl = `https://www.health.gov.au${$v.attr('href')}`;
@@ -578,6 +580,8 @@ const getPublications = async () => {
             pdfData = await scrapeSAX(pdfBuffer, 'ASGS_2016_SA3')
         }else if(item.type === 'sa4'){
             pdfData = await scrapeSAX(pdfBuffer, 'ASGS_2016_SA4')
+        }else if(item.type === 'sa4_indigenous'){
+            pdfData = await scrapeSAXI(pdfBuffer, 'ASGS_2016_SA4')
         }
 
         console.log(pdfData.dataAsAt);

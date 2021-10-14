@@ -138,6 +138,14 @@ Vaccination rates by address of residence, grouped by ABS [Local Government Area
 * **CSV (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.csv
 * **JSON (AIR - LGA):** https://vaccinedata.covid19nearme.com.au/data/geo/air_lga.json
 
+### Statistical Area 4 (Indigenous population)
+Vaccination rates of the Indigenous population by address of residence, grouped by ABS [Statistical Area 4](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/by%20Subject/1270.0.55.001~July%202016~Main%20Features~Statistical%20Area%20Level%204%20(SA4)~10016).
+
+Note: `ABS_ERP_2019_POPULATION` represents the general estimated resident population for the SA4.  `ABS_ERP_2019_POPULATION` is provided as an estimate of the Indigenous population in the SA4 based on records in the Australian Immunisation Register / Medicare.  Percentages are calculated using `ABS_ERP_2019_POPULATION` as denominator.
+
+* **CSV (AIR - SA4 Indigenous):** https://vaccinedata.covid19nearme.com.au/data/geo/air_sa4_indigenous.csv
+* **JSON (AIR - SA4 Indigenous):** https://vaccinedata.covid19nearme.com.au/data/geo/air_sa4_indigenous.json
+
 ### By Postal Area (VIC only)
 Vaccination rates by address of residence, grouped by ABS [Postal Areas (POA)](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/by%20Subject/1270.0.55.003~July%202016~Main%20Features~Postal%20Areas%20(POA)~8).  POAs with significant population change since the 2016 census are excluded as it is not possible to accurately provide vaccination rates.
 

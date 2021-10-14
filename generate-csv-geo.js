@@ -14,7 +14,7 @@ const generateCsv = async () => {
     // handle when health publishes the data multiple times
     publications = _.uniqBy(publications, 'vaccineDataPath');
 
-    const aggLevels = ['lga', 'sa3', 'sa4'];
+    const aggLevels = ['lga', 'sa3', 'sa4', 'sa4_indigenous'];
 
     for(const aggLevel of aggLevels){
         let filteredPublications = publications.filter(v => v.vaccineDataPath.endsWith(`.${aggLevel}.json`));
