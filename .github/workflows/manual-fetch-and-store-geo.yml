@@ -1,0 +1,36 @@
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Publication URL'
+        required: false
+
+name: Manual fetch and store (geo)
+
+jobs:
+  fetch:
+    name: Fetch and store (geo)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        ref: master
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '12'
+    - name: Scrape
+      env:
+        DL_PATH: ${{github.event.inputs.url}}
+      run: |
+        yarn
+        node fetch-and-store-geo.js $DL_PATH
+        node generate-csv-geo.js
+    - name: Push data
+      run: |
+          git config user.name jxeeno
+          git config user.email ken+github@jxeeno.com
+          git add . || exit 0
+          git commit -m "auto(): update data" || exit 0
+          git push || exit 0
