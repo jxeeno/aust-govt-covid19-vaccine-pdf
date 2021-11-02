@@ -617,37 +617,40 @@ const getPublications = async () => {
             pdfJurisdictionalBuffer = fs.readFileSync(jurisdictionalFilename);
         }
     
-        
-        const vpdf = new AusDeptHealthVaccinePdf();
-        const pdfData = await vpdf.parsePdf(pdfBuffer, pdfJurisdictionalBuffer);
-        console.log(`Parsed PDF: ${pdfUrl}`);
-        const validation = validateData(pdfData);
-        console.log(`Validated PDF: ${pdfUrl}`);
+        try{
+            const vpdf = new AusDeptHealthVaccinePdf();
+            const pdfData = await vpdf.parsePdf(pdfBuffer, pdfJurisdictionalBuffer);
+            console.log(`Parsed PDF: ${pdfUrl}`);
+            const validation = validateData(pdfData);
+            console.log(`Validated PDF: ${pdfUrl}`);
 
-        let vaccineDataPath;
-        if(!pdfData.dataAsAt){
-            validation.push('No date present');
-        }else{
-            vaccineDataPath = path.join(PUBLICATION_JSON_DATA_PATH, `${pdfData.dataAsAt}.json`);
-            fs.writeFileSync(vaccineDataPath, JSON.stringify({success: validation.length === 0, url: pdfUrl, pdfData, validation}, null, 4));
-        }
+            let vaccineDataPath;
+            if(!pdfData.dataAsAt){
+                validation.push('No date present');
+            }else{
+                vaccineDataPath = path.join(PUBLICATION_JSON_DATA_PATH, `${pdfData.dataAsAt}.json`);
+                fs.writeFileSync(vaccineDataPath, JSON.stringify({success: validation.length === 0, url: pdfUrl, pdfData, validation}, null, 4));
+            }
 
-        const pub = {
-            name,
-            landingUrl,
-            jurisdictionalLandingUrl,
-            pdfUrl,
-            filename,
-            jurisdictionalPdfUrl: jurisdictionalPdfUrl,
-            vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath.replace("docs/", "")}`,
-            validation
-        };
+            const pub = {
+                name,
+                landingUrl,
+                jurisdictionalLandingUrl,
+                pdfUrl,
+                filename,
+                jurisdictionalPdfUrl: jurisdictionalPdfUrl,
+                vaccineDataPath: `https://vaccinedata.covid19nearme.com.au/${vaccineDataPath.replace("docs/", "")}`,
+                validation
+            };
 
-        if(matchedItem){
-            const index = publications.findIndex((p) => p === matchedItem);
-            publications[index] = pub
-        }else{
-            publications.push(pub);
+            if(matchedItem){
+                const index = publications.findIndex((p) => p === matchedItem);
+                publications[index] = pub
+            }else{
+                publications.push(pub);
+            }
+        }catch(e){
+            console.error('Failed to handle', pdfUrl)
         }
     }
 
