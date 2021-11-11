@@ -1,0 +1,2127 @@
+{
+    "success": true,
+    "pdfData": {
+        "dataAsAt": "2021-11-10",
+        "totals": {
+            "national": {
+                "total": 37231932,
+                "last24hr": 154133
+            },
+            "cwthAll": {
+                "total": 21986214,
+                "last24hr": 107865
+            },
+            "cwthPrimaryCare": {
+                "total": 20917631,
+                "last24hr": 105600
+            },
+            "cwthAgedCare": {
+                "total": 1068583,
+                "last24hr": 2265
+            }
+        },
+        "totalDoses": {
+            "NSW": {
+                "total": 12689476,
+                "last24hr": 25235
+            },
+            "VIC": {
+                "total": 10289435,
+                "last24hr": 37205
+            },
+            "QLD": {
+                "total": 6531023,
+                "last24hr": 46289
+            },
+            "WA": {
+                "total": 3325889,
+                "last24hr": 20168
+            },
+            "TAS": {
+                "total": 784965,
+                "last24hr": 4073
+            },
+            "SA": {
+                "total": 2341391,
+                "last24hr": 14685
+            },
+            "ACT": {
+                "total": 923168,
+                "last24hr": 2946
+            },
+            "NT": {
+                "total": 346585,
+                "last24hr": 3532
+            }
+        },
+        "stateClinics": {
+            "VIC": {
+                "total": 4651602,
+                "last24hr": 10541
+            },
+            "QLD": {
+                "total": 2656907,
+                "last24hr": 13144
+            },
+            "WA": {
+                "total": 1562000,
+                "last24hr": 6403
+            },
+            "NSW": {
+                "total": 4169597,
+                "last24hr": 4305
+            },
+            "NT": {
+                "total": 207615,
+                "last24hr": 1923
+            },
+            "ACT": {
+                "total": 460690,
+                "last24hr": 1699
+            },
+            "SA": {
+                "total": 1104483,
+                "last24hr": 6003
+            },
+            "TAS": {
+                "total": 432824,
+                "last24hr": 2250
+            }
+        },
+        "cwthAgedCare": {
+            "NSW": {
+                "total": 512930,
+                "last24hr": 425
+            },
+            "VIC": {
+                "total": 199178,
+                "last24hr": 337
+            },
+            "QLD": {
+                "total": 157431,
+                "last24hr": 314
+            },
+            "WA": {
+                "total": 73632,
+                "last24hr": 422
+            },
+            "TAS": {
+                "total": 17162,
+                "last24hr": 52
+            },
+            "SA": {
+                "total": 63859,
+                "last24hr": 487
+            },
+            "ACT": {
+                "total": 13352,
+                "last24hr": 150
+            },
+            "NT": {
+                "total": 5990,
+                "last24hr": -1
+            }
+        },
+        "cwthPrimaryCare": {
+            "NSW": {
+                "total": 8006949,
+                "last24hr": 20505
+            },
+            "VIC": {
+                "total": 5438655,
+                "last24hr": 26327
+            },
+            "QLD": {
+                "total": 3716685,
+                "last24hr": 32831
+            },
+            "WA": {
+                "total": 1690257,
+                "last24hr": 13343
+            },
+            "TAS": {
+                "total": 334979,
+                "last24hr": 1771
+            },
+            "SA": {
+                "total": 1173049,
+                "last24hr": 8195
+            },
+            "ACT": {
+                "total": 449126,
+                "last24hr": 1097
+            },
+            "NT": {
+                "total": 132980,
+                "last24hr": 1610
+            }
+        },
+        "cwthAgedCareBreakdown": {
+            "cwthAgedCareDoses": {},
+            "cwthAgedCareFacilities": {}
+        },
+        "doseBreakdown": {
+            "national": [
+                {
+                    "ageLower": 95,
+                    "firstDoseCount": 51158,
+                    "firstDosePct": 96.7,
+                    "secondDoseCount": 45601,
+                    "secondDosePct": 86.2,
+                    "femalePct": 98.4,
+                    "malePct": 91.9
+                },
+                {
+                    "ageLower": 90,
+                    "ageUpper": 94,
+                    "firstDoseCount": 158763,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 144953,
+                    "secondDosePct": 91.5,
+                    "femalePct": 99,
+                    "malePct": 99
+                },
+                {
+                    "ageLower": 85,
+                    "ageUpper": 89,
+                    "firstDoseCount": 316200,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 292503,
+                    "secondDosePct": 92.5,
+                    "femalePct": 98.6,
+                    "malePct": 99
+                },
+                {
+                    "ageLower": 80,
+                    "ageUpper": 84,
+                    "firstDoseCount": 529941,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 496716,
+                    "secondDosePct": 94,
+                    "femalePct": 99,
+                    "malePct": 99
+                },
+                {
+                    "ageLower": 75,
+                    "ageUpper": 79,
+                    "firstDoseCount": 793147,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 748643,
+                    "secondDosePct": 96.8,
+                    "femalePct": 99,
+                    "malePct": 99
+                },
+                {
+                    "ageLower": 70,
+                    "ageUpper": 74,
+                    "firstDoseCount": 1083185,
+                    "firstDosePct": 98,
+                    "secondDoseCount": 1019056,
+                    "secondDosePct": 92.2,
+                    "femalePct": 98.4,
+                    "malePct": 97.5
+                },
+                {
+                    "ageLower": 65,
+                    "ageUpper": 69,
+                    "firstDoseCount": 1210873,
+                    "firstDosePct": 96.2,
+                    "secondDoseCount": 1123543,
+                    "secondDosePct": 89.3,
+                    "femalePct": 95.9,
+                    "malePct": 96.4
+                },
+                {
+                    "ageLower": 60,
+                    "ageUpper": 64,
+                    "firstDoseCount": 1364221,
+                    "firstDosePct": 95,
+                    "secondDoseCount": 1252113,
+                    "secondDosePct": 87.2,
+                    "femalePct": 94.3,
+                    "malePct": 95.5
+                },
+                {
+                    "ageLower": 55,
+                    "ageUpper": 59,
+                    "firstDoseCount": 1418831,
+                    "firstDosePct": 91.2,
+                    "secondDoseCount": 1337057,
+                    "secondDosePct": 85.9,
+                    "femalePct": 90.2,
+                    "malePct": 92.1
+                },
+                {
+                    "ageLower": 50,
+                    "ageUpper": 54,
+                    "firstDoseCount": 1481067,
+                    "firstDosePct": 94.7,
+                    "secondDoseCount": 1384521,
+                    "secondDosePct": 88.5,
+                    "femalePct": 93.8,
+                    "malePct": 95.4
+                },
+                {
+                    "ageLower": 45,
+                    "ageUpper": 49,
+                    "firstDoseCount": 1475829,
+                    "firstDosePct": 88,
+                    "secondDoseCount": 1369268,
+                    "secondDosePct": 81.7,
+                    "femalePct": 87.7,
+                    "malePct": 88.2
+                },
+                {
+                    "ageLower": 40,
+                    "ageUpper": 44,
+                    "firstDoseCount": 1490369,
+                    "firstDosePct": 92,
+                    "secondDoseCount": 1371924,
+                    "secondDosePct": 84.7,
+                    "femalePct": 91.8,
+                    "malePct": 91.9
+                },
+                {
+                    "ageLower": 35,
+                    "ageUpper": 39,
+                    "firstDoseCount": 1638385,
+                    "firstDosePct": 89.3,
+                    "secondDoseCount": 1480664,
+                    "secondDosePct": 80.7,
+                    "femalePct": 89.1,
+                    "malePct": 89
+                },
+                {
+                    "ageLower": 30,
+                    "ageUpper": 34,
+                    "firstDoseCount": 1636896,
+                    "firstDosePct": 85.1,
+                    "secondDoseCount": 1456375,
+                    "secondDosePct": 75.7,
+                    "femalePct": 84.7,
+                    "malePct": 84.7
+                },
+                {
+                    "ageLower": 25,
+                    "ageUpper": 29,
+                    "firstDoseCount": 1561582,
+                    "firstDosePct": 81.9,
+                    "secondDoseCount": 1367272,
+                    "secondDosePct": 71.7,
+                    "femalePct": 81.3,
+                    "malePct": 81.4
+                },
+                {
+                    "ageLower": 20,
+                    "ageUpper": 24,
+                    "firstDoseCount": 1362985,
+                    "firstDosePct": 79.6,
+                    "secondDoseCount": 1184840,
+                    "secondDosePct": 69.2,
+                    "femalePct": 80.9,
+                    "malePct": 77.6
+                },
+                {
+                    "ageLower": 16,
+                    "ageUpper": 19,
+                    "firstDoseCount": 959569,
+                    "firstDosePct": 80.2,
+                    "secondDoseCount": 819791,
+                    "secondDosePct": 68.6,
+                    "femalePct": 82.1,
+                    "malePct": 78.3
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 884386,
+                    "firstDosePct": 71.1,
+                    "secondDoseCount": 688117,
+                    "secondDosePct": 55.3,
+                    "femalePct": 71.9,
+                    "malePct": 70.3
+                }
+            ],
+            "AUS": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 18533001,
+                    "firstDosePct": 89.88,
+                    "secondDoseCount": 16894840,
+                    "secondDosePct": 81.93,
+                    "cohortPopulation": 20619959
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 8407386,
+                    "firstDosePct": 96.09,
+                    "secondDoseCount": 7844706,
+                    "secondDosePct": 89.66,
+                    "cohortPopulation": 8749703
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 2932394,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 2747472,
+                    "secondDosePct": 93.62,
+                    "cohortPopulation": 2934706
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 884386,
+                    "firstDosePct": 71.09,
+                    "secondDoseCount": 688117,
+                    "secondDosePct": 55.32,
+                    "cohortPopulation": 1243990
+                }
+            ],
+            "ACT": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 343697,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 330080,
+                    "secondDosePct": 95.94,
+                    "cohortPopulation": 344037
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 133170,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 128810,
+                    "secondDosePct": 99,
+                    "cohortPopulation": 127802
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 43332,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 41760,
+                    "secondDosePct": 99,
+                    "cohortPopulation": 39946
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 19513,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 18005,
+                    "secondDosePct": 91.43,
+                    "cohortPopulation": 19693
+                }
+            ],
+            "NSW": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 6175817,
+                    "firstDosePct": 94.06,
+                    "secondDoseCount": 5946845,
+                    "secondDosePct": 90.58,
+                    "cohortPopulation": 6565651
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 2755599,
+                    "firstDosePct": 98.14,
+                    "secondDoseCount": 2670009,
+                    "secondDosePct": 95.09,
+                    "cohortPopulation": 2807793
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 971761,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 938402,
+                    "secondDosePct": 97.49,
+                    "cohortPopulation": 962606
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 313675,
+                    "firstDosePct": 80.36,
+                    "secondDoseCount": 279985,
+                    "secondDosePct": 71.73,
+                    "cohortPopulation": 390330
+                }
+            ],
+            "NT": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 157019,
+                    "firstDosePct": 82.39,
+                    "secondDoseCount": 131325,
+                    "secondDosePct": 68.91,
+                    "cohortPopulation": 190571
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 54100,
+                    "firstDosePct": 86.87,
+                    "secondDoseCount": 48504,
+                    "secondDosePct": 77.88,
+                    "cohortPopulation": 62280
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 11139,
+                    "firstDosePct": 90.25,
+                    "secondDoseCount": 10165,
+                    "secondDosePct": 82.35,
+                    "cohortPopulation": 12343
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 8058,
+                    "firstDosePct": 61.7,
+                    "secondDoseCount": 5459,
+                    "secondDosePct": 41.8,
+                    "cohortPopulation": 13060
+                }
+            ],
+            "QLD": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 3312742,
+                    "firstDosePct": 80.55,
+                    "secondDoseCount": 2831227,
+                    "secondDosePct": 68.84,
+                    "cohortPopulation": 4112707
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 1609467,
+                    "firstDosePct": 91.51,
+                    "secondDoseCount": 1452239,
+                    "secondDosePct": 82.57,
+                    "cohortPopulation": 1758855
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 560291,
+                    "firstDosePct": 96.98,
+                    "secondDoseCount": 515270,
+                    "secondDosePct": 89.18,
+                    "cohortPopulation": 577767
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 151168,
+                    "firstDosePct": 55.96,
+                    "secondDoseCount": 97024,
+                    "secondDosePct": 35.92,
+                    "cohortPopulation": 270146
+                }
+            ],
+            "SA": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 1218413,
+                    "firstDosePct": 84.59,
+                    "secondDoseCount": 1042796,
+                    "secondDosePct": 72.4,
+                    "cohortPopulation": 1440400
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 625548,
+                    "firstDosePct": 92.76,
+                    "secondDoseCount": 556972,
+                    "secondDosePct": 82.59,
+                    "cohortPopulation": 674384
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 235572,
+                    "firstDosePct": 97.95,
+                    "secondDoseCount": 211641,
+                    "secondDosePct": 88,
+                    "cohortPopulation": 240514
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 46628,
+                    "firstDosePct": 56.35,
+                    "secondDoseCount": 27031,
+                    "secondDosePct": 32.67,
+                    "cohortPopulation": 82747
+                }
+            ],
+            "TAS": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 400475,
+                    "firstDosePct": 90.98,
+                    "secondDoseCount": 354507,
+                    "secondDosePct": 80.54,
+                    "cohortPopulation": 440172
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 208831,
+                    "firstDosePct": 94.91,
+                    "secondDoseCount": 190032,
+                    "secondDosePct": 86.36,
+                    "cohortPopulation": 220036
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 76844,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 70062,
+                    "secondDosePct": 90.81,
+                    "cohortPopulation": 77155
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 17108,
+                    "firstDosePct": 65.03,
+                    "secondDoseCount": 10825,
+                    "secondDosePct": 41.15,
+                    "cohortPopulation": 26308
+                }
+            ],
+            "VIC": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 5002413,
+                    "firstDosePct": 92.51,
+                    "secondDoseCount": 4657161,
+                    "secondDosePct": 86.12,
+                    "cohortPopulation": 5407574
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 2153224,
+                    "firstDosePct": 97.38,
+                    "secondDoseCount": 2033123,
+                    "secondDosePct": 91.95,
+                    "cohortPopulation": 2211211
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 740605,
+                    "firstDosePct": 99,
+                    "secondDoseCount": 698091,
+                    "secondDosePct": 93.89,
+                    "cohortPopulation": 743519
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 256759,
+                    "firstDosePct": 83.2,
+                    "secondDoseCount": 208452,
+                    "secondDosePct": 67.55,
+                    "cohortPopulation": 308611
+                }
+            ],
+            "WA": [
+                {
+                    "ageLower": 16,
+                    "firstDoseCount": 1727317,
+                    "firstDosePct": 81.67,
+                    "secondDoseCount": 1445333,
+                    "secondDosePct": 68.34,
+                    "cohortPopulation": 2114978
+                },
+                {
+                    "ageLower": 50,
+                    "firstDoseCount": 812966,
+                    "firstDosePct": 91.82,
+                    "secondDoseCount": 719974,
+                    "secondDosePct": 81.32,
+                    "cohortPopulation": 885370
+                },
+                {
+                    "ageLower": 70,
+                    "firstDoseCount": 271701,
+                    "firstDosePct": 96.94,
+                    "secondDoseCount": 244138,
+                    "secondDosePct": 87.1,
+                    "cohortPopulation": 280281
+                },
+                {
+                    "ageLower": 12,
+                    "ageUpper": 15,
+                    "firstDoseCount": 65228,
+                    "firstDosePct": 49.09,
+                    "secondDoseCount": 37354,
+                    "secondDosePct": 28.11,
+                    "cohortPopulation": 132869
+                }
+            ]
+        },
+        "stateOfResidence": {
+            "NSW": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 95,
+                        "secondDosePct": 87.74,
+                        "firstDoseCount": 17342,
+                        "secondDoseCount": 16017,
+                        "cohortPopulation": 18255
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 95,
+                        "secondDosePct": 94.9,
+                        "firstDoseCount": 51434,
+                        "secondDoseCount": 51380,
+                        "cohortPopulation": 54141
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 101364,
+                        "secondDoseCount": 101364,
+                        "cohortPopulation": 106699
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 166241,
+                        "secondDoseCount": 166241,
+                        "cohortPopulation": 174990
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 240579,
+                        "secondDoseCount": 240579,
+                        "cohortPopulation": 253241
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 337516,
+                        "secondDoseCount": 337516,
+                        "cohortPopulation": 355280
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 383832,
+                        "secondDoseCount": 383832,
+                        "cohortPopulation": 404034
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 95,
+                        "secondDosePct": 94.06,
+                        "firstDoseCount": 438263,
+                        "secondDoseCount": 433926,
+                        "cohortPopulation": 461329
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 93.44,
+                        "secondDosePct": 91,
+                        "firstDoseCount": 462636,
+                        "secondDoseCount": 450556,
+                        "cohortPopulation": 495116
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 460473,
+                        "secondDoseCount": 460473,
+                        "cohortPopulation": 484708
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 92.21,
+                        "secondDosePct": 89.53,
+                        "firstDoseCount": 486037,
+                        "secondDoseCount": 471911,
+                        "cohortPopulation": 527098
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 95,
+                        "secondDosePct": 93.78,
+                        "firstDoseCount": 487163,
+                        "secondDoseCount": 480907,
+                        "cohortPopulation": 512803
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 94.12,
+                        "secondDosePct": 90.57,
+                        "firstDoseCount": 548554,
+                        "secondDoseCount": 527864,
+                        "cohortPopulation": 582824
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 90.83,
+                        "secondDosePct": 86.71,
+                        "firstDoseCount": 555507,
+                        "secondDoseCount": 530310,
+                        "cohortPopulation": 611590
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 86.88,
+                        "secondDosePct": 82.35,
+                        "firstDoseCount": 528136,
+                        "secondDoseCount": 500598,
+                        "cohortPopulation": 607891
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 86.84,
+                        "secondDosePct": 82.56,
+                        "firstDoseCount": 469138,
+                        "secondDoseCount": 446016,
+                        "cohortPopulation": 540233
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 89.5,
+                        "secondDosePct": 85.03,
+                        "firstDoseCount": 336000,
+                        "secondDoseCount": 319219,
+                        "cohortPopulation": 375419
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 94.06,
+                        "secondDosePct": 90.58,
+                        "firstDoseCount": 6175817,
+                        "secondDoseCount": 5946845,
+                        "cohortPopulation": 6565651
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 2755599,
+                        "secondDoseCount": 2670009,
+                        "cohortPopulation": 2807793
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 971761,
+                        "secondDoseCount": 938402,
+                        "cohortPopulation": 962606
+                    }
+                ]
+            },
+            "VIC": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 92.19,
+                        "secondDosePct": 82.73,
+                        "firstDoseCount": 13027,
+                        "secondDoseCount": 11691,
+                        "cohortPopulation": 14131
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 95,
+                        "secondDosePct": 90.75,
+                        "firstDoseCount": 40058,
+                        "secondDoseCount": 38266,
+                        "cohortPopulation": 42166
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 92.69,
+                        "firstDoseCount": 78969,
+                        "secondDoseCount": 77049,
+                        "cohortPopulation": 83125
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 93.42,
+                        "firstDoseCount": 129740,
+                        "secondDoseCount": 127582,
+                        "cohortPopulation": 136568
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 183412,
+                        "secondDoseCount": 183412,
+                        "cohortPopulation": 193065
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 95,
+                        "secondDosePct": 93.07,
+                        "firstDoseCount": 260741,
+                        "secondDoseCount": 255444,
+                        "cohortPopulation": 274464
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 95,
+                        "secondDosePct": 91.78,
+                        "firstDoseCount": 298280,
+                        "secondDoseCount": 288170,
+                        "cohortPopulation": 313979
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 95,
+                        "secondDosePct": 90.07,
+                        "firstDoseCount": 342691,
+                        "secondDoseCount": 324907,
+                        "cohortPopulation": 360727
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 94.11,
+                        "secondDosePct": 89.63,
+                        "firstDoseCount": 367243,
+                        "secondDoseCount": 349760,
+                        "cohortPopulation": 390227
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 95,
+                        "secondDosePct": 92.41,
+                        "firstDoseCount": 382621,
+                        "secondDoseCount": 372190,
+                        "cohortPopulation": 402759
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 91.53,
+                        "secondDosePct": 86.25,
+                        "firstDoseCount": 394723,
+                        "secondDoseCount": 371953,
+                        "cohortPopulation": 431250
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 95,
+                        "secondDosePct": 90.69,
+                        "firstDoseCount": 404052,
+                        "secondDoseCount": 385721,
+                        "cohortPopulation": 425318
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 94.28,
+                        "secondDosePct": 87.44,
+                        "firstDoseCount": 467083,
+                        "secondDoseCount": 433196,
+                        "cohortPopulation": 495421
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 88.4,
+                        "secondDosePct": 80.95,
+                        "firstDoseCount": 471767,
+                        "secondDoseCount": 432008,
+                        "cohortPopulation": 533673
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 84.03,
+                        "secondDosePct": 76.22,
+                        "firstDoseCount": 449723,
+                        "secondDoseCount": 407924,
+                        "cohortPopulation": 535193
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 81.73,
+                        "secondDosePct": 74.27,
+                        "firstDoseCount": 385398,
+                        "secondDoseCount": 350220,
+                        "cohortPopulation": 471550
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 88.71,
+                        "secondDosePct": 79.97,
+                        "firstDoseCount": 269641,
+                        "secondDoseCount": 243075,
+                        "cohortPopulation": 303958
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 92.51,
+                        "secondDosePct": 86.12,
+                        "firstDoseCount": 5002413,
+                        "secondDoseCount": 4657161,
+                        "cohortPopulation": 5407574
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 95,
+                        "secondDosePct": 91.95,
+                        "firstDoseCount": 2153224,
+                        "secondDoseCount": 2033123,
+                        "cohortPopulation": 2211211
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 93.89,
+                        "firstDoseCount": 740605,
+                        "secondDoseCount": 698091,
+                        "cohortPopulation": 743519
+                    }
+                ]
+            },
+            "QLD": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 87.97,
+                        "secondDosePct": 76.85,
+                        "firstDoseCount": 7969,
+                        "secondDoseCount": 6962,
+                        "cohortPopulation": 9059
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 94.12,
+                        "secondDosePct": 83.98,
+                        "firstDoseCount": 26480,
+                        "secondDoseCount": 23627,
+                        "cohortPopulation": 28134
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 87.61,
+                        "firstDoseCount": 54219,
+                        "secondDoseCount": 50002,
+                        "cohortPopulation": 57073
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 90.56,
+                        "firstDoseCount": 95657,
+                        "secondDoseCount": 91187,
+                        "cohortPopulation": 100692
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 92.89,
+                        "firstDoseCount": 148937,
+                        "secondDoseCount": 145629,
+                        "cohortPopulation": 156776
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 94.9,
+                        "secondDosePct": 87.54,
+                        "firstDoseCount": 214505,
+                        "secondDoseCount": 197869,
+                        "cohortPopulation": 226033
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 92.23,
+                        "secondDosePct": 82.9,
+                        "firstDoseCount": 234369,
+                        "secondDoseCount": 210661,
+                        "cohortPopulation": 254114
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 90.89,
+                        "secondDosePct": 79.85,
+                        "firstDoseCount": 262051,
+                        "secondDoseCount": 230221,
+                        "cohortPopulation": 288317
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 85.21,
+                        "secondDosePct": 77.01,
+                        "firstDoseCount": 270532,
+                        "secondDoseCount": 244498,
+                        "cohortPopulation": 317489
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 87.87,
+                        "secondDosePct": 78.33,
+                        "firstDoseCount": 282210,
+                        "secondDoseCount": 251571,
+                        "cohortPopulation": 321168
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 79.76,
+                        "secondDosePct": 69.82,
+                        "firstDoseCount": 277567,
+                        "secondDoseCount": 242976,
+                        "cohortPopulation": 348003
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 80.87,
+                        "secondDosePct": 69.5,
+                        "firstDoseCount": 262996,
+                        "secondDoseCount": 226020,
+                        "cohortPopulation": 325208
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 76.79,
+                        "secondDosePct": 63.29,
+                        "firstDoseCount": 272005,
+                        "secondDoseCount": 224185,
+                        "cohortPopulation": 354219
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 71.22,
+                        "secondDosePct": 57.23,
+                        "firstDoseCount": 258202,
+                        "secondDoseCount": 207482,
+                        "cohortPopulation": 362541
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 66.32,
+                        "secondDosePct": 51.84,
+                        "firstDoseCount": 245694,
+                        "secondDoseCount": 192051,
+                        "cohortPopulation": 370468
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 65.79,
+                        "secondDosePct": 49.78,
+                        "firstDoseCount": 222912,
+                        "secondDoseCount": 168667,
+                        "cohortPopulation": 338824
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 64.37,
+                        "secondDosePct": 46.19,
+                        "firstDoseCount": 163879,
+                        "secondDoseCount": 117595,
+                        "cohortPopulation": 254589
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 80.55,
+                        "secondDosePct": 68.84,
+                        "firstDoseCount": 3312742,
+                        "secondDoseCount": 2831227,
+                        "cohortPopulation": 4112707
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 91.51,
+                        "secondDosePct": 82.57,
+                        "firstDoseCount": 1609467,
+                        "secondDoseCount": 1452239,
+                        "cohortPopulation": 1758855
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 89.18,
+                        "firstDoseCount": 560291,
+                        "secondDoseCount": 515270,
+                        "cohortPopulation": 577767
+                    }
+                ]
+            },
+            "ACT": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 605,
+                        "secondDoseCount": 605,
+                        "cohortPopulation": 637
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 1816,
+                        "secondDoseCount": 1816,
+                        "cohortPopulation": 1912
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 3831,
+                        "secondDoseCount": 3831,
+                        "cohortPopulation": 4033
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 6646,
+                        "secondDoseCount": 6646,
+                        "cohortPopulation": 6996
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 9902,
+                        "secondDoseCount": 9902,
+                        "cohortPopulation": 10423
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 15148,
+                        "secondDoseCount": 15148,
+                        "cohortPopulation": 15945
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 16909,
+                        "secondDoseCount": 16909,
+                        "cohortPopulation": 17799
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 19742,
+                        "secondDoseCount": 19742,
+                        "cohortPopulation": 20781
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 22501,
+                        "secondDoseCount": 22501,
+                        "cohortPopulation": 23685
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 24311,
+                        "secondDoseCount": 24311,
+                        "cohortPopulation": 25591
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 27648,
+                        "secondDoseCount": 27648,
+                        "cohortPopulation": 29103
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 28647,
+                        "secondDoseCount": 28647,
+                        "cohortPopulation": 30155
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 33586,
+                        "secondDoseCount": 33586,
+                        "cohortPopulation": 35354
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 95,
+                        "secondDosePct": 94.97,
+                        "firstDoseCount": 33947,
+                        "secondDoseCount": 33937,
+                        "cohortPopulation": 35734
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 95,
+                        "secondDosePct": 94.02,
+                        "firstDoseCount": 32292,
+                        "secondDoseCount": 31959,
+                        "cohortPopulation": 33992
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 81.95,
+                        "secondDosePct": 76.48,
+                        "firstDoseCount": 26737,
+                        "secondDoseCount": 24952,
+                        "cohortPopulation": 32626
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 94.36,
+                        "secondDosePct": 89.68,
+                        "firstDoseCount": 18184,
+                        "secondDoseCount": 17282,
+                        "cohortPopulation": 19271
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 343697,
+                        "secondDoseCount": 330080,
+                        "cohortPopulation": 344037
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 133170,
+                        "secondDoseCount": 128810,
+                        "cohortPopulation": 127802
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 95,
+                        "firstDoseCount": 43332,
+                        "secondDoseCount": 41760,
+                        "cohortPopulation": 39946
+                    }
+                ]
+            },
+            "SA": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 93.65,
+                        "secondDosePct": 80.37,
+                        "firstDoseCount": 4660,
+                        "secondDoseCount": 3999,
+                        "cohortPopulation": 4976
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 95,
+                        "secondDosePct": 83.58,
+                        "firstDoseCount": 13379,
+                        "secondDoseCount": 11771,
+                        "cohortPopulation": 14083
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 84.56,
+                        "firstDoseCount": 25659,
+                        "secondDoseCount": 22839,
+                        "cohortPopulation": 27009
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 87.71,
+                        "firstDoseCount": 41204,
+                        "secondDoseCount": 38042,
+                        "cohortPopulation": 43373
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 92.58,
+                        "firstDoseCount": 59281,
+                        "secondDoseCount": 57771,
+                        "cohortPopulation": 62401
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 95,
+                        "secondDosePct": 87.08,
+                        "firstDoseCount": 84238,
+                        "secondDoseCount": 77216,
+                        "cohortPopulation": 88672
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 94.02,
+                        "secondDosePct": 82.26,
+                        "firstDoseCount": 92505,
+                        "secondDoseCount": 80935,
+                        "cohortPopulation": 98389
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 91.66,
+                        "secondDosePct": 78.14,
+                        "firstDoseCount": 99999,
+                        "secondDoseCount": 85249,
+                        "cohortPopulation": 109098
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 86.54,
+                        "secondDosePct": 79.09,
+                        "firstDoseCount": 99145,
+                        "secondDoseCount": 90610,
+                        "cohortPopulation": 114566
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 87.92,
+                        "secondDosePct": 79.18,
+                        "firstDoseCount": 98310,
+                        "secondDoseCount": 88537,
+                        "cohortPopulation": 111817
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 81.08,
+                        "secondDosePct": 72.22,
+                        "firstDoseCount": 90986,
+                        "secondDoseCount": 81044,
+                        "cohortPopulation": 112218
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 84.67,
+                        "secondDosePct": 74.38,
+                        "firstDoseCount": 88879,
+                        "secondDoseCount": 78077,
+                        "cohortPopulation": 104971
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 81.74,
+                        "secondDosePct": 67.83,
+                        "firstDoseCount": 94841,
+                        "secondDoseCount": 78702,
+                        "cohortPopulation": 116028
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 77.07,
+                        "secondDosePct": 61.82,
+                        "firstDoseCount": 91452,
+                        "secondDoseCount": 73356,
+                        "cohortPopulation": 118661
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 76.64,
+                        "secondDosePct": 60.17,
+                        "firstDoseCount": 90240,
+                        "secondDoseCount": 70847,
+                        "cohortPopulation": 117745
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 71.25,
+                        "secondDosePct": 55.12,
+                        "firstDoseCount": 81528,
+                        "secondDoseCount": 63071,
+                        "cohortPopulation": 114425
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 67.04,
+                        "secondDosePct": 49.69,
+                        "firstDoseCount": 54951,
+                        "secondDoseCount": 40730,
+                        "cohortPopulation": 81968
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 84.59,
+                        "secondDosePct": 72.4,
+                        "firstDoseCount": 1218413,
+                        "secondDoseCount": 1042796,
+                        "cohortPopulation": 1440400
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 92.76,
+                        "secondDosePct": 82.59,
+                        "firstDoseCount": 625548,
+                        "secondDoseCount": 556972,
+                        "cohortPopulation": 674384
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 88,
+                        "firstDoseCount": 235572,
+                        "secondDoseCount": 211641,
+                        "cohortPopulation": 240514
+                    }
+                ]
+            },
+            "NT": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 72.16,
+                        "secondDosePct": 60.82,
+                        "firstDoseCount": 70,
+                        "secondDoseCount": 59,
+                        "cohortPopulation": 97
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 84.52,
+                        "secondDosePct": 74.3,
+                        "firstDoseCount": 273,
+                        "secondDoseCount": 240,
+                        "cohortPopulation": 323
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 88.05,
+                        "secondDosePct": 78.88,
+                        "firstDoseCount": 663,
+                        "secondDoseCount": 594,
+                        "cohortPopulation": 753
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 88.13,
+                        "firstDoseCount": 1673,
+                        "secondDoseCount": 1552,
+                        "cohortPopulation": 1761
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 88.05,
+                        "secondDosePct": 80.68,
+                        "firstDoseCount": 3035,
+                        "secondDoseCount": 2781,
+                        "cohortPopulation": 3447
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 90.46,
+                        "secondDosePct": 82.84,
+                        "firstDoseCount": 5393,
+                        "secondDoseCount": 4939,
+                        "cohortPopulation": 5962
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 86.38,
+                        "secondDosePct": 78.41,
+                        "firstDoseCount": 7473,
+                        "secondDoseCount": 6783,
+                        "cohortPopulation": 8651
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 87.04,
+                        "secondDosePct": 77.87,
+                        "firstDoseCount": 10056,
+                        "secondDoseCount": 8996,
+                        "cohortPopulation": 11553
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 83.79,
+                        "secondDosePct": 75.58,
+                        "firstDoseCount": 11923,
+                        "secondDoseCount": 10755,
+                        "cohortPopulation": 14230
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 87.13,
+                        "secondDosePct": 76.15,
+                        "firstDoseCount": 13508,
+                        "secondDoseCount": 11806,
+                        "cohortPopulation": 15503
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 82.61,
+                        "secondDosePct": 71.38,
+                        "firstDoseCount": 13593,
+                        "secondDoseCount": 11746,
+                        "cohortPopulation": 16455
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 84.93,
+                        "secondDosePct": 71.4,
+                        "firstDoseCount": 14650,
+                        "secondDoseCount": 12316,
+                        "cohortPopulation": 17249
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 81.97,
+                        "secondDosePct": 68.36,
+                        "firstDoseCount": 16807,
+                        "secondDoseCount": 14017,
+                        "cohortPopulation": 20504
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 77.84,
+                        "secondDosePct": 62.52,
+                        "firstDoseCount": 18569,
+                        "secondDoseCount": 14914,
+                        "cohortPopulation": 23855
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 78.6,
+                        "secondDosePct": 61.57,
+                        "firstDoseCount": 17316,
+                        "secondDoseCount": 13564,
+                        "cohortPopulation": 22031
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 79.66,
+                        "secondDosePct": 59.41,
+                        "firstDoseCount": 12820,
+                        "secondDoseCount": 9561,
+                        "cohortPopulation": 16094
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 75.71,
+                        "secondDosePct": 55.4,
+                        "firstDoseCount": 9163,
+                        "secondDoseCount": 6705,
+                        "cohortPopulation": 12103
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 82.39,
+                        "secondDosePct": 68.91,
+                        "firstDoseCount": 157019,
+                        "secondDoseCount": 131325,
+                        "cohortPopulation": 190571
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 86.87,
+                        "secondDosePct": 77.88,
+                        "firstDoseCount": 54100,
+                        "secondDoseCount": 48504,
+                        "cohortPopulation": 62280
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 90.25,
+                        "secondDosePct": 82.35,
+                        "firstDoseCount": 11139,
+                        "secondDoseCount": 10165,
+                        "cohortPopulation": 12343
+                    }
+                ]
+            },
+            "WA": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 89.1,
+                        "secondDosePct": 78.76,
+                        "firstDoseCount": 4086,
+                        "secondDoseCount": 3612,
+                        "cohortPopulation": 4586
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 94.94,
+                        "secondDosePct": 84.06,
+                        "firstDoseCount": 13387,
+                        "secondDoseCount": 11852,
+                        "cohortPopulation": 14100
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 86.28,
+                        "firstDoseCount": 28086,
+                        "secondDoseCount": 25508,
+                        "cohortPopulation": 29564
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 88.29,
+                        "firstDoseCount": 47801,
+                        "secondDoseCount": 44425,
+                        "cohortPopulation": 50317
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 89.5,
+                        "firstDoseCount": 69811,
+                        "secondDoseCount": 65769,
+                        "cohortPopulation": 73485
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 95,
+                        "secondDosePct": 85.9,
+                        "firstDoseCount": 102818,
+                        "secondDoseCount": 92969,
+                        "cohortPopulation": 108229
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 92.58,
+                        "secondDosePct": 79.97,
+                        "firstDoseCount": 117807,
+                        "secondDoseCount": 101761,
+                        "cohortPopulation": 127249
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 90.15,
+                        "secondDosePct": 75.6,
+                        "firstDoseCount": 132749,
+                        "secondDoseCount": 111323,
+                        "cohortPopulation": 147253
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 87.29,
+                        "secondDosePct": 79.64,
+                        "firstDoseCount": 141669,
+                        "secondDoseCount": 129253,
+                        "cohortPopulation": 162297
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 88.57,
+                        "secondDosePct": 79.32,
+                        "firstDoseCount": 149054,
+                        "secondDoseCount": 133488,
+                        "cohortPopulation": 168290
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 81.36,
+                        "secondDosePct": 71.31,
+                        "firstDoseCount": 144852,
+                        "secondDoseCount": 126959,
+                        "cohortPopulation": 178038
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 83.29,
+                        "secondDosePct": 71.36,
+                        "firstDoseCount": 145042,
+                        "secondDoseCount": 124267,
+                        "cohortPopulation": 174141
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 78.88,
+                        "secondDosePct": 65.03,
+                        "firstDoseCount": 156395,
+                        "secondDoseCount": 128934,
+                        "cohortPopulation": 198269
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 71.51,
+                        "secondDosePct": 56.33,
+                        "firstDoseCount": 145891,
+                        "secondDoseCount": 114922,
+                        "cohortPopulation": 204015
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 69.55,
+                        "secondDosePct": 51.39,
+                        "firstDoseCount": 128572,
+                        "secondDoseCount": 95001,
+                        "cohortPopulation": 184863
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 68.29,
+                        "secondDosePct": 49.16,
+                        "firstDoseCount": 113846,
+                        "secondDoseCount": 81954,
+                        "cohortPopulation": 166709
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 64.54,
+                        "secondDosePct": 43.15,
+                        "firstDoseCount": 79754,
+                        "secondDoseCount": 53322,
+                        "cohortPopulation": 123573
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 81.67,
+                        "secondDosePct": 68.34,
+                        "firstDoseCount": 1727317,
+                        "secondDoseCount": 1445333,
+                        "cohortPopulation": 2114978
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 91.82,
+                        "secondDosePct": 81.32,
+                        "firstDoseCount": 812966,
+                        "secondDoseCount": 719974,
+                        "cohortPopulation": 885370
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 87.1,
+                        "firstDoseCount": 271701,
+                        "secondDoseCount": 244138,
+                        "cohortPopulation": 280281
+                    }
+                ]
+            },
+            "TAS": {
+                "ageBucketsEstimatedPopulation": [
+                    {
+                        "ageLower": 95,
+                        "firstDosePct": 87.68,
+                        "secondDosePct": 77.17,
+                        "firstDoseCount": 1018,
+                        "secondDoseCount": 896,
+                        "cohortPopulation": 1161
+                    },
+                    {
+                        "ageLower": 90,
+                        "ageUpper": 94,
+                        "firstDosePct": 95,
+                        "secondDosePct": 92.54,
+                        "firstDoseCount": 3375,
+                        "secondDoseCount": 3288,
+                        "cohortPopulation": 3553
+                    },
+                    {
+                        "ageLower": 85,
+                        "ageUpper": 89,
+                        "firstDosePct": 95,
+                        "secondDosePct": 88.36,
+                        "firstDoseCount": 7506,
+                        "secondDoseCount": 6981,
+                        "cohortPopulation": 7901
+                    },
+                    {
+                        "ageLower": 80,
+                        "ageUpper": 84,
+                        "firstDosePct": 95,
+                        "secondDosePct": 92.86,
+                        "firstDoseCount": 12965,
+                        "secondDoseCount": 12673,
+                        "cohortPopulation": 13647
+                    },
+                    {
+                        "ageLower": 75,
+                        "ageUpper": 79,
+                        "firstDosePct": 95,
+                        "secondDosePct": 93.13,
+                        "firstDoseCount": 19700,
+                        "secondDoseCount": 19312,
+                        "cohortPopulation": 20737
+                    },
+                    {
+                        "ageLower": 70,
+                        "ageUpper": 74,
+                        "firstDosePct": 95,
+                        "secondDosePct": 89.24,
+                        "firstDoseCount": 28648,
+                        "secondDoseCount": 26911,
+                        "cohortPopulation": 30156
+                    },
+                    {
+                        "ageLower": 65,
+                        "ageUpper": 69,
+                        "firstDosePct": 95,
+                        "secondDosePct": 85.18,
+                        "firstDoseCount": 31962,
+                        "secondDoseCount": 28658,
+                        "cohortPopulation": 33644
+                    },
+                    {
+                        "ageLower": 60,
+                        "ageUpper": 64,
+                        "firstDosePct": 94.32,
+                        "secondDosePct": 82.8,
+                        "firstDoseCount": 35110,
+                        "secondDoseCount": 30821,
+                        "cohortPopulation": 37224
+                    },
+                    {
+                        "ageLower": 55,
+                        "ageUpper": 59,
+                        "firstDosePct": 87.63,
+                        "secondDosePct": 82.34,
+                        "firstDoseCount": 33001,
+                        "secondDoseCount": 31008,
+                        "cohortPopulation": 37659
+                    },
+                    {
+                        "ageLower": 50,
+                        "ageUpper": 54,
+                        "firstDosePct": 92.5,
+                        "secondDosePct": 85.81,
+                        "firstDoseCount": 31777,
+                        "secondDoseCount": 29479,
+                        "cohortPopulation": 34354
+                    },
+                    {
+                        "ageLower": 45,
+                        "ageUpper": 49,
+                        "firstDosePct": 82.8,
+                        "secondDosePct": 75.68,
+                        "firstDoseCount": 28313,
+                        "secondDoseCount": 25878,
+                        "cohortPopulation": 34194
+                    },
+                    {
+                        "ageLower": 40,
+                        "ageUpper": 44,
+                        "firstDosePct": 88.92,
+                        "secondDosePct": 79.66,
+                        "firstDoseCount": 26732,
+                        "secondDoseCount": 23948,
+                        "cohortPopulation": 30063
+                    },
+                    {
+                        "ageLower": 35,
+                        "ageUpper": 39,
+                        "firstDosePct": 90.1,
+                        "secondDosePct": 78.78,
+                        "firstDoseCount": 28908,
+                        "secondDoseCount": 25276,
+                        "cohortPopulation": 32084
+                    },
+                    {
+                        "ageLower": 30,
+                        "ageUpper": 34,
+                        "firstDosePct": 94.94,
+                        "secondDosePct": 81.34,
+                        "firstDoseCount": 31640,
+                        "secondDoseCount": 27107,
+                        "cohortPopulation": 33326
+                    },
+                    {
+                        "ageLower": 25,
+                        "ageUpper": 29,
+                        "firstDosePct": 94.27,
+                        "secondDosePct": 78.41,
+                        "firstDoseCount": 32160,
+                        "secondDoseCount": 26750,
+                        "cohortPopulation": 34115
+                    },
+                    {
+                        "ageLower": 20,
+                        "ageUpper": 24,
+                        "firstDosePct": 79.89,
+                        "secondDosePct": 64.67,
+                        "firstDoseCount": 25278,
+                        "secondDoseCount": 20462,
+                        "cohortPopulation": 31641
+                    },
+                    {
+                        "ageLower": 16,
+                        "ageUpper": 19,
+                        "firstDosePct": 75.32,
+                        "secondDosePct": 60.92,
+                        "firstDoseCount": 18614,
+                        "secondDoseCount": 15055,
+                        "cohortPopulation": 24713
+                    }
+                ],
+                "ageBucketsActualPopulation": [
+                    {
+                        "ageLower": 16,
+                        "firstDosePct": 90.98,
+                        "secondDosePct": 80.54,
+                        "firstDoseCount": 400475,
+                        "secondDoseCount": 354507,
+                        "cohortPopulation": 440172
+                    },
+                    {
+                        "ageLower": 50,
+                        "firstDosePct": 94.91,
+                        "secondDosePct": 86.36,
+                        "firstDoseCount": 208831,
+                        "secondDoseCount": 190032,
+                        "cohortPopulation": 220036
+                    },
+                    {
+                        "ageLower": 70,
+                        "firstDosePct": 95,
+                        "secondDosePct": 90.81,
+                        "firstDoseCount": 76844,
+                        "secondDoseCount": 70062,
+                        "cohortPopulation": 77155
+                    }
+                ]
+            }
+        },
+        "firstNations": {
+            "AUS": {
+                "firstDoseCount": 352289,
+                "secondDoseCount": 670
+            }
+        }
+    },
+    "validation": []
+}
