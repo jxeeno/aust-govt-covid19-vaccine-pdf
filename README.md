@@ -81,6 +81,14 @@ Department of Health is now publishing dose data for 12-15 year olds.  This data
 **From 15 September 2021 onwards**
 
 All totals are now include 12-15 age groups.
+
+**From 7 November 2021 onwards**
+
+Department of Health is now publishing the number of individuals aged 16+ with 3 doses (or more) of COVID-19 vaccine recorded in AIR.  This data is available in `air.csv`/`air.json` as:
+
+* `AIR_AUS_16_PLUS_THIRD_DOSE_COUNT`
+* `AIR_AUS_16_PLUS_THIRD_DOSE_PCT`
+
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
