@@ -11,6 +11,7 @@ const toNumber = (str, sign) => {
 };
 
 const isNumber = str => !!str.trim().match(/^[0-9,]+$/);
+const isNumberDecimal = str => !!str.trim().match(/^[0-9,]+(\.[0-9]+)?%?$/);
 
 class AusDeptHealthVaccinePdf {
     constructor(variant){
@@ -97,7 +98,7 @@ class AusDeptHealthVaccinePdf {
         const primaryCarePage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Commonwealth\s*primary\s*care/)))
 
         // console.log({totalDosesPage})
-        const firstNations = this.getStateData(pageForFirstNations, 'firstNations');
+        const firstNations = this.getFirstNationsStateData(pageForFirstNations);
         const totalDoses = this.getStateData(totalDosesPage);
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
@@ -107,8 +108,9 @@ class AusDeptHealthVaccinePdf {
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
         const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3) || this.getDataAsAt(4) || this.getDataAsAt(5) || this.getDataAsAt(6) || this.getDataAsAt(7);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
-        console.log({pageForDoses})
+        // console.log({pageForDoses})
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
+        const thirdDoses = this.getThirdDose(totalDosesPage)
         const stateOfResidence = {};
 
         // handle missing primary care
@@ -216,12 +218,36 @@ class AusDeptHealthVaccinePdf {
             distribution,
             doseBreakdown,
             stateOfResidence,
-            firstNations
+            firstNations,
+            thirdDoses
         };
         
         // console.log(JSON.stringify(output, null, 4))
 
         return output;
+    }
+
+    getThirdDose(pageIndex){
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
+        const thirdDoseLabel = content.find(v => v.str.match(/than\s*two\s*doses/))
+        if(!thirdDoseLabel){
+            return;
+        }
+
+        const thirdDoseColumn = content.filter(v => v.cx >= thirdDoseLabel.x && v.cx <= (thirdDoseLabel.x + thirdDoseLabel.width) && v.cy < thirdDoseLabel.y);
+        thirdDoseColumn.sort((a, b) => b.cy - a.cy);
+
+        const numbers = thirdDoseColumn.filter(v => isNumber(v.str));
+
+        if(numbers.length > 0){
+            return {
+                AUS: {
+                    thirdDoseCount: toNumber(numbers[0].str),
+                    thirdDosePct: Math.round(toNumber(numbers[0].str) / 20619959 * 100 * 100)/100
+                }
+            }
+        }
+        // console.log(thirdDoseColumn);
     }
 
     getSlideSummary(pageIndex = 8, variant = 1){
@@ -557,6 +583,58 @@ class AusDeptHealthVaccinePdf {
         }
     }
 
+    getFirstNationsStateData(pageIndex = 1) {
+        if(!this.data.pages[pageIndex]){return}
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
+        
+        let stateData = this.getFirstNationsLeftPanelData(pageIndex);
+
+        const states = {
+            NSW: 'New South Wales',
+            VIC: 'Victoria',
+            QLD: 'Queensland',
+            WA: 'Western Australia',
+            TAS: 'Tasmania',
+            SA: 'South Australia',
+            ACT: 'Australian Capital Territory',
+            NT: 'Northern Territory'
+        };
+        const stateLabelLocations = {};
+        for(const key in states){
+            stateLabelLocations[key] = content.find(t => t.str.trim() === states[key]);
+        }
+
+        const doses = {firstDoseCount: 'Individuals Dose 1', firstDosePct: 'Individuals Dose 1 %', secondDoseCount: 'Individuals Dose 2', secondDosePct: 'Individuals Dose 2 %'};
+        const doseLabelLocations = {};
+        for(const key in doses){
+            doseLabelLocations[key] = content.find(t => t.str.trim() === doses[key]);
+        }
+
+        for(const stateKey in stateLabelLocations){
+            const stateLocation = stateLabelLocations[stateKey]
+            for(const doseKey in doseLabelLocations){
+                const bbox = {
+                    xmin: doseLabelLocations[doseKey].x,
+                    xmax: doseLabelLocations[doseKey].x + doseLabelLocations[doseKey].width,
+                    ymin: stateLocation.y,
+                    ymax: stateLocation.y+stateLocation.height
+                }
+
+                const candidate = content.find(v => v.cx >= bbox.xmin && v.cx <= bbox.xmax && v.cy >= bbox.ymin && v.cy <= bbox.ymax);
+                // console.log({candidates})
+                if(candidate){
+                    if(!stateData[stateKey]){
+                        stateData[stateKey] = {}
+                    }
+                    stateData[stateKey][doseKey] = toNumber(candidate.str.replace('%', ''));
+                }
+            }
+        }
+
+        return stateData
+
+    }
+
     getStateData(pageIndex = 1, variant = 'original'){
         if(!this.data.pages[pageIndex]){return}
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
@@ -767,7 +845,9 @@ class AusDeptHealthVaccinePdf {
         const data = {
             AUS: {
                 firstDoseCount: undefined,
-                secondDoseCount: undefined
+                firstDosePct: undefined,
+                secondDoseCount: undefined,
+                secondDosePct: undefined,
             }
         }
 
@@ -779,7 +859,7 @@ class AusDeptHealthVaccinePdf {
         let minX = centrepoint.cx - centrepoint.width;
         let maxX = centrepoint.cx + centrepoint.width;
 
-        const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX), 0.1));
+        const values = this.cleanCells(this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX), 0.1), 2);
         values.sort((a, b) => a.y - b.y);
 
         // console.log(values.map(v => v.str))
@@ -791,8 +871,12 @@ class AusDeptHealthVaccinePdf {
 
             if(v.str.match(/(people\s*over\s*the\s*age\s*of\s*16)/) && vprev && isNumber(vprev.str) && data.AUS.firstDoseCount === undefined){
                 data.AUS.firstDoseCount = toNumber(vprev.str)
+            }else if(v.str.match(/(people\s*over\s*the\s*age\s*of\s*16)/) && vprev && isNumberDecimal(vprev.str) && data.AUS.firstDosePct === undefined){
+                data.AUS.firstDosePct = toNumber(vprev.str.replace('%', ''))
             }else if(v.str.match(/(people\s*over\s*the\s*age\s*of\s*16)/) && vprev && isNumber(vprev.str) && data.AUS.secondDoseCount === undefined){
                 data.AUS.secondDoseCount = toNumber(vprev.str)
+            }else if(v.str.match(/(people\s*over\s*the\s*age\s*of\s*16)/) && vprev && isNumberDecimal(vprev.str) && data.AUS.secondDosePct === undefined){
+                data.AUS.secondDosePct = toNumber(vprev.str.replace('%', ''))
             }
         }
 

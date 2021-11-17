@@ -651,6 +651,7 @@ const getPublications = async () => {
             }
         }catch(e){
             console.error('Failed to handle', pdfUrl)
+            console.error(e)
         }
     }
 

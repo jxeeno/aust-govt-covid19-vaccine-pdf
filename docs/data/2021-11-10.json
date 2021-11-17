@@ -1,5 +1,6 @@
 {
     "success": true,
+    "url": "https://www.health.gov.au/sites/default/files/documents/2021/11/covid-19-vaccine-rollout-update-11-november-2021.pdf",
     "pdfData": {
         "dataAsAt": "2021-11-10",
         "totals": {
@@ -2119,7 +2120,63 @@
         "firstNations": {
             "AUS": {
                 "firstDoseCount": 352289,
-                "secondDoseCount": 670
+                "firstDosePct": 67,
+                "secondDoseCount": 291171,
+                "secondDosePct": 55.3
+            },
+            "NSW": {
+                "firstDoseCount": 133749,
+                "firstDosePct": 83.6,
+                "secondDoseCount": 123270,
+                "secondDosePct": 76.9
+            },
+            "VIC": {
+                "firstDoseCount": 34253,
+                "firstDosePct": 84.9,
+                "secondDoseCount": 29810,
+                "secondDosePct": 73.6
+            },
+            "QLD": {
+                "firstDoseCount": 79840,
+                "firstDosePct": 55.1,
+                "secondDoseCount": 61183,
+                "secondDosePct": 42.1
+            },
+            "WA": {
+                "firstDoseCount": 29822,
+                "firstDosePct": 46.4,
+                "secondDoseCount": 20044,
+                "secondDosePct": 31
+            },
+            "TAS": {
+                "firstDoseCount": 12821,
+                "firstDosePct": 74.7,
+                "secondDoseCount": 10858,
+                "secondDosePct": 62.8
+            },
+            "SA": {
+                "firstDoseCount": 14809,
+                "firstDosePct": 57.5,
+                "secondDoseCount": 11272,
+                "secondDosePct": 43.6
+            },
+            "ACT": {
+                "firstDoseCount": 4807,
+                "firstDosePct": 88.6,
+                "secondDoseCount": 4498,
+                "secondDosePct": 82.7
+            },
+            "NT": {
+                "firstDoseCount": 30991,
+                "firstDosePct": 67.5,
+                "secondDoseCount": 22567,
+                "secondDosePct": 48.9
+            }
+        },
+        "thirdDoses": {
+            "AUS": {
+                "thirdDoseCount": 221690,
+                "thirdDosePct": 1.08
             }
         }
     },
