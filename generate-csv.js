@@ -121,6 +121,25 @@ const COLUMN_TO_PATH_MAPPING = {
     FIRST_NATIONS_NSW_SECOND_DOSE_TOTAL: 'firstNations.NSW.secondDoseCount',
     FIRST_NATIONS_AUS_FIRST_DOSE_TOTAL: 'firstNations.AUS.firstDoseCount',
     FIRST_NATIONS_AUS_SECOND_DOSE_TOTAL: 'firstNations.AUS.secondDoseCount',
+
+    FIRST_NATIONS_VIC_FIRST_PCT_TOTAL: 'firstNations.VIC.firstDosePct',
+    FIRST_NATIONS_VIC_SECOND_PCT_TOTAL: 'firstNations.VIC.secondDosePct',
+    FIRST_NATIONS_QLD_FIRST_PCT_TOTAL: 'firstNations.QLD.firstDosePct',
+    FIRST_NATIONS_QLD_SECOND_PCT_TOTAL: 'firstNations.QLD.secondDosePct',
+    FIRST_NATIONS_WA_FIRST_PCT_TOTAL: 'firstNations.WA.firstDosePct',
+    FIRST_NATIONS_WA_SECOND_PCT_TOTAL: 'firstNations.WA.secondDosePct',
+    FIRST_NATIONS_TAS_FIRST_PCT_TOTAL: 'firstNations.TAS.firstDosePct',
+    FIRST_NATIONS_TAS_SECOND_PCT_TOTAL: 'firstNations.TAS.secondDosePct',
+    FIRST_NATIONS_SA_FIRST_PCT_TOTAL: 'firstNations.SA.firstDosePct',
+    FIRST_NATIONS_SA_SECOND_PCT_TOTAL: 'firstNations.SA.secondDosePct',
+    FIRST_NATIONS_ACT_FIRST_PCT_TOTAL: 'firstNations.ACT.firstDosePct',
+    FIRST_NATIONS_ACT_SECOND_PCT_TOTAL: 'firstNations.ACT.secondDosePct',
+    FIRST_NATIONS_NT_FIRST_PCT_TOTAL: 'firstNations.NT.firstDosePct',
+    FIRST_NATIONS_NT_SECOND_PCT_TOTAL: 'firstNations.NT.secondDosePct',
+    FIRST_NATIONS_NSW_FIRST_PCT_TOTAL: 'firstNations.NSW.firstDosePct',
+    FIRST_NATIONS_NSW_SECOND_PCT_TOTAL: 'firstNations.NSW.secondDosePct',
+    FIRST_NATIONS_AUS_FIRST_PCT_TOTAL: 'firstNations.AUS.firstDosePct',
+    FIRST_NATIONS_AUS_SECOND_PCT_TOTAL: 'firstNations.AUS.secondDosePct',
 }
 
 const DISTRIBUTION_COLUMN_TO_PATH_MAPPING = {
