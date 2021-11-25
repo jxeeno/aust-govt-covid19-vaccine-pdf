@@ -54,7 +54,7 @@ All data up to this point is based on **date of reporting**.  Department of Heal
 
 **From 16 August 2021 onwards**
 
-Vaccination rates form Aboriginal and Torres Strait Islander peoples (First Nations people) are now included in the dataset.  This data was uploaded on 8 September, dating back to 16 August 2021.
+Vaccination rates for Aboriginal and Torres Strait Islander peoples (First Nations people) are now included in the dataset.  This data was uploaded on 8 September, dating back to 16 August 2021.
 
 Department of Health updates this data on a weekly basis and was included in the daily vaccination data pack since 16 August 2021.
 
@@ -88,6 +88,14 @@ Department of Health is now publishing the number of individuals aged 16+ with 3
 
 * `AIR_AUS_16_PLUS_THIRD_DOSE_COUNT`
 * `AIR_AUS_16_PLUS_THIRD_DOSE_PCT`
+
+**From 10 November 2021 onwards**
+
+Vaccination rates for Aboriginal and Torres Strait Islander peoples (First Nations people) are now also expressed as a percentage of population.  This data was uploaded on 25 November, dating back to 10 November 2021.
+
+Department of Health updates this data on a weekly basis and was included in the daily vaccination data pack since 10 August 2021.
+
+These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_PCT_TOTAL` in `all.csv` and `all.json`, in addition to existing `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` which counts the total number of doses.
 
 ## Attribution
 
