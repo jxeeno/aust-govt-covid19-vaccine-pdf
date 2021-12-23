@@ -124,9 +124,17 @@ class AusDeptHealthVaccinePdf {
         ){
             cwthPrimaryCare = {}
             for(const k in totalDoses){
-                cwthPrimaryCare[k] = {
-                    total: totalDoses[k].total - stateClinics[k].total - cwthAgedCare[k].total,
-                    last24hr: totalDoses[k].last24hr - stateClinics[k].last24hr - cwthAgedCare[k].last24hr
+                if(
+                    totalDoses[k] && stateClinics[k] && cwthAgedCare[k] &&
+                    totalDoses[k].total && stateClinics[k].total && cwthAgedCare[k].total &&
+                    totalDoses[k].last24hr && stateClinics[k].last24hr && cwthAgedCare[k].last24hr
+                ){
+                    cwthPrimaryCare[k] = {
+                        total: totalDoses[k].total - stateClinics[k].total - cwthAgedCare[k].total,
+                        last24hr: totalDoses[k].last24hr - stateClinics[k].last24hr - cwthAgedCare[k].last24hr
+                    }
+                }else{
+                    console.error('Could not calculate cwth totals for '+k)
                 }
             }
         }
@@ -683,7 +691,7 @@ class AusDeptHealthVaccinePdf {
                 }
             }else{
                 // const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);
-                const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)/);
+                const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?:\s*[\*#]*)?\s*(?:last\s*24\s*hours|daily|increase)/);
                 const matchesHeadline = combinedStr.match(/([0-9,]+)/);
                 // console.log(pageIndex, combinedStr, matches)
 
