@@ -128,6 +128,10 @@
                 "total": 6094911,
                 "last24hr": 2186
             },
+            "QLD": {
+                "total": 4734045,
+                "last24hr": 1622
+            },
             "WA": {
                 "total": 2146953,
                 "last24hr": 880
@@ -135,6 +139,22 @@
             "NSW": {
                 "total": 8697049,
                 "last24hr": 2007
+            },
+            "TAS": {
+                "total": 418304,
+                "last24hr": 86
+            },
+            "SA": {
+                "total": 1434074,
+                "last24hr": 544
+            },
+            "ACT": {
+                "total": 487886,
+                "last24hr": 232
+            },
+            "NT": {
+                "total": 166534,
+                "last24hr": 24
             }
         },
         "cwthAgedCareBreakdown": {
@@ -774,16 +794,6 @@
         }
     },
     "validation": [
-        "cwthPrimaryCare.QLD.total is null",
-        "cwthPrimaryCare.QLD.last24hr is null",
-        "cwthPrimaryCare.TAS.total is null",
-        "cwthPrimaryCare.TAS.last24hr is null",
-        "cwthPrimaryCare.SA.total is null",
-        "cwthPrimaryCare.SA.last24hr is null",
-        "cwthPrimaryCare.ACT.total is null",
-        "cwthPrimaryCare.ACT.last24hr is null",
-        "cwthPrimaryCare.NT.total is null",
-        "cwthPrimaryCare.NT.last24hr is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[16].firstDosePct is null",

@@ -126,15 +126,19 @@ class AusDeptHealthVaccinePdf {
             for(const k in totalDoses){
                 if(
                     totalDoses[k] && stateClinics[k] && cwthAgedCare[k] &&
-                    totalDoses[k].total && stateClinics[k].total && cwthAgedCare[k].total &&
-                    totalDoses[k].last24hr && stateClinics[k].last24hr && cwthAgedCare[k].last24hr
+                    totalDoses[k].total != null && stateClinics[k].total != null && cwthAgedCare[k].total != null &&
+                    totalDoses[k].last24hr != null && stateClinics[k].last24hr != null && cwthAgedCare[k].last24hr != null
                 ){
                     cwthPrimaryCare[k] = {
                         total: totalDoses[k].total - stateClinics[k].total - cwthAgedCare[k].total,
                         last24hr: totalDoses[k].last24hr - stateClinics[k].last24hr - cwthAgedCare[k].last24hr
                     }
                 }else{
-                    console.error('Could not calculate cwth totals for '+k)
+                    console.error('Could not calculate cwth totals for '+k, {
+                        td: totalDoses[k],
+                        sc: stateClinics[k],
+                        ac: cwthAgedCare[k]
+                    })
                 }
             }
         }
