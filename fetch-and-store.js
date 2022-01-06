@@ -537,9 +537,9 @@ const getPublications = async () => {
     for(const item of items){
         let {name, landingUrl, jurisdictionalLandingUrl, pdfUrl, jurisdictionalPdfUrl, filename, jurisdictionalFilename} = item;
 
-        console.log({name, pdfUrl, jurisdictionalPdfUrl})
+        // console.log({name, pdfUrl, jurisdictionalPdfUrl})
         
-        console.log(`Found "${name}" at ${landingUrl}`);
+        // console.log(`Found "${name}" at ${landingUrl}`);
 
         let matchedItem = existingPublications.all.find(publication => landingUrl && publication.landingUrl === landingUrl);
         if(!matchedItem){
@@ -558,7 +558,7 @@ const getPublications = async () => {
             matchedItem &&
             (matchedItem.validation.length === 0 || matchedItem.exempt)
         ){
-            console.log(`Already processed ${landingUrl}`);
+            // console.log(`Already processed ${landingUrl}`);
             // publications[landingUrl] = existingPublications[landingUrl];
             continue;
         }

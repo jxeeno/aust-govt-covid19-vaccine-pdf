@@ -157,7 +157,7 @@ class AusDeptHealthVaccinePdf {
             // console.log({pageForAgedCare});
         }
 
-        if(!totals.cwthAll.total && totals.cwthAgedCare.total && totals.cwthAgedCare.last24hr){
+        if(!totals.cwthAll.total && totals.cwthAgedCare && totals.cwthAgedCare.total && totals.cwthAgedCare.last24hr){
             totals.cwthAll = {
                 total: totals.cwthAgedCare.total + totals.cwthPrimaryCare.total,
                 last24hr: totals.cwthAgedCare.last24hr + totals.cwthPrimaryCare.last24hr
