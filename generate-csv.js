@@ -262,6 +262,9 @@ const AIR_COLUMN_TO_PATH_MAPPING = {
     AIR_AUS_16_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.AUS.thirdDoseCount',
     AIR_AUS_16_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct',
 
+    AIR_AUS_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.AUS.thirdDoseCount',
+    AIR_AUS_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct',
+
     AIR_NSW_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.NSW.total', AIR_NSW_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.NSW.thirdDosePct',
     AIR_VIC_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.VIC.total', AIR_VIC_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.VIC.thirdDosePct',
     AIR_QLD_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.QLD.total', AIR_QLD_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.QLD.thirdDosePct',
