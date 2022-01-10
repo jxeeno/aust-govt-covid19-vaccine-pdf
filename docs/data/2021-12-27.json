@@ -8,7 +8,10 @@
                 "total": 42252227,
                 "last24hr": 31159
             },
-            "cwthAll": {},
+            "cwthAll": {
+                "total": 25342969,
+                "last24hr": 18535
+            },
             "cwthPrimaryCare": {
                 "total": 24170102,
                 "last24hr": 18535
@@ -721,8 +724,6 @@
         }
     },
     "validation": [
-        "totals.cwthAll.total is null",
-        "totals.cwthAll.last24hr is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[16].firstDosePct is null",
