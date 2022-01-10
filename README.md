@@ -97,6 +97,15 @@ Department of Health updates this data on a weekly basis and was included in the
 
 These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_PCT_TOTAL` in `all.csv` and `all.json`, in addition to existing `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` which counts the total number of doses.
 
+**From 10 January 2022 onwards**
+
+Department of Health is now publishing the number of individuals aged 18+ with 3 doses (or more) of COVID-19 vaccine recorded in AIR.  This data is available in `air.csv`/`air.json` as:
+
+* `AIR_<STATE|TERRITORY|AUS>_18_PLUS_THIRD_DOSE_COUNT`
+* `AIR_<STATE|TERRITORY|AUS>_18_PLUS_THIRD_DOSE_PCT` (this field is currently empty, but will be populated shortly)
+
+**Note:** the keys from the 7 November 2021 change was `16_PLUS` for AUS.  However, in this release, the key has changed to `18_PLUS` in line with booster eligibility criteria.  The `16_PLUS` column for AUS is maintained, however, a duplicated `18_PLUS` column for AUS is also available for consistency.
+
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
