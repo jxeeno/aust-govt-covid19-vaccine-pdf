@@ -2674,5 +2674,20 @@
             "stateOfResidence.SA.ageBucketsEstimatedPopulation[16].firstDosePct is null",
             "stateOfResidence.SA.ageBucketsEstimatedPopulation[16].secondDosePct is null"
         ]
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 10 January 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-10-january-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-10-january-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-10-january-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-jurisdictional-breakdown-10-january-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-01-09.json",
+        "validation": [
+            "totals.cwthAll.total is null",
+            "totals.cwthAll.last24hr is null",
+            "totals.cwthAgedCare.total is null",
+            "totals.cwthAgedCare.last24hr is null",
+            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 44113001 (NaN)"
+        ]
     }
 ]
