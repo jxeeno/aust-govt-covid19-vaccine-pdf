@@ -92,6 +92,7 @@ class AusDeptHealthVaccinePdf {
         const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
         const pageForDoses = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
+        const pageForBoosters = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Booster\s*Vaccinations/)))
         const pageForDistribution = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Administration and Utilisation') > -1))
         const jurisdictionAdministeredPage = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Jurisdiction administered') > -1))
         const totalDosesPage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Total\s*vaccine\s*doses/)))
@@ -100,6 +101,7 @@ class AusDeptHealthVaccinePdf {
         // console.log({totalDosesPage})
         const firstNations = this.getFirstNationsStateData(pageForFirstNations);
         const totalDoses = this.getStateData(totalDosesPage);
+        const boosterDoses = this.getStateData(pageForBoosters);
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
         // don't use primaryCare as that is doses by residence.  we want doses by administration here
@@ -110,7 +112,10 @@ class AusDeptHealthVaccinePdf {
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         // console.log({pageForDoses})
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
-        const thirdDoses = this.getThirdDose(totalDosesPage)
+        const thirdDoses = {
+            ...(this.getThirdDose(totalDosesPage)||{}),
+            ...(boosterDoses||{})
+        };
         const stateOfResidence = {};
 
         // handle missing primary care

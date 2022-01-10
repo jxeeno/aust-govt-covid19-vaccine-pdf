@@ -260,7 +260,16 @@ const AIR_COLUMN_TO_PATH_MAPPING = {
     AIR_NT_12_15_FIRST_DOSE_COUNT: 'doseBreakdown.NT[3].firstDoseCount',AIR_NT_12_15_FIRST_DOSE_PCT: 'doseBreakdown.NT[3].firstDosePct',AIR_NT_12_15_SECOND_DOSE_COUNT: 'doseBreakdown.NT[3].secondDoseCount',AIR_NT_12_15_SECOND_DOSE_PCT: 'doseBreakdown.NT[3].secondDosePct',AIR_NT_12_15_POPULATION: 'doseBreakdown.NT[3].cohortPopulation',
 
     AIR_AUS_16_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.AUS.thirdDoseCount',
-    AIR_AUS_16_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct'
+    AIR_AUS_16_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct',
+
+    AIR_NSW_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.NSW.total', AIR_NSW_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.NSW.thirdDosePct',
+    AIR_VIC_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.VIC.total', AIR_VIC_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.VIC.thirdDosePct',
+    AIR_QLD_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.QLD.total', AIR_QLD_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.QLD.thirdDosePct',
+    AIR_WA_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.WA.total', AIR_WA_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.WA.thirdDosePct',
+    AIR_TAS_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.TAS.total', AIR_TAS_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.TAS.thirdDosePct',
+    AIR_SA_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.SA.total', AIR_SA_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.SA.thirdDosePct',
+    AIR_ACT_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.ACT.total', AIR_ACT_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.ACT.thirdDosePct',
+    AIR_NT_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.NT.total', AIR_NT_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.NT.thirdDosePct',
 }
 
 const generateCsv = async () => {
