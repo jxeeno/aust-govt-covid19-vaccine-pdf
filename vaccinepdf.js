@@ -89,7 +89,7 @@ class AusDeptHealthVaccinePdf {
         }
 
         const pageForFirstNations = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Aboriginal and Torres Strait Islander peoples/)))
-        const pageForAgedCare = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
+        const pageForAgedCare = this.data.pages.findIndex(page => !this.mergeAdjacentCells(page.content).find(r => r.str.match(/Booster\s*Vaccinations/)) && page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
         const pageForDoses = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
         const pageForBoosters = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Booster\s*Vaccinations/)))
@@ -285,6 +285,7 @@ class AusDeptHealthVaccinePdf {
         if(variant === 2){
             const baseline = content.find(s => s.str.match(/Total\s*vaccine\s*doses\s*administered\s*in\s*aged\s*care/));
             // console.log({baseline})
+            // console.log(content.map(c => c.str))
             if(!baseline){ return; }
 
             const filteredContent = content.filter(f => f.cx >= baseline.x && f.cx <= (baseline.x+baseline.width) && f.cy < baseline.y);
@@ -700,9 +701,11 @@ class AusDeptHealthVaccinePdf {
                 }
             }else{
                 // const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);
-                const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?:\s*[\*#]*)?\s*(?:last\s*24\s*hours|daily|increase)/);
+                const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?: \-?[0-9,]+)?(?:\s*[\*#]*)?\s*(?:last\s*24\s*hours|daily|increase)/);
                 const matchesHeadline = combinedStr.match(/([0-9,]+)/);
                 // console.log(pageIndex, combinedStr, matches)
+
+                // console.log({combinedStr, matchesDaily, matchesHeadline, stateCode})
 
                 // if(pageIndex === 1 && stateCode === 'VIC'){
                 //     console.log(stateCode, values)

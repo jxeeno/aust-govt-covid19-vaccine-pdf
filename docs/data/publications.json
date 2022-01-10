@@ -2273,6 +2273,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-24-december-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/12/covid-19-vaccine-rollout-update-24-december-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-12-23.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2313,6 +2314,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-27-december-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/12/covid-19-vaccine-rollout-update-27-december-2021_0.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-12-26.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2353,6 +2355,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-28-december-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/12/covid-19-vaccine-rollout-update-28-december-2021_0.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-12-27.json",
+        "exempt": true,
         "validation": [
             "totals.cwthAll.total is null",
             "totals.cwthAll.last24hr is null",
@@ -2395,6 +2398,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-29-december-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/12/covid-19-vaccine-rollout-update-29-december-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-12-28.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2435,6 +2439,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-30-december-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/12/covid-19-vaccine-rollout-update-30-december-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-12-29.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2475,6 +2480,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-31-december-2021",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2021/12/covid-19-vaccine-rollout-update-31-december-2021.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2021-12-30.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2515,6 +2521,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-1-january-2022",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-1-january-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-01-02.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2555,6 +2562,7 @@
         "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-3-january-2022",
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-3-january-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-01-02.json",
+        "exempt": true,
         "validation": [
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
@@ -2649,12 +2657,6 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-10-january-2022.pdf",
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-jurisdictional-breakdown-10-january-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-01-09.json",
-        "validation": [
-            "totals.cwthAll.total is null",
-            "totals.cwthAll.last24hr is null",
-            "totals.cwthAgedCare.total is null",
-            "totals.cwthAgedCare.last24hr is null",
-            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 44113001 (NaN)"
-        ]
+        "validation": []
     }
 ]

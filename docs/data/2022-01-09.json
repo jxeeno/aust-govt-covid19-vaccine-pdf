@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-10-january-2022.pdf",
     "pdfData": {
         "dataAsAt": "2022-01-09",
@@ -8,10 +8,17 @@
                 "total": 44113001,
                 "last24hr": 99903
             },
-            "cwthAll": {},
+            "cwthAll": {
+                "total": 26573451,
+                "last24hr": 42313
+            },
             "cwthPrimaryCare": {
                 "total": 25399179,
                 "last24hr": 42287
+            },
+            "cwthAgedCare": {
+                "total": 1174272,
+                "last24hr": 26
             }
         },
         "totalDoses": {
@@ -84,70 +91,70 @@
         },
         "cwthAgedCare": {
             "NSW": {
-                "total": 1230408,
-                "last24hr": 27074
+                "total": 537775,
+                "last24hr": -43
             },
             "VIC": {
-                "total": 925880,
-                "last24hr": 22475
+                "total": 218680,
+                "last24hr": -20
             },
             "QLD": {
-                "total": 709133,
-                "last24hr": 13558
+                "total": 183539,
+                "last24hr": -24
             },
             "WA": {
-                "total": 302309,
-                "last24hr": 7755
+                "total": 84696,
+                "last24hr": -14
             },
             "TAS": {
-                "total": 83996,
-                "last24hr": 3095
+                "total": 21098,
+                "last24hr": -7
             },
             "SA": {
-                "total": 268696,
-                "last24hr": 8065
+                "total": 78131,
+                "last24hr": -33
             },
             "ACT": {
-                "total": 79442,
-                "last24hr": 2438
+                "total": 15355,
+                "last24hr": 0
             },
             "NT": {
-                "total": 31847,
-                "last24hr": 593
+                "total": 6641,
+                "last24hr": -3
             }
         },
         "cwthPrimaryCare": {
             "NSW": {
-                "total": 8363928,
-                "last24hr": -14687
+                "total": 9056561,
+                "last24hr": 12430
             },
             "VIC": {
-                "total": 5674598,
-                "last24hr": -11516
+                "total": 6381798,
+                "last24hr": 10979
             },
             "QLD": {
-                "total": 4500629,
-                "last24hr": -4294
+                "total": 5026223,
+                "last24hr": 9288
             },
             "WA": {
-                "total": 2099499,
-                "last24hr": -2782
+                "total": 2317112,
+                "last24hr": 4987
             },
             "TAS": {
-                "total": 383816,
-                "last24hr": -2104
+                "total": 446714,
+                "last24hr": 998
             },
             "SA": {
-                "total": 1327351,
-                "last24hr": -5481
+                "total": 1517916,
+                "last24hr": 2617
             },
             "ACT": {
-                "total": 444526,
-                "last24hr": -1284
+                "total": 508613,
+                "last24hr": 1154
             },
             "NT": {
-                "total": 147393,
-                "last24hr": -592
+                "total": 172599,
+                "last24hr": 4
             }
         },
         "cwthAgedCareBreakdown": {
@@ -2205,11 +2212,5 @@
             }
         }
     },
-    "validation": [
-        "totals.cwthAll.total is null",
-        "totals.cwthAll.last24hr is null",
-        "totals.cwthAgedCare.total is null",
-        "totals.cwthAgedCare.last24hr is null",
-        "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 44113001 (NaN)"
-    ]
+    "validation": []
 }
