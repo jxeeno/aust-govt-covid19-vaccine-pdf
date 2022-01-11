@@ -14,7 +14,7 @@ This repository is a mess of code which:
 
 Due to changes in the way vaccination data is reported throughout this year, some of the data may not be comparable.  This section tries to summarise many of the data issues and reporting changes.  It's lengthy -- you have been warned!
 
-**From 18 May 2021 to 1 July 2021**
+### From 18 May 2021 to 1 July 2021
 
 Prior to 18 May 2021, statistics about second dose (or number of fully vaccinated people) were not available.
 
@@ -24,7 +24,7 @@ The percentages are extracted from the WA Health dashboard and multiplied agains
 
 State-level second dose totals are **not** published daily and therefore do not necessarily correlate with daily dose totals.  This means that deducting total doses from approx second dose total **does not produce an accurate value for first doses**.
 
-**From 1 July 2021 to 27 July 2021**
+### From 1 July 2021 to 27 July 2021
 
 The `APPROX_<State>_SECOND_DOSE_TOTAL` field in `all.csv` is deprecated and should not be used any more.  From 17 August 2021, these fields will no longer be populated.
 
@@ -34,7 +34,7 @@ From 1 July 2021, the Department of Health started publishing breakdowns of dose
 
 This data is published separately as `air.csv` and `air.json` files.
 
-**From 28 July 2021 to 15 August 2021**
+### From 28 July 2021 to 15 August 2021
 
 From 28 July 2021, the Department of Health started publishing breakdowns of doses by age group, first/second doses and by state of **residence**.  This data is derived from the Australian Immunisation register (AIR) and may not correspond directly with the headline figures which include self-reported figures.
 
@@ -42,7 +42,7 @@ The switch from reporting state of **administration** to state of **residence** 
 
 Additional data points (doses by state of residence, by age group) were also published and is made available separately as `air_residence.csv` and `air_residence.json` files.
 
-**From 15 August 2021 onwards**
+### From 15 August 2021 onwards
 
 From 15 August 2021, all data reported by the Department of Health is obtained from the Australian Immunisation Register (AIR).  Previously, some statistics were based on self-reported figures from state-run clinics.
 
@@ -52,7 +52,7 @@ This change resulted meant that the statistics in the `all.csv` file prior to 15
 
 All data up to this point is based on **date of reporting**.  Department of Health has also begun reporting doses on the **date of administration**.  This data is not available in this repository yet.
 
-**From 16 August 2021 onwards**
+### From 16 August 2021 onwards
 
 Vaccination rates for Aboriginal and Torres Strait Islander peoples (First Nations people) are now included in the dataset.  This data was uploaded on 8 September, dating back to 16 August 2021.
 
@@ -60,7 +60,7 @@ Department of Health updates this data on a weekly basis and was included in the
 
 These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` in `all.csv` and `all.json`.
 
-**From 6 September 2021 onwards**
+### From 6 September 2021 onwards
 
 Department of Health no longer publishes the first and second dose and visit count breakdowns for aged and disability care.
 
@@ -71,25 +71,25 @@ This means the following fields are now deprecated:
 * `CWTH_AGED_CARE_FACILITIES_FIRST_DOSE`
 * `CWTH_AGED_CARE_FACILITIES_SECOND_DOSE`
 
-**From 13 September 2021 onwards**
+### From 13 September 2021 onwards
 
 Department of Health is now publishing dose data for 12-15 year olds.  This data is available in `air.csv` as:
 
 * `AIR_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`
 * `AIR_<STATE>_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`
 
-**From 15 September 2021 onwards**
+### From 15 September 2021 onwards
 
 All totals are now include 12-15 age groups.
 
-**From 7 November 2021 onwards**
+### From 7 November 2021 onwards
 
 Department of Health is now publishing the number of individuals aged 16+ with 3 doses (or more) of COVID-19 vaccine recorded in AIR.  This data is available in `air.csv`/`air.json` as:
 
 * `AIR_AUS_16_PLUS_THIRD_DOSE_COUNT`
 * `AIR_AUS_16_PLUS_THIRD_DOSE_PCT`
 
-**From 10 November 2021 onwards**
+### From 10 November 2021 onwards
 
 Vaccination rates for Aboriginal and Torres Strait Islander peoples (First Nations people) are now also expressed as a percentage of population.  This data was uploaded on 25 November, dating back to 10 November 2021.
 
@@ -97,7 +97,7 @@ Department of Health updates this data on a weekly basis and was included in the
 
 These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_PCT_TOTAL` in `all.csv` and `all.json`, in addition to existing `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` which counts the total number of doses.
 
-**From 9 January 2022 onwards**
+### From 9 January 2022 onwards
 
 Department of Health is now publishing the number of individuals aged 18+ with 3 doses (or more) of COVID-19 vaccine recorded in AIR.  This data is available in `air.csv`/`air.json` as:
 
@@ -106,7 +106,7 @@ Department of Health is now publishing the number of individuals aged 18+ with 3
 
 **Note:** the keys from the 7 November 2021 change was `16_PLUS` for AUS.  However, in this release, the key has changed to `18_PLUS` in line with booster eligibility criteria.  The `16_PLUS` column for AUS is maintained, however, a duplicated `18_PLUS` column for AUS is also available for consistency.
 
-**From 10 January 2022 onwards**
+### From 10 January 2022 onwards
 
 Department of Health is now publishing the number of individuals aged 5-11 with at least 1 dose of COVID-19 vaccine recorded in AIR.  This data is available in:
 
