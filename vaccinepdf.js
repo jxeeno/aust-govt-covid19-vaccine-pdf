@@ -426,7 +426,7 @@ class AusDeptHealthVaccinePdf {
         const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.replace(/\s/g, '').trim()));
 
         const width = Math.max(...stateLabelLocations.map(l => l.width));
-        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 25;
+        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 17;
 
         const stateData = {};
 
@@ -452,7 +452,8 @@ class AusDeptHealthVaccinePdf {
             // if(stateCode === 'NSW'){
             //     console.log(stateCode, unmergedValues);
             // }
-            if(values.length >= 20){
+            // console.log(values)
+            if(values.length >= 13){
                 stateData[stateCode] = [
                     {
                         ageLower: 16,
@@ -464,6 +465,23 @@ class AusDeptHealthVaccinePdf {
                     },
                     {
                         ageLower: 50,
+                        // firstDoseCount: Number(values[0].str.replace(/[^0-9\.]+/g, '')),
+                        // firstDosePct: Number(values[3].str.replace(/[^0-9\.]+/g, '')),
+                        // secondDoseCount: Number(values[1].str.replace(/[^0-9\.]+/g, '')),
+                        // secondDosePct: Number(values[4].str.replace(/[^0-9\.]+/g, '')),
+                        // cohortPopulation: Number(values[2].str.replace(/[^0-9\.]+/g, ''))
+                    },
+                    {
+                        ageLower: 70,
+                        // firstDoseCount: Number(values[0].str.replace(/[^0-9\.]+/g, '')),
+                        // firstDosePct: Number(values[3].str.replace(/[^0-9\.]+/g, '')),
+                        // secondDoseCount: Number(values[1].str.replace(/[^0-9\.]+/g, '')),
+                        // secondDosePct: Number(values[4].str.replace(/[^0-9\.]+/g, '')),
+                        // cohortPopulation: Number(values[2].str.replace(/[^0-9\.]+/g, ''))
+                    },
+                    {
+                        ageLower: 12,
+                        ageUpper: 15,
                         firstDoseCount: Number(values[5+0].str.replace(/[^0-9\.]+/g, '')),
                         firstDosePct: Number(values[5+3].str.replace(/[^0-9\.]+/g, '')),
                         secondDoseCount: Number(values[5+1].str.replace(/[^0-9\.]+/g, '')),
@@ -471,22 +489,23 @@ class AusDeptHealthVaccinePdf {
                         cohortPopulation: Number(values[5+2].str.replace(/[^0-9\.]+/g, ''))
                     },
                     {
-                        ageLower: 70,
+                        ageLower: 5,
+                        ageUpper: 11,
                         firstDoseCount: Number(values[10+0].str.replace(/[^0-9\.]+/g, '')),
-                        firstDosePct: Number(values[10+3].str.replace(/[^0-9\.]+/g, '')),
-                        secondDoseCount: Number(values[10+1].str.replace(/[^0-9\.]+/g, '')),
-                        secondDosePct: Number(values[10+4].str.replace(/[^0-9\.]+/g, '')),
-                        cohortPopulation: Number(values[10+2].str.replace(/[^0-9\.]+/g, ''))
+                        firstDosePct: Number(values[10+2].str.replace(/[^0-9\.]+/g, '')),
+                        // secondDoseCount: Number(values[10+1].str.replace(/[^0-9\.]+/g, '')),
+                        // secondDosePct: Number(values[10+4].str.replace(/[^0-9\.]+/g, '')),
+                        cohortPopulation: Number(values[10+1].str.replace(/[^0-9\.]+/g, ''))
                     },
-                    {
-                        ageLower: 12,
-                        ageUpper: 15,
-                        firstDoseCount: Number(values[15+0].str.replace(/[^0-9\.]+/g, '')),
-                        firstDosePct: Number(values[15+3].str.replace(/[^0-9\.]+/g, '')),
-                        secondDoseCount: Number(values[15+1].str.replace(/[^0-9\.]+/g, '')),
-                        secondDosePct: Number(values[15+4].str.replace(/[^0-9\.]+/g, '')),
-                        cohortPopulation: Number(values[15+2].str.replace(/[^0-9\.]+/g, ''))
-                    }
+                    // {
+                    //     ageLower: 5,
+                    //     ageUpper: 11,
+                    //     firstDoseCount: Number(values[15+0].str.replace(/[^0-9\.]+/g, '')),
+                    //     firstDosePct: Number(values[15+3].str.replace(/[^0-9\.]+/g, '')),
+                    //     secondDoseCount: Number(values[15+1].str.replace(/[^0-9\.]+/g, '')),
+                    //     secondDosePct: Number(values[15+4].str.replace(/[^0-9\.]+/g, '')),
+                    //     cohortPopulation: Number(values[15+2].str.replace(/[^0-9\.]+/g, ''))
+                    // }
                 ]
             }else{
                 console.error(`Failed to pull ${stateCode}`, {values: values.map(v => v.str)});

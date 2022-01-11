@@ -273,6 +273,18 @@ const AIR_COLUMN_TO_PATH_MAPPING = {
     AIR_SA_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.SA.total', AIR_SA_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.SA.thirdDosePct',
     AIR_ACT_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.ACT.total', AIR_ACT_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.ACT.thirdDosePct',
     AIR_NT_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.NT.total', AIR_NT_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.NT.thirdDosePct',
+
+    AIR_AUS_12_15_FIRST_DOSE_COUNT: 'doseBreakdown.national[17].firstDoseCount',AIR_AUS_12_15_FIRST_DOSE_PCT: 'doseBreakdown.national[17].firstDosePct',AIR_AUS_12_15_SECOND_DOSE_COUNT: 'doseBreakdown.national[17].secondDoseCount',AIR_AUS_12_15_SECOND_DOSE_PCT: 'doseBreakdown.national[17].secondDosePct',AIR_AUS_12_15_FEMALE_PCT: 'doseBreakdown.national[17].femalePct',AIR_AUS_12_15_MALE_PCT: 'doseBreakdown.national[17].malePct',
+    // AIR_AUS_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.national[17].firstDoseCount',AIR_AUS_5_11_FIRST_DOSE_PCT: 'doseBreakdown.national[17].firstDosePct',AIR_AUS_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.national[17].secondDoseCount',AIR_AUS_5_11_SECOND_DOSE_PCT: 'doseBreakdown.national[17].secondDosePct',AIR_AUS_5_11_FEMALE_PCT: 'doseBreakdown.national[17].femalePct',AIR_AUS_5_11_MALE_PCT: 'doseBreakdown.national[17].malePct',
+    AIR_AUS_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.AUS[4].firstDoseCount',AIR_AUS_5_11_FIRST_DOSE_PCT: 'doseBreakdown.AUS[4].firstDosePct',AIR_AUS_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.AUS[4].secondDoseCount',AIR_AUS_5_11_SECOND_DOSE_PCT: 'doseBreakdown.AUS[4].secondDosePct',AIR_AUS_5_11_POPULATION: 'doseBreakdown.AUS[4].cohortPopulation',
+    AIR_NSW_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.NSW[4].firstDoseCount',AIR_NSW_5_11_FIRST_DOSE_PCT: 'doseBreakdown.NSW[4].firstDosePct',AIR_NSW_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.NSW[4].secondDoseCount',AIR_NSW_5_11_SECOND_DOSE_PCT: 'doseBreakdown.NSW[4].secondDosePct',AIR_NSW_5_11_POPULATION: 'doseBreakdown.NSW[4].cohortPopulation',
+    AIR_VIC_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.VIC[4].firstDoseCount',AIR_VIC_5_11_FIRST_DOSE_PCT: 'doseBreakdown.VIC[4].firstDosePct',AIR_VIC_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.VIC[4].secondDoseCount',AIR_VIC_5_11_SECOND_DOSE_PCT: 'doseBreakdown.VIC[4].secondDosePct',AIR_VIC_5_11_POPULATION: 'doseBreakdown.VIC[4].cohortPopulation',
+    AIR_QLD_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.QLD[4].firstDoseCount',AIR_QLD_5_11_FIRST_DOSE_PCT: 'doseBreakdown.QLD[4].firstDosePct',AIR_QLD_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.QLD[4].secondDoseCount',AIR_QLD_5_11_SECOND_DOSE_PCT: 'doseBreakdown.QLD[4].secondDosePct',AIR_QLD_5_11_POPULATION: 'doseBreakdown.QLD[4].cohortPopulation',
+    AIR_WA_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.WA[4].firstDoseCount',AIR_WA_5_11_FIRST_DOSE_PCT: 'doseBreakdown.WA[4].firstDosePct',AIR_WA_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.WA[4].secondDoseCount',AIR_WA_5_11_SECOND_DOSE_PCT: 'doseBreakdown.WA[4].secondDosePct',AIR_WA_5_11_POPULATION: 'doseBreakdown.WA[4].cohortPopulation',
+    AIR_TAS_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.TAS[4].firstDoseCount',AIR_TAS_5_11_FIRST_DOSE_PCT: 'doseBreakdown.TAS[4].firstDosePct',AIR_TAS_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.TAS[4].secondDoseCount',AIR_TAS_5_11_SECOND_DOSE_PCT: 'doseBreakdown.TAS[4].secondDosePct',AIR_TAS_5_11_POPULATION: 'doseBreakdown.TAS[4].cohortPopulation',
+    AIR_SA_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.SA[4].firstDoseCount',AIR_SA_5_11_FIRST_DOSE_PCT: 'doseBreakdown.SA[4].firstDosePct',AIR_SA_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.SA[4].secondDoseCount',AIR_SA_5_11_SECOND_DOSE_PCT: 'doseBreakdown.SA[4].secondDosePct',AIR_SA_5_11_POPULATION: 'doseBreakdown.SA[4].cohortPopulation',
+    AIR_ACT_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.ACT[4].firstDoseCount',AIR_ACT_5_11_FIRST_DOSE_PCT: 'doseBreakdown.ACT[4].firstDosePct',AIR_ACT_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.ACT[4].secondDoseCount',AIR_ACT_5_11_SECOND_DOSE_PCT: 'doseBreakdown.ACT[4].secondDosePct',AIR_ACT_5_11_POPULATION: 'doseBreakdown.ACT[4].cohortPopulation',
+    AIR_NT_5_11_FIRST_DOSE_COUNT: 'doseBreakdown.NT[4].firstDoseCount',AIR_NT_5_11_FIRST_DOSE_PCT: 'doseBreakdown.NT[4].firstDosePct',AIR_NT_5_11_SECOND_DOSE_COUNT: 'doseBreakdown.NT[4].secondDoseCount',AIR_NT_5_11_SECOND_DOSE_PCT: 'doseBreakdown.NT[4].secondDosePct',AIR_NT_5_11_POPULATION: 'doseBreakdown.NT[4].cohortPopulation',
 }
 
 const generateCsv = async () => {
@@ -459,6 +471,29 @@ const generateAirStateOfResidence = async (csvPath, jsonPath) => {
                     AIR_RESIDENCE_FIRST_DOSE_APPROX_COUNT: (age1215 || {}).firstDoseCount,
                     AIR_RESIDENCE_SECOND_DOSE_APPROX_COUNT: (age1215 || {}).secondDoseCount,
                     ABS_ERP_JUN_2020_POP: (age1215 || {}).cohortPopulation
+                };
+
+                row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';
+                row.URL = publication.pdfUrl;
+
+                stream.write(row);
+                output.push(row);
+            }
+
+            const age511 = _.get(lookupData, 'doseBreakdown.' + stateCode).find(v => v.ageLower === 5 && v.ageUpper === 11);
+            if(age511){
+                const row = {
+                    DATE_AS_AT: _.get(lookupData, 'dataAsAt'),
+                    STATE: stateCode,
+                    AGE_LOWER: 5,
+                    AGE_UPPER: 11,
+                    AIR_RESIDENCE_FIRST_DOSE_PCT: (age511 || {}).firstDosePct,
+                    AIR_RESIDENCE_SECOND_DOSE_PCT: (age511 || {}).secondDosePct,
+                    AIR_RESIDENCE_FIRST_DOSE_COUNT: (age511 || {}).firstDoseCount,
+                    AIR_RESIDENCE_SECOND_DOSE_COUNT: (age511 || {}).secondDoseCount,
+                    AIR_RESIDENCE_FIRST_DOSE_APPROX_COUNT: (age511 || {}).firstDoseCount,
+                    AIR_RESIDENCE_SECOND_DOSE_APPROX_COUNT: (age511 || {}).secondDoseCount,
+                    ABS_ERP_JUN_2020_POP: (age511 || {}).cohortPopulation
                 };
 
                 row.VALIDATED = publication.validation.length === 0 ? 'Y' : 'N';
