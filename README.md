@@ -97,7 +97,7 @@ Department of Health updates this data on a weekly basis and was included in the
 
 These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_PCT_TOTAL` in `all.csv` and `all.json`, in addition to existing `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_DOSE_TOTAL` which counts the total number of doses.
 
-**From 10 January 2022 onwards**
+**From 9 January 2022 onwards**
 
 Department of Health is now publishing the number of individuals aged 18+ with 3 doses (or more) of COVID-19 vaccine recorded in AIR.  This data is available in `air.csv`/`air.json` as:
 
@@ -106,6 +106,28 @@ Department of Health is now publishing the number of individuals aged 18+ with 3
 
 **Note:** the keys from the 7 November 2021 change was `16_PLUS` for AUS.  However, in this release, the key has changed to `18_PLUS` in line with booster eligibility criteria.  The `16_PLUS` column for AUS is maintained, however, a duplicated `18_PLUS` column for AUS is also available for consistency.
 
+**From 10 January 2022 onwards**
+
+Department of Health is now publishing the number of individuals aged 5-11 with at least 1 dose of COVID-19 vaccine recorded in AIR.  This data is available in:
+
+`air.csv`/`air.json`:
+
+* `AIR_<STATE|TERRITORY|AUS>_5_11_FIRST_DOSE_COUNT`
+* `AIR_<STATE|TERRITORY|AUS>_5_11_FIRST_DOSE_PCT`
+* `AIR_<STATE|TERRITORY|AUS>_5_11_POPULATION`
+
+The following fields have been provisioned for, and will be available when the government publishes the data
+* `AIR_<STATE|TERRITORY|AUS>_5_11_SECOND_DOSE_COUNT`
+* `AIR_<STATE|TERRITORY|AUS>_5_11_SECOND_DOSE_PCT`
+
+For consistency, the following fields have also been added:
+* `AIR_AUS_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>` (same value as `AIR_12_15_<FIRST|SECOND>_DOSE_<COUNT|PCT>`)
+
+`air_residence.csv`/`air_residence.json`:
+
+Where `AGE_LOWER` is `5` and `AGE_UPPER` is `11`.
+
+**Note:** Due to changes to the data layout, summary vaccination rates by jurisdiction for 50+ and 70+ are no longer available.  I will add middleware in due course to estimate these figures.
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
