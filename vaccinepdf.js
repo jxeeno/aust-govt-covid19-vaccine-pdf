@@ -493,6 +493,8 @@ class AusDeptHealthVaccinePdf {
                         ageUpper: 11,
                         firstDoseCount: Number(values[10+0].str.replace(/[^0-9\.]+/g, '')),
                         firstDosePct: Number(values[10+2].str.replace(/[^0-9\.]+/g, '')),
+                        secondDoseCount: 0,
+                        secondDosePct: 0,
                         // secondDoseCount: Number(values[10+1].str.replace(/[^0-9\.]+/g, '')),
                         // secondDosePct: Number(values[10+4].str.replace(/[^0-9\.]+/g, '')),
                         cohortPopulation: Number(values[10+1].str.replace(/[^0-9\.]+/g, ''))
