@@ -102,9 +102,12 @@ These appear as `FIRST_NATIONS_<STATE|TERRITORY|AUS>_<FIRST|SECOND>_PCT_TOTAL` i
 Department of Health is now publishing the number of individuals aged 18+ with 3 doses (or more) of COVID-19 vaccine recorded in AIR.  This data is available in `air.csv`/`air.json` as:
 
 * `AIR_<STATE|TERRITORY|AUS>_18_PLUS_THIRD_DOSE_COUNT`
-* `AIR_<STATE|TERRITORY|AUS>_18_PLUS_THIRD_DOSE_PCT` (this field is currently empty, but will be populated shortly)
+* `AIR_<STATE|TERRITORY|AUS>_18_PLUS_THIRD_DOSE_PCT`
 
 **Note:** the keys from the 7 November 2021 change was `16_PLUS` for AUS.  However, in this release, the key has changed to `18_PLUS` in line with booster eligibility criteria.  The `16_PLUS` column for AUS is maintained, however, a duplicated `18_PLUS` column for AUS is also available for consistency.
+
+`*_16_PLUS_THIRD_DOSE_PCT` uses 16+ population as denominator, even though only 18+ population is eligible.  This field should be avoided and is here for backwards compatability purposes.
+`*_18_PLUS_THIRD_DOSE_PCT` uses 18+ population as denominator.  This is current eligible age group for boosters.
 
 ### From 10 January 2022 onwards
 
