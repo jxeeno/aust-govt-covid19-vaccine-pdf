@@ -260,7 +260,7 @@ const AIR_COLUMN_TO_PATH_MAPPING = {
     AIR_NT_12_15_FIRST_DOSE_COUNT: 'doseBreakdown.NT[3].firstDoseCount',AIR_NT_12_15_FIRST_DOSE_PCT: 'doseBreakdown.NT[3].firstDosePct',AIR_NT_12_15_SECOND_DOSE_COUNT: 'doseBreakdown.NT[3].secondDoseCount',AIR_NT_12_15_SECOND_DOSE_PCT: 'doseBreakdown.NT[3].secondDosePct',AIR_NT_12_15_POPULATION: 'doseBreakdown.NT[3].cohortPopulation',
 
     AIR_AUS_16_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.AUS.thirdDoseCount',
-    AIR_AUS_16_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct',
+    AIR_AUS_16_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct16',
 
     AIR_AUS_18_PLUS_THIRD_DOSE_COUNT: 'thirdDoses.AUS.thirdDoseCount',
     AIR_AUS_18_PLUS_THIRD_DOSE_PCT: 'thirdDoses.AUS.thirdDosePct',

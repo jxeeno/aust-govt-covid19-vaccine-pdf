@@ -101,7 +101,7 @@ class AusDeptHealthVaccinePdf {
         // console.log({totalDosesPage})
         const firstNations = this.getFirstNationsStateData(pageForFirstNations);
         const totalDoses = this.getStateData(totalDosesPage);
-        const boosterDoses = this.getStateData(pageForBoosters);
+        const boosterDoses = this.getStateData(pageForBoosters, 'booster');
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
         // don't use primaryCare as that is doses by residence.  we want doses by administration here
@@ -260,7 +260,8 @@ class AusDeptHealthVaccinePdf {
             return {
                 AUS: {
                     thirdDoseCount: toNumber(numbers[0].str),
-                    thirdDosePct: Math.round(toNumber(numbers[0].str) / 20619959 * 100 * 100)/100
+                    thirdDosePct16: Math.round(toNumber(numbers[0].str) / getPopulation('AUS', 16, 999) * 100 * 100)/100,
+                    thirdDosePct: Math.round(toNumber(numbers[0].str) / getPopulation('AUS', 18, 999) * 100 * 100)/100
                 }
             }
         }
@@ -736,6 +737,11 @@ class AusDeptHealthVaccinePdf {
                     stateData[stateCode] = {
                         total: toNumber(matchesHeadline[1]),
                         last24hr: toNumber(matchesDaily[2], matchesDaily[1])
+                    }
+
+                    if(variant === 'booster'){
+                        stateData[stateCode].thirdDosePct16 = Math.round(stateData[stateCode].total/getPopulation(stateCode, 16, 999)*100*100)/100;
+                        stateData[stateCode].thirdDosePct = Math.round(stateData[stateCode].total/getPopulation(stateCode, 18, 999)*100*100)/100;
                     }
                 }
             }
