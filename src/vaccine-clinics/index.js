@@ -94,9 +94,14 @@ const fetchAllClinics = async () => {
     //     fs.mkdirSync(MONTH_DIR);
     // }
 
-    const rawJSON = JSON.stringify({services: rows, date: startTime.toISOString()});
+    const perPage = Math.floor(rows.length/2);
+
+    const rawJSON1 = JSON.stringify({services: rows.slice(0, perPage), date: startTime.toISOString()});
     // fs.writeFileSync(`${DAILY_FILE_PREFIX}-raw.json`, rawJSON);
-    fs.writeFileSync(`${LATEST_FILE_PREFIX}-raw.json`, rawJSON);
+    fs.writeFileSync(`${LATEST_FILE_PREFIX}-raw.json`, rawJSON1);
+
+    const rawJSON2 = JSON.stringify({services: rows.slice(perPage), date: startTime.toISOString()});
+    fs.writeFileSync(`${LATEST_FILE_PREFIX}-raw-2.json`, rawJSON2);
 
     const csvData = toCSV(rows, startTime);
     const csvJSON = JSON.stringify(csvData);
