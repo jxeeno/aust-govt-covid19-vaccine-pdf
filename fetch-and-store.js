@@ -587,7 +587,11 @@ const getPublications = async () => {
             console.log(`Downloaded PDF: ${pdfUrl}`);
             pdfBuffer = data;
         }else if(landingUrl){
-            const {data: publicationHtml} = await axios.get(landingUrl);
+            const {data: publicationHtml} = await axios.get(landingUrl, {
+                params: {
+                    ts: new Date().valueOf()
+                },
+            });
             const $$ = cheerio.load(publicationHtml);
             pdfUrl = $$("a.health-file__link").attr('href');
 
@@ -613,7 +617,11 @@ const getPublications = async () => {
             console.log(`Downloaded PDF: ${jurisdictionalPdfUrl}`);
             pdfJurisdictionalBuffer = data;
         }else if(jurisdictionalLandingUrl){
-            const {data: publicationHtml} = await axios.get(jurisdictionalLandingUrl);
+            const {data: publicationHtml} = await axios.get(jurisdictionalLandingUrl, {
+                params: {
+                    ts: new Date().valueOf()
+                },
+            });
             const $$ = cheerio.load(publicationHtml);
             jurisdictionalPdfUrl = $$("a.health-file__link").attr('href');
 
@@ -628,6 +636,8 @@ const getPublications = async () => {
         }else if(jurisdictionalFilename){
             pdfJurisdictionalBuffer = fs.readFileSync(jurisdictionalFilename);
         }
+
+        console.log(pdfBuffer, pdfJurisdictionalBuffer)
     
         try{
             const vpdf = new AusDeptHealthVaccinePdf();
