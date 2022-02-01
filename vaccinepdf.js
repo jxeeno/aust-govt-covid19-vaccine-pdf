@@ -427,7 +427,7 @@ class AusDeptHealthVaccinePdf {
         const stateLabelLocations = mergedContent.filter(t => states.includes(t.str.replace(/\s/g, '').trim()));
 
         const width = Math.max(...stateLabelLocations.map(l => l.width));
-        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 17;
+        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 20;
 
         const stateData = {};
 
@@ -454,7 +454,7 @@ class AusDeptHealthVaccinePdf {
             //     console.log(stateCode, unmergedValues);
             // }
             // console.log(values)
-            if(values.length >= 13){
+            if(values.length >= 15){
                 stateData[stateCode] = [
                     {
                         ageLower: 16,
@@ -483,22 +483,22 @@ class AusDeptHealthVaccinePdf {
                     {
                         ageLower: 12,
                         ageUpper: 15,
-                        firstDoseCount: Number(values[5+3+0].str.replace(/[^0-9\.]+/g, '')),
-                        firstDosePct: Number(values[5+3+3].str.replace(/[^0-9\.]+/g, '')),
-                        secondDoseCount: Number(values[5+3+1].str.replace(/[^0-9\.]+/g, '')),
-                        secondDosePct: Number(values[5+3+4].str.replace(/[^0-9\.]+/g, '')),
-                        cohortPopulation: Number(values[5+3+2].str.replace(/[^0-9\.]+/g, ''))
+                        firstDoseCount: Number(values[5+5+0].str.replace(/[^0-9\.]+/g, '')),
+                        firstDosePct: Number(values[5+5+3].str.replace(/[^0-9\.]+/g, '')),
+                        secondDoseCount: Number(values[5+5+1].str.replace(/[^0-9\.]+/g, '')),
+                        secondDosePct: Number(values[5+5+4].str.replace(/[^0-9\.]+/g, '')),
+                        cohortPopulation: Number(values[5+5+2].str.replace(/[^0-9\.]+/g, ''))
                     },
                     {
                         ageLower: 5,
                         ageUpper: 11,
                         firstDoseCount: Number(values[10-5+0].str.replace(/[^0-9\.]+/g, '')),
-                        firstDosePct: Number(values[10-5+2].str.replace(/[^0-9\.]+/g, '')),
+                        firstDosePct: Number(values[10-5+3].str.replace(/[^0-9\.]+/g, '')),
                         secondDoseCount: 0,
                         secondDosePct: 0,
-                        // secondDoseCount: Number(values[10+1].str.replace(/[^0-9\.]+/g, '')),
-                        // secondDosePct: Number(values[10+4].str.replace(/[^0-9\.]+/g, '')),
-                        cohortPopulation: Number(values[10+1].str.replace(/[^0-9\.]+/g, ''))
+                        secondDoseCount: Number(values[10-5+1].str.replace(/[^0-9\.]+/g, '')),
+                        secondDosePct: Number(values[10-5+4].str.replace(/[^0-9\.]+/g, '')),
+                        cohortPopulation: Number(values[10-5+2].str.replace(/[^0-9\.]+/g, ''))
                     },
                     // {
                     //     ageLower: 5,
