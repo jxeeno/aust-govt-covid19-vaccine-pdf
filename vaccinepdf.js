@@ -723,7 +723,7 @@ class AusDeptHealthVaccinePdf {
                 }
             }else{
                 // const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);
-                const matchesDaily = combinedStr.match(/\(([\+\-])?\s*([0-9,]+)(?: \-?[0-9,]+)?(?:\s*[\*#]*)?\s*(?:last\s*24\s*hours|daily|increase)/);
+                const matchesDaily = combinedStr.match(/\(\+?([\+\-])?\s*([0-9,]+)(?: \-?[0-9,]+)?(?:\s*[\*#]*)?\s*(?:last\s*24\s*hours|daily|increase)/);
                 const matchesHeadline = combinedStr.match(/([0-9,]+)/);
                 // console.log(pageIndex, combinedStr, matches)
 

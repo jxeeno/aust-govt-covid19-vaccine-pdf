@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2022/01/covid-19-vaccine-rollout-update-29-january-2022.pdf",
     "pdfData": {
         "dataAsAt": "2022-01-28",
@@ -83,6 +83,10 @@
             "SA": {
                 "total": 1578701,
                 "last24hr": 8149
+            },
+            "TAS": {
+                "total": 549441,
+                "last24hr": -3
             }
         },
         "cwthAgedCare": {
@@ -135,6 +139,10 @@
             "WA": {
                 "total": 2783574,
                 "last24hr": 29396
+            },
+            "TAS": {
+                "total": 518236,
+                "last24hr": 4301
             },
             "SA": {
                 "total": 1728855,
@@ -2212,11 +2220,5 @@
             }
         }
     },
-    "validation": [
-        "stateClinics.TAS.total is null",
-        "stateClinics.TAS.last24hr is null",
-        "cwthPrimaryCare.TAS.total is null",
-        "cwthPrimaryCare.TAS.last24hr is null",
-        "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 49398801 (48849360)"
-    ]
+    "validation": []
 }
