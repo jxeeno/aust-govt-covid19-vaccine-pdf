@@ -22,6 +22,7 @@ const fetchApiKey = async () => {
 const NHSD_ENDPOINT = 'https://api.nhsd.healthdirect.org.au/v51/healthcareServices/_search';
 const PAGE_SIZE = 50;
 const CLINICS_DATA_DIR = 'docs/clinics';
+const RADIUS = 300;
 
 const fetchVaccineClinicPage = async (apikey, state, page) => {
     console.log(`Fetching clinics - page ${page}`);
@@ -35,7 +36,7 @@ const fetchVaccineClinicPage = async (apikey, state, page) => {
             'filter.programs.codes': 'nhsd:/reference/common/program/covid19VaccineService',
             'responseControl.offset': page*PAGE_SIZE,
             'responseControl.limit': PAGE_SIZE,
-            'location.proximity.near_distance': 300000,
+            'location.proximity.near_distance': RADIUS * 1000,
             'location.proximity.near': state
             // 'location.physicalLocation.stateDrIdRef': `nhsd:/reference/geo/AUS.states/${state}`
         }
@@ -53,13 +54,17 @@ const fetchAllClinics = async () => {
     const startTime = moment().tz('Australia/Sydney');
 
     const apikey = await fetchApiKey();
+    
+    const dist = Math.ceil(Math.sqrt(Math.pow(RADIUS, 2)/2));
 
     const grid = turf.pointGrid([
         112.1044921875,
         -44.11914151643736,
         154.46777343749997,
         -9.44906182688142
-    ], 250, {units: 'kilometers', mask: augeojson});
+    ], dist, {units: 'kilometers', mask: augeojson});
+    
+    console.log({dist, RADIUS});
 
     const rowMap = new Map();
     const states = grid.features.map(v => [v.geometry.coordinates[1], v.geometry.coordinates[0]].join(',')); // ['-33.8697,151.2099', '-37.821666,144.978547', '-27.466098,153.029997', '-16.9233991,145.773851', '-23.698042,133.880747', '-12.4633,130.8434', '-34.92869,138.60102', '-42.882138,147.327195', '-31.99212,115.763228'];
