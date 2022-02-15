@@ -35,7 +35,7 @@ const fetchVaccineClinicPage = async (apikey, state, page) => {
             'filter.programs.codes': 'nhsd:/reference/common/program/covid19VaccineService',
             'responseControl.offset': page*PAGE_SIZE,
             'responseControl.limit': PAGE_SIZE,
-            'location.proximity.near_distance': 400000,
+            'location.proximity.near_distance': 300000,
             'location.proximity.near': state
             // 'location.physicalLocation.stateDrIdRef': `nhsd:/reference/geo/AUS.states/${state}`
         }
@@ -59,7 +59,7 @@ const fetchAllClinics = async () => {
         -44.11914151643736,
         154.46777343749997,
         -9.44906182688142
-    ], 300, {units: 'kilometers', mask: augeojson});
+    ], 250, {units: 'kilometers', mask: augeojson});
 
     const rowMap = new Map();
     const states = grid.features.map(v => [v.geometry.coordinates[1], v.geometry.coordinates[0]].join(',')); // ['-33.8697,151.2099', '-37.821666,144.978547', '-27.466098,153.029997', '-16.9233991,145.773851', '-23.698042,133.880747', '-12.4633,130.8434', '-34.92869,138.60102', '-42.882138,147.327195', '-31.99212,115.763228'];
@@ -75,6 +75,11 @@ const fetchAllClinics = async () => {
             page++
 
             if(!results.hasNextPage){
+                end = true;
+            }
+            
+            if(page >= 200){
+                console.error('Max 200 page reached');
                 end = true;
             }
         }
