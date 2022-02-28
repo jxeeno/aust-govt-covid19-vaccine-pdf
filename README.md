@@ -131,6 +131,30 @@ For consistency, the following fields have also been added:
 Where `AGE_LOWER` is `5` and `AGE_UPPER` is `11`.
 
 **Note:** Due to changes to the data layout, summary vaccination rates by jurisdiction for 50+ and 70+ are no longer available.  I will add middleware in due course to estimate these figures.
+
+### From 28 Feb 2022 onwards
+
+Department of Health is now publishing the percentage of eligible individuals who have received a third dose of COVID-19 vaccine by geographical region.  This is different from other representation percentage data which is generally to the population.  To report against a common metric, we have estimated the actual number of people with at least 3 doses and percentage of population by comparing against second dose counts 12 weeks ago (approx 3 months).
+
+This data is available in:
+
+* `air_<lga|sa4|sa3>.csv`
+* `air_<lga|sa4|sa3>.json`
+
+The following fields have been added:
+
+* `AIR_THIRD_DOSE_ELIGIBLE_PCT` - % of eligible people with at least three doses of vaccine, as provided by DOH
+* `AIR_THIRD_DOSE_APPROX_COUNT` - estimated number of people with at least three doses of vaccine (derived by AIR_THIRD_DOSE_ELIGIBLE_PCT * AIR_SECOND_DOSE_APPROX_COUNT from 12 weeks ago)
+* `AIR_THIRD_DOSE_PCT` - estimated % of population with at least three doses of vaccine (derived by AIR_THIRD_DOSE_APPROX_COUNT / ABS_ERP_2019_POPULATION)
+
+**NOTE:** The order of the columns in the CSV has changed to accomodate this additional data
+
+**Fixes:**
+
+* Resolved an issue with booster by jurisdiction data being missing due to a change of layout
+* Fixed LGA matching issue with Nambucca Valley / Nambucca
+* Fixed LGA matching issue with DOH merged LGA: Mount Gambier (C) & Grant (DC)
+
 ## Attribution
 
 You must attribute the source of the data as [Department of Health](https://www.health.gov.au/using-our-websites/copyright) (all data except second doses by state prior to 1st July 2021) and [WA Health](https://www.wa.gov.au/sites/default/files/2021-06/COVID-19-Vaccination-Dashboard-Guide-for-Interpretation.pdf) (second dose by state data prior to 1st July 2021).
