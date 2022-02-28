@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { format } = require('@fast-csv/format');
-const axios = require('axios');
+const path = require('path');
+const moment = require('moment');
 const pdfTableExtractor = require('./src/pdf-table');
 const sa4Population = require('./src/abs/sa4_2019_population');
 const lgaMapping = require('./src/abs/lgacodes.json');
@@ -16,6 +17,15 @@ const stateMap = {
     'Northern Territory': 'NT',
     'Australian Capital Territory': 'ACT',
     'Tasmania': 'TAS'
+}
+
+const getDataFrom12WeeksAgo = (asAt) => {
+    const oldDate = moment(asAt).subtract(12, 'weeks').format('YYYY-MM-DD');
+    const oldDataFname = path.join(__dirname, `./docs/data/geo/${oldDate}.lga.json`);
+    console.log({oldDataFname})
+    if(fs.existsSync(oldDataFname)){
+        return JSON.parse(fs.readFileSync(oldDataFname))
+    }
 }
 
 const LGAS = Object.values(lgaMapping).map(s => [s[1].toUpperCase().replace(/[^A-Z]/g, ''), ...s]);
@@ -34,18 +44,22 @@ async function scrapeLGA(data, url) {
         return s.replace(/\s+/g, ' ').trim();
     }
 
+    const boosterEligibleData = getDataFrom12WeeksAgo(asAt);
+
     const rows = [];
     for(const page of pageTables){
         const table = page.tables.map(r => r.map(s => cleanCell(s)));
-        if(page.page === 9){
-            console.log(page)
-        }
+        // if(page.page === 9){
+        //     console.log(page)
+        // }
         // for(const table of page.tables){
             const header = table[0].map(s => cleanCell(s));
             if(header.length < 5){
                 console.log(table)
                 continue;
             }
+
+            const hasBooster = !!header[4].match(/more\s*than\s*2\s*doses/);
 
             if(header[0] === 'State of Residence' || header[1] === 'LGA 2019 Name of Residence'){
                 for(const r of table){
@@ -54,7 +68,7 @@ async function scrapeLGA(data, url) {
                     if(r[1] === ''){continue;}
 
                     const lga = LGAS.find(s => s[0] === r[1].toUpperCase().replace(/[^A-Z]/g, ''));
-                    const lgapop = Number(r[4].replace(/[^0-9\.]+/g, ''))//lgapopulation[sa4[0]];
+                    const lgapop = Number(r[hasBooster ? 5 : 4].replace(/[^0-9\.]+/g, ''))//lgapopulation[sa4[0]];
 
                     if(!lga){
                         console.log('no lga match', r)
@@ -72,10 +86,16 @@ async function scrapeLGA(data, url) {
                         AGE_UPPER: 999,
                         AIR_FIRST_DOSE_PCT: isMasked ? null : Number(r[2].replace(/[^0-9\.]+/g, '')),
                         AIR_SECOND_DOSE_PCT: isMasked ? null : Number(r[3].replace(/[^0-9\.]+/g, '')),
+                        AIR_THIRD_DOSE_ELIGIBLE_PCT: hasBooster ? isMasked ? null : Number(r[4].replace(/[^0-9\.]+/g, '')) : undefined
                     }
 
+                    const oldRow = hasBooster && boosterEligibleData ? boosterEligibleData.pdfData.rows.find(or => or.ABS_CODE === row.ABS_CODE) : undefined;
+                    const secondDose12Weeks = oldRow ? oldRow.AIR_SECOND_DOSE_APPROX_COUNT : undefined;
+
+                    row.AIR_THIRD_DOSE_PCT = secondDose12Weeks ? isMasked ? null : Math.round((secondDose12Weeks * (row.AIR_THIRD_DOSE_ELIGIBLE_PCT/100)) / lgapop * 1000) / 10 : undefined;
                     row.AIR_FIRST_DOSE_APPROX_COUNT = isMasked ? null : lgapop ? Math.round(lgapop * (row.AIR_FIRST_DOSE_PCT/100)) : '';
                     row.AIR_SECOND_DOSE_APPROX_COUNT = isMasked ? null : lgapop ? Math.round(lgapop * (row.AIR_SECOND_DOSE_PCT/100)) : '';
+                    row.AIR_THIRD_DOSE_APPROX_COUNT = secondDose12Weeks ? isMasked ? null : Math.round(secondDose12Weeks * (row.AIR_THIRD_DOSE_ELIGIBLE_PCT/100)) : undefined;
                     row.ABS_ERP_2019_POPULATION = lgapop ? lgapop : '';
                     row.MASKED = isMasked ? 'Y' : 'N',
                     row.SA4_CODE_2016 = lga ? lga[3].join(';') : '';

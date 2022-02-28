@@ -555,16 +555,25 @@ const getPublications = async () => {
             const $$ = cheerio.load(publicationHtml);
             pdfUrl = $$("a.health-file__link[data-filetype=\"application/pdf\"]").attr('href');
 
-            const { data } = await axios.get(pdfUrl, {
-                params: {
-                    ts: new Date().valueOf()
-                },
-                responseType: 'arraybuffer'
-            });
-            console.log(`Downloaded PDF: ${pdfUrl}`);
-            pdfBuffer = data;
+            if(!pdfUrl){
+                console.error('Could not find pdf url for '+landingUrl);
+            }else{
+                const { data } = await axios.get(pdfUrl, {
+                    params: {
+                        ts: new Date().valueOf()
+                    },
+                    responseType: 'arraybuffer'
+                });
+                console.log(`Downloaded PDF: ${pdfUrl}`);
+                pdfBuffer = data;
+            }
         }else if(filename){
             pdfBuffer = fs.readFileSync(filename);
+        }
+
+        if(!pdfBuffer){
+            console.error(`No PDF buffer for item`, item)
+            continue;
         }
         
         // const vpdf = new AusDeptHealthVaccinePdf();
