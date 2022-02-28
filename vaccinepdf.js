@@ -88,6 +88,8 @@ class AusDeptHealthVaccinePdf {
             }
         }
 
+        const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3) || this.getDataAsAt(4) || this.getDataAsAt(5) || this.getDataAsAt(6) || this.getDataAsAt(7);
+
         const pageForFirstNations = this.data.pages.findIndex(page => page.content.find(r => r.str.match(/Aboriginal and Torres Strait Islander peoples/)))
         const pageForAgedCare = this.data.pages.findIndex(page => !this.mergeAdjacentCells(page.content).find(r => r.str.match(/Booster\s*Vaccinations/)) && page.content.find(r => r.str.match(/Commonwealth aged care (and disability )?doses administered/)))
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
@@ -101,14 +103,13 @@ class AusDeptHealthVaccinePdf {
         // console.log({totalDosesPage})
         const firstNations = this.getFirstNationsStateData(pageForFirstNations);
         const totalDoses = this.getStateData(totalDosesPage);
-        const boosterDoses = this.getStateData(pageForBoosters, 'booster');
+        const boosterDoses = this.getStateData(pageForBoosters, dataAsAt >= '2022-02-25' ? 'booster2' : 'booster');
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
         // don't use primaryCare as that is doses by residence.  we want doses by administration here
         let cwthPrimaryCare = this.getStateData(pageForPrimaryCare || 6);
         let totals = this.getLeftPanelData(totalDosesPage);
         const cwthAgedCareBreakdown = this.getAgedCareLeftPanelData(pageForAgedCare || 5);
-        const dataAsAt = this.getDataAsAt(1) || this.getDataAsAt(2) || this.getDataAsAt(3) || this.getDataAsAt(4) || this.getDataAsAt(5) || this.getDataAsAt(6) || this.getDataAsAt(7);
         const distribution = await this.getDistributionData(buffer, pageForDistribution);
         // console.log({pageForDoses})
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
@@ -291,7 +292,7 @@ class AusDeptHealthVaccinePdf {
 
             const filteredContent = content.filter(f => f.cx >= baseline.x && f.cx <= (baseline.x+baseline.width) && f.cy < baseline.y);
             // console.log({filteredContent})
-            // console.log(filteredContent.map(c => c.str))
+            // console.log('agedCare', filteredContent.map(c => c.str))
 
             const total = filteredContent.find(c => c.str.match(/^([0-9,]+)$/))
             const last24hr = filteredContent.find(c => c.str.match(/([\+-]\s*[0-9,]+) last 24 hours/))
@@ -681,8 +682,8 @@ class AusDeptHealthVaccinePdf {
         const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
         const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
 
-        const width = Math.max(...stateLabelLocations.map(l => l.width)) * 2.5; // width of circle is at most 3x max width of state label
-        const height = Math.max(...stateLabelLocations.map(l => l.height)) * 4; // height of circle is at most 4x height of state label
+        const width = variant === 'booster' ? Math.max(...stateLabelLocations.map(l => l.width)) * 2.5 : Math.max(...stateLabelLocations.map(l => l.width)) * 2.5; // width of circle is at most 3x max width of state label
+        const height = variant === 'booster' ?  Math.max(...stateLabelLocations.map(l => l.height)) * 2.5 : Math.max(...stateLabelLocations.map(l => l.height)) * 4; // height of circle is at most 4x height of state label
 
         // if(pageIndex === 1){
         //     console.log({width, height}, stateLabelLocations)
@@ -720,6 +721,28 @@ class AusDeptHealthVaccinePdf {
                         firstDoseCount: toNumber(matchesFirstDose[1]),
                         secondDoseCount: toNumber(matchesSecondDose[1])
                     }
+                }
+            }else if(variant === 'booster2'){
+                console.log(stateCode, {combinedStr})
+                // console.log(stateCode, values)
+                const matchesDaily = combinedStr.match(/\+?([\+\-])?\s*([0-9,]+)\s*(?:Daily increase)/);
+                const matchesHeadline = combinedStr.match(/([0-9,]+) Cumulative/);
+                // // console.log(pageIndex, combinedStr, matches)
+
+                // // console.log({combinedStr, matchesDaily, matchesHeadline, stateCode})
+
+                // // if(pageIndex === 1 && stateCode === 'VIC'){
+                // //     console.log(stateCode, values)
+                // // }
+
+                if(matchesHeadline && matchesDaily){
+                    stateData[stateCode] = {
+                        total: toNumber(matchesHeadline[1]),
+                        last24hr: toNumber(matchesDaily[2], matchesDaily[1])
+                    }
+
+                    stateData[stateCode].thirdDosePct16 = Math.round(stateData[stateCode].total/getPopulation(stateCode, 16, 999)*100*100)/100;
+                    stateData[stateCode].thirdDosePct = Math.round(stateData[stateCode].total/getPopulation(stateCode, 18, 999)*100*100)/100;
                 }
             }else{
                 // const matches = combinedStr.match(/([0-9,]+)\s+\(([\+\-])?\s*([0-9,]+)(?:\s*\**)?\s*(?:last\s*24\s*hours|daily)\s*/);

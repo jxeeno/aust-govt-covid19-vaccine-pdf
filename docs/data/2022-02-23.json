@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-24-february-2022.pdf",
     "pdfData": {
         "dataAsAt": "2022-02-23",
@@ -9,7 +9,7 @@
                 "last24hr": 125035
             },
             "cwthAll": {
-                "total": 32424997,
+                "total": 33668063,
                 "last24hr": 102901
             },
             "cwthPrimaryCare": {
@@ -17,7 +17,7 @@
                 "last24hr": 107738
             },
             "cwthAgedCare": {
-                "total": 4837,
+                "total": 1247903,
                 "last24hr": -4837
             }
         },
@@ -2220,7 +2220,5 @@
             }
         }
     },
-    "validation": [
-        "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 53697719 (52454653)"
-    ]
+    "validation": []
 }

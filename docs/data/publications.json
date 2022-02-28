@@ -3062,9 +3062,9 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-24-february-2022.pdf",
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-jurisdictional-breakdown-24-february-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-02-23.json",
-        "validation": [
-            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 53697719 (52454653)"
-        ]
+        "validation": [],
+        "exempt": true,
+        "notes": "Manually overriden cwth aged care value because of - 4,837# formatting quirk on slide"
     },
     {
         "name": "COVID-19 vaccine rollout update – 25 February 2022",
@@ -3073,24 +3073,6 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-25-february-2022.pdf",
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-jurisdictional-breakdown-25-february-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-02-24.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 26 February 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-26-february-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-february-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-26-february-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-february-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-02-25.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 27 February 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-27-february-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-february-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-27-february-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-february-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-02-26.json",
         "validation": []
     },
     {
@@ -3134,5 +3116,23 @@
             "stateOfResidence.SA.ageBucketsEstimatedPopulation[16].firstDosePct is null",
             "stateOfResidence.SA.ageBucketsEstimatedPopulation[16].secondDosePct is null"
         ]
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 27 February 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-27-february-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-february-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-27-february-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-february-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-02-26.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 26 February 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-26-february-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-february-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-26-february-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/02/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-february-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-02-25.json",
+        "validation": []
     }
 ]

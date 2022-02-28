@@ -417,6 +417,8 @@ const validateData = (data) => {
         'stateOfResidence.SA.ageBucketsEstimatedPopulation[0].secondDosePct',
         'stateOfResidence.SA.ageBucketsEstimatedPopulation[16].firstDosePct',
         'stateOfResidence.SA.ageBucketsEstimatedPopulation[16].secondDosePct',
+
+        'thirdDoses.NSW.thirdDosePct16'
     ]
 
     let errors = [];
@@ -437,7 +439,7 @@ const validateData = (data) => {
     // logErrorNotEq(cwthPrimaryCareTotal, _.get(data, 'totals.cwthPrimaryCare.total'), true, 'cwthPrimaryCareTotal');
     // logErrorNotEq(cwthAgedCareTotal, _.get(data, 'totals.cwthAgedCare.total'), true, 'cwthAgedCareTotal');
     // logErrorNotEq(cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.cwthAll.total'), true, 'cwthPrimaryCareTotal + cwthAgedCareTotal');
-    console.log({statesTotal})
+    console.log({statesTotal, cwthAgedCareTotal, cwthPrimaryCareTotal})
     logErrorNotEq(statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal, _.get(data, 'totals.national.total'), true, 'statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal');
 
     // AIR data
