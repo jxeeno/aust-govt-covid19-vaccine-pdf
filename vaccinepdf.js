@@ -103,7 +103,7 @@ class AusDeptHealthVaccinePdf {
         // console.log({totalDosesPage})
         const firstNations = this.getFirstNationsStateData(pageForFirstNations);
         const totalDoses = this.getStateData(totalDosesPage);
-        const boosterDoses = this.getStateData(pageForBoosters, dataAsAt >= '2022-02-25' ? 'booster2' : 'booster');
+        const boosterDoses = this.getStateData(pageForBoosters, dataAsAt >= '2022-02-24' ? 'booster2' : 'booster');
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
         // don't use primaryCare as that is doses by residence.  we want doses by administration here
@@ -682,8 +682,8 @@ class AusDeptHealthVaccinePdf {
         const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
         const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
 
-        const width = variant === 'booster' ? Math.max(...stateLabelLocations.map(l => l.width)) * 2.5 : Math.max(...stateLabelLocations.map(l => l.width)) * 2.5; // width of circle is at most 3x max width of state label
-        const height = variant === 'booster' ?  Math.max(...stateLabelLocations.map(l => l.height)) * 2.5 : Math.max(...stateLabelLocations.map(l => l.height)) * 4; // height of circle is at most 4x height of state label
+        const width = variant === 'booster2' ? Math.max(...stateLabelLocations.map(l => l.width)) * 2.5 : Math.max(...stateLabelLocations.map(l => l.width)) * 2.5; // width of circle is at most 3x max width of state label
+        const height = variant === 'booster2' ?  Math.max(...stateLabelLocations.map(l => l.height)) * 2.4 : Math.max(...stateLabelLocations.map(l => l.height)) * 4; // height of circle is at most 4x height of state label
 
         // if(pageIndex === 1){
         //     console.log({width, height}, stateLabelLocations)
