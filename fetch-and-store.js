@@ -418,7 +418,14 @@ const validateData = (data) => {
         'stateOfResidence.SA.ageBucketsEstimatedPopulation[16].firstDosePct',
         'stateOfResidence.SA.ageBucketsEstimatedPopulation[16].secondDosePct',
 
-        'thirdDoses.NSW.thirdDosePct16'
+        'thirdDoses.NSW.thirdDosePct16',
+        'thirdDoses.VIC.thirdDosePct16',
+        'thirdDoses.QLD.thirdDosePct16',
+        'thirdDoses.ACT.thirdDosePct16',
+        'thirdDoses.SA.thirdDosePct16',
+        'thirdDoses.TAS.thirdDosePct16',
+        'thirdDoses.WA.thirdDosePct16',
+        'thirdDoses.NT.thirdDosePct16'
     ]
 
     let errors = [];

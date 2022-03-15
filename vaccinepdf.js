@@ -680,7 +680,7 @@ class AusDeptHealthVaccinePdf {
         if(!this.data.pages[pageIndex]){return}
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
         const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
-        const stateLabelLocations = content.filter(t => states.includes(t.str.trim()));
+        const stateLabelLocations = content.filter(t => states.includes(t.str.replace(/\s/g, '').trim()));
 
         const width = variant === 'booster2' ? Math.max(...stateLabelLocations.map(l => l.width)) * 2.5 : Math.max(...stateLabelLocations.map(l => l.width)) * 2.5; // width of circle is at most 3x max width of state label
         const height = variant === 'booster2' ?  Math.max(...stateLabelLocations.map(l => l.height)) * 2.4 : Math.max(...stateLabelLocations.map(l => l.height)) * 4; // height of circle is at most 4x height of state label
@@ -701,7 +701,7 @@ class AusDeptHealthVaccinePdf {
             let minY = state.cy;
             let maxY = state.cy + height;
 
-            const stateCode = state.str.trim();
+            const stateCode = state.str.replace(/\s/g, '').trim();
 
             const values = this.mergeAdjacentCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY && t.cy <= maxY), 0.07, 6);
 
@@ -724,6 +724,7 @@ class AusDeptHealthVaccinePdf {
                 }
             }else if(variant === 'booster2'){
                 console.log(stateCode, {combinedStr})
+                
                 // console.log(stateCode, values)
                 const matchesDaily = combinedStr.match(/\+?([\+\-])?\s*([0-9,]+)\s*(?:Daily increase)/);
                 const matchesHeadline = combinedStr.match(/([0-9,]+) Cumulative/);
