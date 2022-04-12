@@ -3469,16 +3469,7 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-11-april-2022.pdf",
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-april-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-04-10.json",
-        "validation": [
-            "thirdDoses.NSW.thirdDosePct16 is null",
-            "thirdDoses.VIC.thirdDosePct16 is null",
-            "thirdDoses.QLD.thirdDosePct16 is null",
-            "thirdDoses.ACT.thirdDosePct16 is null",
-            "thirdDoses.SA.thirdDosePct16 is null",
-            "thirdDoses.TAS.thirdDosePct16 is null",
-            "thirdDoses.WA.thirdDosePct16 is null",
-            "thirdDoses.NT.thirdDosePct16 is null"
-        ]
+        "validation": []
     },
     {
         "name": "COVID-19 vaccine rollout update – 12 April 2022",
@@ -3487,15 +3478,46 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-12-april-2022.pdf",
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-jurisdictional-breakdown-12-april-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-04-11.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 3 April 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-3-april-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-3-april-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-3-april-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-jurisdictional-breakdown-3-april-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-04-02.json",
         "validation": [
-            "thirdDoses.NSW.thirdDosePct16 is null",
-            "thirdDoses.VIC.thirdDosePct16 is null",
-            "thirdDoses.QLD.thirdDosePct16 is null",
-            "thirdDoses.ACT.thirdDosePct16 is null",
-            "thirdDoses.SA.thirdDosePct16 is null",
-            "thirdDoses.TAS.thirdDosePct16 is null",
-            "thirdDoses.WA.thirdDosePct16 is null",
-            "thirdDoses.NT.thirdDosePct16 is null"
+            "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.NSW.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.NSW.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.VIC.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.VIC.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.VIC.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.VIC.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.QLD.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.QLD.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.QLD.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.QLD.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.ACT.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.ACT.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.ACT.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.ACT.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.TAS.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.TAS.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.TAS.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.TAS.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.NT.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.NT.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.WA.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.WA.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.WA.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.WA.ageBucketsEstimatedPopulation[16].secondDosePct is null",
+            "stateOfResidence.SA.ageBucketsEstimatedPopulation[0].firstDosePct is null",
+            "stateOfResidence.SA.ageBucketsEstimatedPopulation[0].secondDosePct is null",
+            "stateOfResidence.SA.ageBucketsEstimatedPopulation[16].firstDosePct is null",
+            "stateOfResidence.SA.ageBucketsEstimatedPopulation[16].secondDosePct is null"
         ]
     }
 ]

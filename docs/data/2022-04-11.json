@@ -1,5 +1,5 @@
 {
-    "success": false,
+    "success": true,
     "url": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-12-april-2022.pdf",
     "pdfData": {
         "dataAsAt": "2022-04-11",
@@ -2169,17 +2169,56 @@
                 "thirdDoseCount": 13166377,
                 "thirdDosePct16": 63.85,
                 "thirdDosePct": 65.71
+            },
+            "NSW": {
+                "total": 4030925,
+                "last24hr": 12216,
+                "thirdDosePct16": 61.39,
+                "thirdDosePct": 63.16
+            },
+            "VIC": {
+                "total": 3542416,
+                "last24hr": 5751,
+                "thirdDosePct16": 65.51,
+                "thirdDosePct": 67.33
+            },
+            "QLD": {
+                "total": 2279963,
+                "last24hr": 4646,
+                "thirdDosePct16": 55.44,
+                "thirdDosePct": 57.19
+            },
+            "WA": {
+                "total": 1594112,
+                "last24hr": 4150,
+                "thirdDosePct16": 75.37,
+                "thirdDosePct": 77.62
+            },
+            "TAS": {
+                "total": 299853,
+                "last24hr": 945,
+                "thirdDosePct16": 68.12,
+                "thirdDosePct": 70.05
+            },
+            "SA": {
+                "total": 932151,
+                "last24hr": 1818,
+                "thirdDosePct16": 64.71,
+                "thirdDosePct": 66.56
+            },
+            "ACT": {
+                "total": 262498,
+                "last24hr": 357,
+                "thirdDosePct16": 76.3,
+                "thirdDosePct": 78.38
+            },
+            "NT": {
+                "total": 114900,
+                "last24hr": 544,
+                "thirdDosePct16": 60.29,
+                "thirdDosePct": 62.27
             }
         }
     },
-    "validation": [
-        "thirdDoses.NSW.thirdDosePct16 is null",
-        "thirdDoses.VIC.thirdDosePct16 is null",
-        "thirdDoses.QLD.thirdDosePct16 is null",
-        "thirdDoses.ACT.thirdDosePct16 is null",
-        "thirdDoses.SA.thirdDosePct16 is null",
-        "thirdDoses.TAS.thirdDosePct16 is null",
-        "thirdDoses.WA.thirdDosePct16 is null",
-        "thirdDoses.NT.thirdDosePct16 is null"
-    ]
+    "validation": []
 }

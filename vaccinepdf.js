@@ -103,7 +103,8 @@ class AusDeptHealthVaccinePdf {
         // console.log({totalDosesPage})
         const firstNations = this.getFirstNationsStateData(pageForFirstNations);
         const totalDoses = this.getStateData(totalDosesPage);
-        const boosterDoses = this.getStateData(pageForBoosters, dataAsAt >= '2022-02-24' ? 'booster2' : 'booster');
+        // console.log(dataAsAt, dataAsAt >= '2022-04-10' ? 'booster3' : dataAsAt >= '2022-02-24' ? 'booster2' : 'booster')
+        const boosterDoses = this.getStateData(pageForBoosters, dataAsAt >= '2022-04-10' ? 'booster3' : dataAsAt >= '2022-02-24' ? 'booster2' : 'booster');
         const stateClinics = this.getStateData(this.variant === 'original' ? 1 : jurisdictionAdministeredPage);
         const cwthAgedCare = this.getStateData(pageForAgedCare || 5);
         // don't use primaryCare as that is doses by residence.  we want doses by administration here
@@ -587,6 +588,7 @@ class AusDeptHealthVaccinePdf {
             rowHeaders = getValuesFor([/At\s*least\s*one\s*dose/, /Fully\s*vaccinated/, /Population/], null, false);
         }
 
+        // console.log({atLeastOne})
         // console.log({rowHeaders})
         // console.log(stateCode, ages)
 
@@ -654,6 +656,7 @@ class AusDeptHealthVaccinePdf {
         for(const stateKey in stateLabelLocations){
             const stateLocation = stateLabelLocations[stateKey]
             for(const doseKey in doseLabelLocations){
+                if(!doseLabelLocations[doseKey]){continue}
                 const bbox = {
                     xmin: doseLabelLocations[doseKey].x,
                     xmax: doseLabelLocations[doseKey].x + doseLabelLocations[doseKey].width,
@@ -676,6 +679,101 @@ class AusDeptHealthVaccinePdf {
 
     }
 
+    getBoosterSingleTableData(pageIndex){
+        // console.log('booster3', {pageIndex})
+        const content = this.mergeAdjacentCells((this.data).pages[pageIndex].content);
+
+        const getValuesFor = (strs, width, stripStrs = true) => {
+            const [str, ...remaining] = strs;
+            
+            const centrepoints = content.filter(t => t.str.match(str));
+            for(const centrepoint of centrepoints){
+                let minX = centrepoint.cx - (width || centrepoint.width)/2;
+                let maxX = centrepoint.cx + (width || centrepoint.width)/2;
+                let minY = centrepoint.cy;
+
+                const values = this.cleanCells(content.filter(t => t.cx >= minX && t.cx <= maxX && t.cy >= minY), 2);
+                values.sort((a, b) => a.y - b.y);
+
+                if(stripStrs){
+                    values.splice(0, 1) // remove split rows
+                }
+
+                if(remaining.length > 0){
+                    let pass = true;
+                    let prevIdx = -1;
+                    for(const sstr of remaining){
+                        let i = values.findIndex(v => v.str.match(sstr));
+                        if(i > -1 && i > prevIdx){
+                            prevIdx = i;
+                        }else{
+                            pass = false;
+                        }
+                    }
+
+                    if(!pass){
+                        continue;
+                    }
+
+                    if(stripStrs){
+                        values.splice(0, prevIdx+1) // remove split rows
+                    }
+                }
+
+                return values;
+            }
+
+            return []
+        }
+
+        const getRow = (cell) => {
+            const minX = cell.x + cell.width;
+            const minY = cell.y;
+            const maxY = cell.y + cell.height;
+
+            const values = this.cleanCells(content.filter(t => t.cx >= minX && t.cy >= minY && t.cy <= maxY), 2);
+            values.sort((a, b) => a.x - b.x);
+            return values;
+        }
+
+        const referenceWidth = content.find(t => t.str.match(/Daily\s*Increase/i)); // use at least one as reference width
+        // console.log({referenceWidth, content})
+        if(!referenceWidth){
+            return {};
+        }
+
+        // const ages = getValuesFor(['Age'], referenceWidth.width).filter(s => s.str.replace(/\s*/g, "").match(/^([0-9]+\+|[0-9]+\-[0-9]+)$/));
+        const states = ['NSW', 'VIC', 'QLD', 'WA', 'TAS', 'SA', 'ACT', 'NT'];
+        const stateLabelLocations = states.map(state => content.find(t => t.str.replace(/\s*/, '').trim() === state));
+        const noOfPeople = getValuesFor([/Number\s*of/, /People/], referenceWidth.width);
+        const dailyIncrease = getValuesFor([/Daily\s*Increase/], referenceWidth.width);
+        const pctEligible = getValuesFor([/% of Eligible/], referenceWidth.width);
+
+        // console.log({noOfPeople, dailyIncrease, pctEligible});
+
+        const stateData = {}
+
+        for(const stateLocation of stateLabelLocations){
+            const stateCode = stateLocation.str.replace(/\s*/, '').trim();
+            
+            const minY = stateLocation.y;
+            const maxY = stateLocation.y + stateLocation.height;
+            const col1 = noOfPeople.find(c => c.cy >= minY && c.cy <= maxY);
+            const col2 = dailyIncrease.find(c => c.cy >= minY && c.cy <= maxY);
+            const col3 = pctEligible.find(c => c.cy >= minY && c.cy <= maxY);
+
+            stateData[stateCode] = {
+                total: toNumber(col1.str),
+                last24hr: toNumber(col2.str)
+            }
+
+            stateData[stateCode].thirdDosePct16 = Math.round(stateData[stateCode].total/getPopulation(stateCode, 16, 999)*100*100)/100;
+            stateData[stateCode].thirdDosePct = Math.round(stateData[stateCode].total/getPopulation(stateCode, 18, 999)*100*100)/100;
+        }
+
+        return stateData
+    }
+
     getStateData(pageIndex = 1, variant = 'original'){
         if(!this.data.pages[pageIndex]){return}
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
@@ -693,6 +791,10 @@ class AusDeptHealthVaccinePdf {
 
         if(variant === 'firstNations'){
             stateData = this.getFirstNationsLeftPanelData(pageIndex)
+        }
+
+        if(variant === 'booster3'){
+            return this.getBoosterSingleTableData(pageIndex)
         }
 
         for (const state of stateLabelLocations) {
