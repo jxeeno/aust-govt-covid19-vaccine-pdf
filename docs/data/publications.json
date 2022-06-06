@@ -3584,6 +3584,10 @@
         "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/04/covid-19-vaccine-rollout-update-16-april-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-04-15.json",
         "validation": [
+            "cwthAgedCare.NSW.total is null",
+            "cwthAgedCare.NSW.last24hr is null",
+            "cwthPrimaryCare.NSW.total is null",
+            "cwthPrimaryCare.NSW.last24hr is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
             "stateOfResidence.NSW.ageBucketsEstimatedPopulation[16].firstDosePct is null",
@@ -3928,201 +3932,12 @@
         "validation": []
     },
     {
-        "name": "COVID-19 vaccine rollout update – 11 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-11-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-11-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-10.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 12 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-12-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-12-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-12-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-12-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-11.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 13 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-13-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-13-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-13-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-13-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-12.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 14 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-14-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-14-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-14-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-14-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-13.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 16 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-16-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-16-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-16-may-2022_0.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-16-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-15.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 17 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-17-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-17-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-17-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-17-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-16.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 18 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-18-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-18-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-18-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-18-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-17.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 19 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-19-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-19-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-19-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-19-may-2022-covid-19-vaccine-rollout-update-jurisdictional-breakdown-18-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-18.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 20 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-20-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-20-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-20-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-20-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-19.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 21 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-21-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-21-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-21-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-21-may-2022-covid-19-vaccine-rollout-update-jurisdictional-breakdown-22-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-20.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 22 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-22-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-22-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-22-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-22-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-21.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 23 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-23-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-23-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-23-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-23-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-22.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 24 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-24-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-24-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-24-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-24-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-23.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 25 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-25-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-25-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-25-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-25-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-24.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 26 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-26-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-26-may-2022_0.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-25.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 27 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-27-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-27-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-26.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 28 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-28-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-28-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-28-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-28-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-27.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 30 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-30-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-30-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-30-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-30-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-29.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 31 May 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-31-may-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-31-may-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-31-may-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-31-may-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-30.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 1 June 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-1-june-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-1-june-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-1-june-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-1-june-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-31.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 2 June 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-2-june-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-2-june-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-2-june-2022_0.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-2-june-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-06-01.json",
-        "validation": []
-    },
-    {
-        "name": "COVID-19 vaccine rollout update – 3 June 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-3-june-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-3-june-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-3-june-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-3-june-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-06-02.json",
+        "name": "COVID-19 vaccine rollout update – 6 June 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-6-june-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-6-june-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-6-june-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-6-june-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-06-05.json",
         "validation": []
     },
     {
@@ -4166,12 +3981,201 @@
         ]
     },
     {
-        "name": "COVID-19 vaccine rollout update – 6 June 2022",
-        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-6-june-2022",
-        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-6-june-2022",
-        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-6-june-2022.pdf",
-        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-6-june-2022.pdf",
-        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-06-05.json",
+        "name": "COVID-19 vaccine rollout update – 3 June 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-3-june-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-3-june-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-3-june-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-3-june-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-06-02.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 2 June 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-2-june-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-2-june-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-2-june-2022_0.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-2-june-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-06-01.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 1 June 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-1-june-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-1-june-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-1-june-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/06/covid-19-vaccine-rollout-update-jurisdictional-breakdown-1-june-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-31.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 31 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-31-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-31-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-31-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-31-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-30.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 30 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-30-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-30-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-30-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-30-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-29.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 28 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-28-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-28-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-28-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-28-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-27.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 27 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-27-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-27-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-27-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-26.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 26 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-26-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-26-may-2022_0.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-26-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-25.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 25 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-25-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-25-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-25-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-25-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-24.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 24 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-24-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-24-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-24-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-24-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-23.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 23 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-23-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-23-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-23-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-23-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-22.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 22 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-22-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-22-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-22-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-22-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-21.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 21 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-21-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-21-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-21-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-21-may-2022-covid-19-vaccine-rollout-update-jurisdictional-breakdown-22-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-20.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 20 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-20-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-20-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-20-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-20-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-19.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 19 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-19-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-19-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-19-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-19-may-2022-covid-19-vaccine-rollout-update-jurisdictional-breakdown-18-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-18.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 18 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-18-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-18-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-18-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-18-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-17.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 17 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-17-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-17-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-17-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-17-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-16.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 16 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-16-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-16-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-16-may-2022_0.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-16-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-15.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 14 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-14-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-14-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-14-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-14-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-13.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 13 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-13-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-13-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-13-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-13-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-12.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 12 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-12-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-12-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-12-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-12-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-11.json",
+        "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 11 May 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-11-may-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-may-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-11-may-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/05/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-may-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-05-10.json",
         "validation": []
     }
 ]

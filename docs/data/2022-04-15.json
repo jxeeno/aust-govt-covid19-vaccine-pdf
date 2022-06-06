@@ -90,10 +90,6 @@
             }
         },
         "cwthAgedCare": {
-            "NSW": {
-                "total": 558821,
-                "last24hr": -3
-            },
             "VIC": {
                 "total": 234983,
                 "last24hr": 9
@@ -124,10 +120,6 @@
             }
         },
         "cwthPrimaryCare": {
-            "NSW": {
-                "total": 12105132,
-                "last24hr": 797
-            },
             "VIC": {
                 "total": 8786983,
                 "last24hr": 656
@@ -764,6 +756,10 @@
         }
     },
     "validation": [
+        "cwthAgedCare.NSW.total is null",
+        "cwthAgedCare.NSW.last24hr is null",
+        "cwthPrimaryCare.NSW.total is null",
+        "cwthPrimaryCare.NSW.last24hr is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].firstDosePct is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[0].secondDosePct is null",
         "stateOfResidence.NSW.ageBucketsEstimatedPopulation[16].firstDosePct is null",
