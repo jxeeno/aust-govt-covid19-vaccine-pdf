@@ -95,9 +95,11 @@ class AusDeptHealthVaccinePdf {
         const pageForPrimaryCare = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Commonwealth primary care doses administered') > -1))
         const pageForDoses = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Doses\s*by\s*age\s*and\s*sex/)))
         const pageForBoosters = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Booster\s*Vaccinations/)))
+        const pageForWinter = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Winter\s*\/\s*Fourth\s*Doses/)))
         const pageForDistribution = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Administration and Utilisation') > -1))
         const jurisdictionAdministeredPage = this.data.pages.findIndex(page => page.content.find(r => r.str.indexOf('Jurisdiction administered') > -1))
         const totalDosesPage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Total\s*vaccine\s*doses/)))
+        
         const primaryCarePage = this.data.pages.findIndex(page => this.mergeAdjacentCells(page.content).find(r => r.str.match(/Commonwealth\s*primary\s*care/)))
 
         // console.log({totalDosesPage})
@@ -116,6 +118,10 @@ class AusDeptHealthVaccinePdf {
         const doseBreakdown = this.getDoseBreakdown(pageForDoses);
         const thirdDoses = {
             ...(this.getThirdDose(totalDosesPage)||{}),
+            ...(boosterDoses||{})
+        };
+        const fourthDoses = {
+            ...(this.getFourthDose(totalDosesPage)||{}),
             ...(boosterDoses||{})
         };
         const stateOfResidence = {};
@@ -248,7 +254,7 @@ class AusDeptHealthVaccinePdf {
 
     getThirdDose(pageIndex){
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
-        const thirdDoseLabel = content.find(v => v.str.match(/than\s*two\s*doses/))
+        const thirdDoseLabel = content.find(v => v.str.match(/(than\s*two\s*doses|who\*shave\s*received\s*three\s*or|three\s*or\s*more\s*doses)/))
         if(!thirdDoseLabel){
             return;
         }
@@ -264,6 +270,30 @@ class AusDeptHealthVaccinePdf {
                     thirdDoseCount: toNumber(numbers[0].str),
                     thirdDosePct16: Math.round(toNumber(numbers[0].str) / getPopulation('AUS', 16, 999) * 100 * 100)/100,
                     thirdDosePct: Math.round(toNumber(numbers[0].str) / getPopulation('AUS', 18, 999) * 100 * 100)/100
+                }
+            }
+        }
+        // console.log(thirdDoseColumn);
+    }
+
+    getFourthDose(pageIndex){
+        const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
+        const fourthDoseLabel = content.find(v => v.str.match(/(four\s*or\s*more\s*doses)/))
+        if(!fourthDoseLabel){
+            return;
+        }
+
+        const fourthDoseColumn = content.filter(v => v.cx >= (fourthDoseLabel.x - fourthDoseLabel.width) && v.cx <= (fourthDoseLabel.x + fourthDoseLabel.width) && v.cy < fourthDoseLabel.y);
+        fourthDoseColumn.sort((a, b) => b.cy - a.cy);
+
+        const numbers = fourthDoseColumn.filter(v => isNumber(v.str));
+
+        if(numbers.length > 0){
+            return {
+                AUS: {
+                    fourthDoseCount: toNumber(numbers[0].str),
+                    fourthDosePct16: Math.round(toNumber(numbers[0].str) / getPopulation('AUS', 16, 999) * 100 * 100)/100,
+                    fourthDosePct: Math.round(toNumber(numbers[0].str) / getPopulation('AUS', 18, 999) * 100 * 100)/100
                 }
             }
         }
