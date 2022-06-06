@@ -95,6 +95,7 @@ async function scrapeSAX(data, aggLevel, url) {
 
                     if(!agg){
                         console.log(r)
+                        continue;
                     }
 
                     const aggpop = agg[0] ? aggPopulation[agg[0]] : null;

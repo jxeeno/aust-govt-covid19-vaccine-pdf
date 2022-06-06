@@ -71,9 +71,11 @@ async function scrapeSAXI(data, aggLevel, url) {
             // console.log(table)
             // return;
             const header = table[0].map(s => cleanCell(s));
-            if(header.length !== 7){
+            if(header.length !== 8){
                 continue;
             }
+
+            const hasBooster = !!header[7].match(/more\s*than/);
 
             if(header[0] === 'State' && header[1] === headerCell){
                 for(const r of table){
@@ -99,6 +101,7 @@ async function scrapeSAXI(data, aggLevel, url) {
                         AIR_FIRST_DOSE_APPROX_COUNT: Number(r[2].replace(/[^0-9\.]+/g, '')),
                         AIR_SECOND_DOSE_APPROX_COUNT: Number(r[3].replace(/[^0-9\.]+/g, '')),
                         AIR_INDIGENOUS_POPULATION: Number(r[4].replace(/[^0-9\.]+/g, '')),
+                        AIR_THIRD_DOSE_ELIGIBLE_PCT: hasBooster ? Number(r[7].replace(/[^0-9\.]+/g, '')) : undefined,
                     }
 
                     // row.AIR_FIRST_DOSE_APPROX_COUNT = aggpop ? Math.round(aggpop.population15plus * (row.AIR_FIRST_DOSE_PCT/100)) : '';
