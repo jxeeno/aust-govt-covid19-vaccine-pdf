@@ -254,7 +254,7 @@ class AusDeptHealthVaccinePdf {
 
     getThirdDose(pageIndex){
         const content = this.mergeAdjacentCells(this.data.pages[pageIndex].content);
-        const thirdDoseLabel = content.find(v => v.str.match(/(than\s*two\s*doses|who\*shave\s*received\s*three\s*or|three\s*or\s*more\s*doses)/))
+        const thirdDoseLabel = content.find(v => v.str.match(/(than\s*two\s*doses|received\s*three|three\s*or\s*more\s*doses)/))
         if(!thirdDoseLabel){
             return;
         }
