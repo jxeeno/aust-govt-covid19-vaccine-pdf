@@ -5109,5 +5109,20 @@
         "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/07/covid-19-vaccine-rollout-update-jurisdictional-breakdown-10-july-2022.pdf",
         "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-07-09.json",
         "validation": []
+    },
+    {
+        "name": "COVID-19 vaccine rollout update – 11 July 2022",
+        "landingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-11-july-2022",
+        "jurisdictionalLandingUrl": "https://www.health.gov.au/resources/publications/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-july-2022",
+        "pdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/07/covid-19-vaccine-rollout-update-11-july-2022.pdf",
+        "jurisdictionalPdfUrl": "https://www.health.gov.au/sites/default/files/documents/2022/07/covid-19-vaccine-rollout-update-jurisdictional-breakdown-11-july-2022.pdf",
+        "vaccineDataPath": "https://vaccinedata.covid19nearme.com.au/data/2022-07-10.json",
+        "validation": [
+            "totals.cwthAll.total is null",
+            "totals.cwthAll.last24hr is null",
+            "totals.cwthAgedCare.total is null",
+            "totals.cwthAgedCare.last24hr is null",
+            "statesTotal + cwthAgedCareTotal + cwthPrimaryCareTotal is not 60610015 (NaN)"
+        ]
     }
 ]
